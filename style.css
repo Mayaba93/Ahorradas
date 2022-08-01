@@ -1,3 +1,10 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+p{
+    margin-bottom: 0;
+}
 /* ------------------------------Nav-------------------------------------- */
 .nuestro-nav{
     background-color: #BC8DA0!important;
@@ -5,4 +12,47 @@
 }
 .seccion-categorias, .seccion-reportes{
     display: none;
+}
+/* Seccion Balance */
+.contenedor-main{
+    padding: 4%;
+}
+.card-balance{
+    background-color: #BC8DA0;
+    width: 75%;
+    padding: 5%;
+    border-radius: 10px;
+    box-shadow: 0px 8px 15px -7px rgba(0,0,0,0.64);
+    margin-bottom: 5%;
+}
+.balance-titulo{
+    margin-bottom: 20%;
+}
+.contenedor-balance-gastos{
+    display: flex;
+    justify-content: space-between;
+    margin: 4% 0;
+    font-size: 20px;
+    align-items: center;
+}
+.contenedor-balance-gastos span{
+    font-size: 18px;
+}
+
+.balance-total{
+    font-size: 25px;
+}
+.contenedor-titulo{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.contenedor-input-filtros{
+    display: flex;
+    flex-direction: column;
+    margin: 6% 0;
+}
+.contenedor-input-filtros select, .contenedor-input-filtros input{
+    padding: 2% 1%;
+    margin-top: 4%;
 }

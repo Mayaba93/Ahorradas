@@ -7,17 +7,17 @@ const seccionCategorias = document.getElementById('seccion-categorias');
 const seccionReportes = document.getElementById('seccion-reportes');
 
 botonSeccionBalance.addEventListener('click',()=>{
-    seccionBalance.style.display= 'inline-block';
+    seccionBalance.style.display= 'flex';
     seccionCategorias.style.display= 'none';
     seccionReportes.style.display= 'none';
 })
 botonSeccionCategorias.addEventListener('click',()=>{
-    seccionCategorias.style.display= 'inline-block';
+    seccionCategorias.style.display= 'flex';
     seccionBalance.style.display= 'none';
     seccionReportes.style.display= 'none';
 })
 botonSeccionReportes.addEventListener('click',()=>{
-    seccionReportes.style.display= 'inline-block';
+    seccionReportes.style.display= 'flex';
     seccionCategorias.style.display= 'none';
     seccionBalance.style.display= 'none';
 })
