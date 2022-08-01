@@ -1,4 +1,8 @@
+/* ------------------------------Nav-------------------------------------- */
 .nuestro-nav{
     background-color: #BC8DA0!important;
     color: white!important;
+}
+.seccion-categorias, .seccion-reportes{
+    display: none;
 }
