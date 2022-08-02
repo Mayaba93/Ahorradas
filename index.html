@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
     integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
+
 
   <title>Ahorradas</title>
 </head>
@@ -117,7 +117,7 @@
             <div class="card-operaciones">
               <div class="card-titulo-boton">
                 <h3>Operaciones</h3>
-                <button class="boton-nueva-operacion">
+                <button class="boton-nueva-operacion" id="boton-nueva-operacion">
                   + Nueva operación
                 </button>
               </div>
@@ -130,13 +130,77 @@
                   Cambia los filtros o agrega operaciones
                 </p>
               </div>
-           
-              
+
+
             </div>
           </div>
         </div>
       </div>
       </div>
+      </div>
+    </section>
+    <section id="seccion-nueva-operacion" class="seccion-nueva-operacion">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="container contenedor-nueva-operacion">
+            <h1>Nueva operación</h1>
+            <form>
+              <div class="contenedor-input-nueva-operacion">
+                <label for="input-nueva-operacion-descripcion">
+                  Descripción
+                </label>
+                <input type="text" id="input-nueva-operacion-descripcion">
+              </div>
+              <div class="contenedor-input-nueva-operacion">
+                <label for="input-nueva-operacion-monto">
+                  Monto
+                </label>
+                <input type="number" id="input-nueva-operacion-monto">
+              </div>
+              <div class="contenedor-input-nueva-operacion">
+                <label for="select-nueva-operacion-tipo" >
+                  Tipo
+                </label>
+                <select id="select-nueva-operacion-tipo">
+                  <option value="">Todos</option>
+                  <option value="">Gasto</option>
+                  <option value="">Ganancia</option>
+                </select>
+              </div>
+              <div class="contenedor-input-nueva-operacion">
+                <label for="select-nueva-operacion-categoria">Categoría</label>
+                <select name="" id="select-nueva-operacion-categoria">
+                  <option value="">Todas</option>
+                  <option value="">Comida</option>
+                  <option value="">Servicios</option>
+                  <option value="">Salidas</option>
+                  <option value="">Educación</option>
+                  <option value="">Transporte</option>
+                  <option value="">Trabajo</option>
+                </select>
+              </div>
+              <div class="contenedor-input-nueva-operacion">
+                <label for="input-nueva-operacion-fecha">Desde</label>
+                <input type="date" name="" id="input-nueva-operacion-fecha">
+              </div>
+              <div class="contenedor-input-nueva-operacion">
+                <label for="select-nueva-operacion-ordenar">Ordenar por</label>
+                <select id="select-nueva-operacion-ordenar">
+                  <option value="">Más reciente</option>
+                  <option value="">Menos reciente</option>
+                  <option value="">Mayor monto</option>
+                  <option value="">Menor monto</option>
+                  <option value="">A/Z</option>
+                  <option value="">Z/A</option>
+                </select>
+              </div>
+              <div class="d-flex justify-content-end">
+                <button class="btn btn-light mx-3" type="submit" id="boton-cancelar-operacion">Cancelar</button>
+              <button class="btn btn-success" type="submit" >Agregar</button>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     </section>
     <section id="seccion-categorias" class="seccion-categorias">
