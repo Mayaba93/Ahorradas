@@ -56,3 +56,32 @@ p{
     padding: 2% 1%;
     margin-top: 4%;
 }
+.card-operaciones{
+    background-color: #BC8DA0;
+    width: 100%;
+    padding: 2%;
+    border-radius: 10px;
+    box-shadow: 0px 8px 15px -7px rgba(0,0,0,0.64);
+}
+.card-titulo-boton{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.boton-nueva-operacion{
+    border-radius: 10px;
+    border: none;
+    padding: 2%;
+}
+.imagen-ninguna-operacion{
+    width: 50%;
+    margin-bottom: 5%;
+}
+.contenedor-ninguna-operacion{
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+height: 100%;
+
+}
