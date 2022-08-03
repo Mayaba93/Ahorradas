@@ -1,218 +1,301 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+      integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous" />
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
-    integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Ahorradas</title>
+  </head>
 
-
-  <title>Ahorradas</title>
-</head>
-
-<body>
-  <nav class="navbar navbar-expand-lg bg-light p-4 nuestro-nav">
-    <div class="container-fluid">
-      <a class="navbar-brand fs-2 fw-semibold link-light" href="#"><i class="fa-solid fa-wallet"></i> AhorrADAs</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link link-light" aria-current="page" href="#" id="boton-seccion-balance"><i
-                class="fas fa-chart-line mr-2"></i> Balance</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link link-light" href="#" id="boton-seccion-categorias">
-              <i class="fas fa-tag mr-2" aria-hidden="true"></i> Categorías</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link link-light" href="#" id="boton-seccion-reportes">
-              <i class="fas fa-chart-pie mr-2" aria-hidden="true"></i>
-              Reportes</a>
-          </li>
-        </ul>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-4 nuestro-nav">
+      <div class="container-fluid">
+        <a class="navbar-brand fs-2 fw-semibold" href="#"
+          ><i class="fa-solid fa-wallet"></i> AhorrADAs</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a
+                class="nav-link link-light"
+                aria-current="page"
+                href="#"
+                id="boton-seccion-balance"
+                ><i class="fas fa-chart-line mr-2"></i> Balance</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link link-light"
+                href="#"
+                id="boton-seccion-categorias"
+              >
+                <i class="fas fa-tag mr-2" aria-hidden="true"></i> Categorías</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link link-light"
+                href="#"
+                id="boton-seccion-reportes"
+              >
+                <i class="fas fa-chart-pie mr-2" aria-hidden="true"></i>
+                Reportes</a
+              >
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
-  <main class="contenedor-main">
-    <section id="seccion-balance" class="seccion-balance">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4 col-sm-12">
-            <div class="row">
-              <div class="col-md-12 d-flex justify-content-center">
-                <div class="card-balance">
-                  <h2 class="balance-titulo">Balance</h2>
-                  <div class="contenedor-balance-gastos">
-                    <p class="balance-ganancias-gastos">Ganancias</p>
-                    <span>+$0</span>
+    </nav>
+    <main class="contenedor-main">
+      <section id="seccion-balance" class="seccion-balance">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4 col-sm-12">
+              <div class="row">
+                <div class="col-md-12 col-sm-12 d-flex justify-content-center">
+                  <div class="card-balance">
+                    <h2 class="balance-titulo">Balance</h2>
+                    <div class="contenedor-balance-gastos">
+                      <p class="balance-ganancias-gastos">Ganancias</p>
+                      <span>+$0</span>
+                    </div>
+                    <div class="contenedor-balance-gastos">
+                      <p class="balance-ganancias-gastos">Gastos</p>
+                      <span>-$0</span>
+                    </div>
+                    <div class="contenedor-balance-gastos">
+                      <p class="balance-total">Total</p>
+                      <span>$0</span>
+                    </div>
                   </div>
-                  <div class="contenedor-balance-gastos">
-                    <p class="balance-ganancias-gastos">Gastos</p>
-                    <span>-$0</span>
-                  </div>
-                  <div class="contenedor-balance-gastos">
-                    <p class="balance-total">Total</p>
-                    <span>$0</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 d-flex justify-content-center">
+                  <div class="card-balance">
+                    <div class="contenedor-titulo">
+                      <h2>Filtros</h2>
+                      <span>Ocultar filtros</span>
+                    </div>
+                    <div class="contenedor-input-filtros">
+                      <label for="select-tipo">Tipo</label>
+                      <select id="select-tipo">
+                        <option value="">Todos</option>
+                        <option value="">Gasto</option>
+                        <option value="">Ganancia</option>
+                      </select>
+                    </div>
+                    <div class="contenedor-input-filtros">
+                      <label for="select-categoria">Categoría</label>
+                      <select name="" id="select-categoria">
+                        <option value="">Todas</option>
+                        <option value="">Comida</option>
+                        <option value="">Servicios</option>
+                        <option value="">Salidas</option>
+                        <option value="">Educación</option>
+                        <option value="">Transporte</option>
+                        <option value="">Trabajo</option>
+                      </select>
+                    </div>
+                    <div class="contenedor-input-filtros">
+                      <label for="input-fecha">Desde</label>
+                      <input type="date" name="" id="input-fecha" />
+                    </div>
+                    <div class="contenedor-input-filtros">
+                      <label for="select-ordenar">Ordenar por</label>
+                      <select id="select-ordenar">
+                        <option value="">Más reciente</option>
+                        <option value="">Menos reciente</option>
+                        <option value="">Mayor monto</option>
+                        <option value="">Menor monto</option>
+                        <option value="">A/Z</option>
+                        <option value="">Z/A</option>
+                      </select>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-12 d-flex justify-content-center">
-                <div class="card-balance">
-                  <div class="contenedor-titulo">
-                    <h2>Filtros</h2>
-                    <span>Ocultar filtros</span>
-                  </div>
-                  <div class="contenedor-input-filtros">
-                    <label for="select-tipo">Tipo</label>
-                    <select id="select-tipo">
-                      <option value="">Todos</option>
-                      <option value="">Gasto</option>
-                      <option value="">Ganancia</option>
-                    </select>
-                  </div>
-                  <div class="contenedor-input-filtros">
-                    <label for="select-categoria">Categoría</label>
-                    <select name="" id="select-categoria">
-                      <option value="">Todas</option>
-                      <option value="">Comida</option>
-                      <option value="">Servicios</option>
-                      <option value="">Salidas</option>
-                      <option value="">Educación</option>
-                      <option value="">Transporte</option>
-                      <option value="">Trabajo</option>
-                    </select>
-                  </div>
-                  <div class="contenedor-input-filtros">
-                    <label for="input-fecha">Desde</label>
-                    <input type="date" name="" id="input-fecha">
-                  </div>
-                  <div class="contenedor-input-filtros">
-                    <label for="select-ordenar">Ordenar por</label>
-                    <select id="select-ordenar">
-                      <option value="">Más reciente</option>
-                      <option value="">Menos reciente</option>
-                      <option value="">Mayor monto</option>
-                      <option value="">Menor monto</option>
-                      <option value="">A/Z</option>
-                      <option value="">Z/A</option>
-                    </select>
-                  </div>
+            <div class="col-md-8 col-sm-12 d-flex justify-content-start">
+              <div class="card-operaciones">
+                <div class="card-titulo-boton">
+                  <h3>Operaciones</h3>
+                  <button
+                    class="boton-nueva-operacion"
+                    id="boton-nueva-operacion"
+                  >
+                    + Nueva operación
+                  </button>
+                </div>
+                <div class="contenedor-ninguna-operacion">
+                  <img
+                    class="imagen-ninguna-operacion"
+                    src="./imagen/ninguna-operacion.svg"
+                  />
+                  <h4>Sin resultados</h4>
+                  <p>Cambia los filtros o agrega operaciones</p>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-md-8 col-sm-12 d-flex justify-content-start">
-            <div class="card-operaciones">
-              <div class="card-titulo-boton">
-                <h3>Operaciones</h3>
-                <button class="boton-nueva-operacion" id="boton-nueva-operacion">
-                  + Nueva operación
-                </button>
-              </div>
-              <div class="contenedor-ninguna-operacion">
-                <img class="imagen-ninguna-operacion" src="./imagen/ninguna-operacion.svg">
-                <h4>
-                  Sin resultados
-                </h4>
-                <p>
-                  Cambia los filtros o agrega operaciones
-                </p>
-              </div>
-
-
+        </div>
+      </section>
+      <section id="seccion-nueva-operacion" class="seccion-nueva-operacion">
+        <div class="row justify-content-center">
+          <div class="col-md-8 col-sm-12">
+            <div class="container contenedor-nueva-operacion">
+              <h1>Nueva operación</h1>
+              <form>
+                <div class="contenedor-input-nueva-operacion">
+                  <label for="input-nueva-operacion-descripcion">
+                    Descripción
+                  </label>
+                  <input type="text" id="input-nueva-operacion-descripcion" />
+                </div>
+                <div class="contenedor-input-nueva-operacion">
+                  <label for="input-nueva-operacion-monto"> Monto </label>
+                  <input type="number" id="input-nueva-operacion-monto" />
+                </div>
+                <div class="contenedor-input-nueva-operacion">
+                  <label for="select-nueva-operacion-tipo"> Tipo </label>
+                  <select id="select-nueva-operacion-tipo">
+                    <option value="">Todos</option>
+                    <option value="">Gasto</option>
+                    <option value="">Ganancia</option>
+                  </select>
+                </div>
+                <div class="contenedor-input-nueva-operacion">
+                  <label for="select-nueva-operacion-categoria"
+                    >Categoría</label
+                  >
+                  <select name="" id="select-nueva-operacion-categoria">
+                    <option value="">Todas</option>
+                    <option value="">Comida</option>
+                    <option value="">Servicios</option>
+                    <option value="">Salidas</option>
+                    <option value="">Educación</option>
+                    <option value="">Transporte</option>
+                    <option value="">Trabajo</option>
+                  </select>
+                </div>
+                <div class="contenedor-input-nueva-operacion">
+                  <label for="input-nueva-operacion-fecha">Desde</label>
+                  <input type="date" name="" id="input-nueva-operacion-fecha" />
+                </div>
+                <div class="contenedor-input-nueva-operacion">
+                  <label for="select-nueva-operacion-ordenar"
+                    >Ordenar por</label
+                  >
+                  <select id="select-nueva-operacion-ordenar">
+                    <option value="">Más reciente</option>
+                    <option value="">Menos reciente</option>
+                    <option value="">Mayor monto</option>
+                    <option value="">Menor monto</option>
+                    <option value="">A/Z</option>
+                    <option value="">Z/A</option>
+                  </select>
+                </div>
+                <div class="d-flex justify-content-end">
+                  <button
+                    class="btn btn-light mx-3"
+                    type="submit"
+                    id="boton-cancelar-operacion"
+                  >
+                    Cancelar
+                  </button>
+                  <button class="btn btn-success boton-agregar" type="submit">
+                    Agregar
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
-      </div>
-      </div>
-      </div>
-    </section>
-    <section id="seccion-nueva-operacion" class="seccion-nueva-operacion">
-      <div class="row justify-content-center">
-        <div class="col-md-8">
-          <div class="container contenedor-nueva-operacion">
-            <h1>Nueva operación</h1>
-            <form>
-              <div class="contenedor-input-nueva-operacion">
-                <label for="input-nueva-operacion-descripcion">
-                  Descripción
-                </label>
-                <input type="text" id="input-nueva-operacion-descripcion">
+      </section>
+      <section id="seccion-categorias" class="seccion-categorias">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="container contenedor-categorias">
+              <h1>Categorías</h1>
+              <form>
+                <label for="input-nombre-nueva-categorias" class="label-nombre-nueva-categoria">Nombre</label>
+                <div class="contenedor-input-agregar-categorias">
+                  <input
+                    type="text"
+                    id="input-nombre-nueva-categorias"
+                    class="input-nombre-nueva-categorias"
+                  />
+                  <button type="submit" class="btn btn-success boton-agregar">
+                    Agregar
+                  </button>
+                </div>
+              </form>
+              <div class="contenedor-span-editar-eliminar">
+                <span class="span-nombre-categoria">Comida</span>
+                <div><a href="#" class="link-editar-eliminar-categoria">Editar</a><a href="#" class="link-editar-eliminar-categoria">Eliminar</a></div>
               </div>
-              <div class="contenedor-input-nueva-operacion">
-                <label for="input-nueva-operacion-monto">
-                  Monto
-                </label>
-                <input type="number" id="input-nueva-operacion-monto">
+              <div class="contenedor-span-editar-eliminar">
+                <span class="span-nombre-categoria">Servicios</span>
+                <div><a href="#" class="link-editar-eliminar-categoria">Editar</a><a href="#" class="link-editar-eliminar-categoria">Eliminar</a></div>
               </div>
-              <div class="contenedor-input-nueva-operacion">
-                <label for="select-nueva-operacion-tipo" >
-                  Tipo
-                </label>
-                <select id="select-nueva-operacion-tipo">
-                  <option value="">Todos</option>
-                  <option value="">Gasto</option>
-                  <option value="">Ganancia</option>
-                </select>
+              <div class="contenedor-span-editar-eliminar">
+                <span class="span-nombre-categoria">Salidas</span>
+                <div><a href="#" class="link-editar-eliminar-categoria">Editar</a><a href="#" class="link-editar-eliminar-categoria">Eliminar</a></div>
               </div>
-              <div class="contenedor-input-nueva-operacion">
-                <label for="select-nueva-operacion-categoria">Categoría</label>
-                <select name="" id="select-nueva-operacion-categoria">
-                  <option value="">Todas</option>
-                  <option value="">Comida</option>
-                  <option value="">Servicios</option>
-                  <option value="">Salidas</option>
-                  <option value="">Educación</option>
-                  <option value="">Transporte</option>
-                  <option value="">Trabajo</option>
-                </select>
+              <div class="contenedor-span-editar-eliminar">
+                <span class="span-nombre-categoria">Educación</span>
+                <div><a href="#" class="link-editar-eliminar-categoria">Editar</a><a href="#" class="link-editar-eliminar-categoria">Eliminar</a></div>
               </div>
-              <div class="contenedor-input-nueva-operacion">
-                <label for="input-nueva-operacion-fecha">Desde</label>
-                <input type="date" name="" id="input-nueva-operacion-fecha">
+              <div class="contenedor-span-editar-eliminar">
+                <span class="span-nombre-categoria">Transporte</span>
+                <div><a href="#" class="link-editar-eliminar-categoria">Editar</a><a href="#" class="link-editar-eliminar-categoria">Eliminar</a></div>
               </div>
-              <div class="contenedor-input-nueva-operacion">
-                <label for="select-nueva-operacion-ordenar">Ordenar por</label>
-                <select id="select-nueva-operacion-ordenar">
-                  <option value="">Más reciente</option>
-                  <option value="">Menos reciente</option>
-                  <option value="">Mayor monto</option>
-                  <option value="">Menor monto</option>
-                  <option value="">A/Z</option>
-                  <option value="">Z/A</option>
-                </select>
+              <div class="contenedor-span-editar-eliminar">
+                <span class="span-nombre-categoria">Trabajo</span>
+                <div><a href="#" class="link-editar-eliminar-categoria">Editar</a><a href="#" class="link-editar-eliminar-categoria">Eliminar</a></div>
               </div>
-              <div class="d-flex justify-content-end">
-                <button class="btn btn-light mx-3" type="submit" id="boton-cancelar-operacion">Cancelar</button>
-              <button class="btn btn-success" type="submit" >Agregar</button>
-              </div>
-            </form>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-    <section id="seccion-categorias" class="seccion-categorias">
-      Categorías
-    </section>
-    <section id="seccion-reportes" class="seccion-reportes">Reportes</section>
-  </main>
+      </section>
+      <section id="seccion-reportes" class="seccion-reportes">Reportes</section>
+    </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
-    crossorigin="anonymous"></script>
-  <script src="main.js"></script>
-</body>
-
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+      crossorigin="anonymous"
+    ></script>
+    <script src="main.js"></script>
+  </body>
 </html>

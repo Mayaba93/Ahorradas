@@ -7,13 +7,13 @@ const seccionCategorias = document.getElementById('seccion-categorias');
 const seccionReportes = document.getElementById('seccion-reportes');
 
 botonSeccionBalance.addEventListener('click',()=>{
-    seccionBalance.style.display= 'flex';
+    seccionBalance.style.display= 'block';
     seccionCategorias.style.display= 'none';
     seccionReportes.style.display= 'none';
     seccionNuevaOperacion.style.display= 'none';
 })
 botonSeccionCategorias.addEventListener('click',()=>{
-    seccionCategorias.style.display= 'flex';
+    seccionCategorias.style.display= 'block';
     seccionBalance.style.display= 'none';
     seccionReportes.style.display= 'none';
     seccionNuevaOperacion.style.display= 'none';

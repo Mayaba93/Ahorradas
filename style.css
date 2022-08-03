@@ -2,6 +2,9 @@
     margin: 0;
     padding: 0;
 }
+body{
+    color: white;
+}
 p{
     margin-bottom: 0;
 }
@@ -62,6 +65,7 @@ p{
     padding: 2%;
     border-radius: 10px;
     box-shadow: 0px 8px 15px -7px rgba(0,0,0,0.64);
+    height: 100%;
 }
 .card-titulo-boton{
     display:flex;
@@ -86,7 +90,7 @@ height: 100%;
 
 }
 /* sección Nueva operación */
-.contenedor-nueva-operacion{
+.contenedor-nueva-operacion, .contenedor-categorias{
     background-color: #BC8DA0;
     padding: 3%;
     border-radius: 10px;
@@ -104,10 +108,49 @@ height: 100%;
     margin-bottom: 1%;
     
 }
-.contenedor-input-nueva-operacion input , .contenedor-input-nueva-operacion select{
+.contenedor-input-nueva-operacion input , .contenedor-input-nueva-operacion select, .input-nombre-nueva-categorias{
     padding: 0.5% 1%;
     border-radius: 10px;
     border: none;
 }
+.boton-agregar{
+    background-color: rgb(74, 180, 64);
+    border: none;
+}
 
- 
+/* sección categorías */
+.contenedor-categorias{
+    background-color: #BC8DA0;
+    
+}
+.contenedor-input-agregar-categorias{
+    display: flex;
+    justify-content: space-between;
+    margin: 2% 0 5% 0;
+}
+.label-nombre-nueva-categoria{
+    font-weight: bold;
+}
+.input-nombre-nueva-categorias{
+    width: 85%;
+}
+.contenedor-span-editar-eliminar{
+    display: flex;
+    justify-content: space-between;
+    margin: 3% 0;
+    text-align: center;
+}
+.span-nombre-categoria{
+    color: rgb(74, 180, 64);
+    background-color: white;
+    padding: 0.5%;
+    border-radius: 5px;
+}
+.link-editar-eliminar-categoria{
+    text-decoration: none;
+    margin-left: 10%;
+    color: white;
+}
+.link-editar-eliminar-categoria:hover{
+    color: rgba(255, 255, 255, 0.473);
+}
