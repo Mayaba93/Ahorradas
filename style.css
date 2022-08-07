@@ -154,3 +154,16 @@ height: 100%;
 .link-editar-eliminar-categoria:hover{
     color: rgba(255, 255, 255, 0.473);
 }
+/* Seccion reportes */
+.contenedor-operaciones-insuficientes{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 5% 0%
+}
+.imagen-operaciones-insuficientes{
+    width: 50%;
+    margin-bottom: 5%;
+    
+}
