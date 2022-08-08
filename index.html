@@ -184,14 +184,13 @@
                 </div>
                 <div class="contenedor-input-nueva-operacion">
                   <label for="input-nueva-operacion-monto"> Monto </label>
-                  <input type="number" id="input-nueva-operacion-monto" />
+                  <input type="number"  value="0" id="input-nueva-operacion-monto" />
                 </div>
                 <div class="contenedor-input-nueva-operacion">
                   <label for="select-nueva-operacion-tipo"> Tipo </label>
                   <select id="select-nueva-operacion-tipo">
-                    <option value="">Todos</option>
-                    <option value="">Gasto</option>
-                    <option value="">Ganancia</option>
+                    <option value="gasto">Gasto</option>
+                    <option value="ganancia">Ganancia</option>
                   </select>
                 </div>
                 <div class="contenedor-input-nueva-operacion">
@@ -199,31 +198,17 @@
                     >Categoría</label
                   >
                   <select name="" id="select-nueva-operacion-categoria">
-                    <option value="">Todas</option>
-                    <option value="">Comida</option>
-                    <option value="">Servicios</option>
-                    <option value="">Salidas</option>
-                    <option value="">Educación</option>
-                    <option value="">Transporte</option>
-                    <option value="">Trabajo</option>
+                    <option value="comida">Comida</option>
+                    <option value="servicios">Servicios</option>
+                    <option value="salidas">Salidas</option>
+                    <option value="educacion">Educación</option>
+                    <option value="transporte">Transporte</option>
+                    <option value="trabajo">Trabajo</option>
                   </select>
                 </div>
                 <div class="contenedor-input-nueva-operacion">
-                  <label for="input-nueva-operacion-fecha">Desde</label>
+                  <label for="input-nueva-operacion-fecha">Fecha</label>
                   <input type="date" name="" id="input-nueva-operacion-fecha" />
-                </div>
-                <div class="contenedor-input-nueva-operacion">
-                  <label for="select-nueva-operacion-ordenar"
-                    >Ordenar por</label
-                  >
-                  <select id="select-nueva-operacion-ordenar">
-                    <option value="">Más reciente</option>
-                    <option value="">Menos reciente</option>
-                    <option value="">Mayor monto</option>
-                    <option value="">Menor monto</option>
-                    <option value="">A/Z</option>
-                    <option value="">Z/A</option>
-                  </select>
                 </div>
                 <div class="d-flex justify-content-end">
                   <button
@@ -233,7 +218,7 @@
                   >
                     Cancelar
                   </button>
-                  <button class="btn btn-success boton-agregar" type="submit">
+                  <button class="btn btn-success" id="boton-agregar-operacion" type="submit">
                     Agregar
                   </button>
                 </div>
