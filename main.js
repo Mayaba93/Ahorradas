@@ -44,3 +44,25 @@ botonCancelarOperacion.addEventListener('click',(e)=>{
     seccionReportes.style.display= 'none';
     seccionNuevaOperacion.style.display= 'none';
 })
+
+// Creación nueva operación
+
+const inputNuevaOperacionDescripcion = document.getElementById('input-nueva-operacion-descripcion');
+const inputNuevaOperacionMonto= document.getElementById('input-nueva-operacion-monto');
+const selectNuevaOperacionTipo = document.getElementById('select-nueva-operacion-tipo');
+const selectNuevaOperacionCategoria = document.getElementById('select-nueva-operacion-categoria');
+const inputNuevaOperacionFecha = document.getElementById('input-nueva-operacion-fecha');
+const botonAgregarOperacion = document.getElementById('boton-agregar-operacion');
+
+botonAgregarOperacion.addEventListener('click', (e)=>{
+    e.preventDefault();
+    console.log(inputNuevaOperacionDescripcion.value);
+    console.log(inputNuevaOperacionMonto.value);
+    console.log(selectNuevaOperacionTipo.value);
+    console.log(selectNuevaOperacionCategoria.value);
+    console.log(inputNuevaOperacionFecha.value);
+    
+
+}
+)
+
