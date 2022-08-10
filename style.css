@@ -13,7 +13,7 @@ p{
     background-color: #BC8DA0!important;
     color: white!important;
 }
-.seccion-categorias, .seccion-reportes , .seccion-nueva-operacion{
+.seccion-categorias, .seccion-reportes , .seccion-nueva-operacion , .seccion-editar-operacion{
     display: none;
 }
 /* Seccion Balance */
@@ -89,8 +89,8 @@ flex-direction: column;
 height: 100%;
 
 }
-/* sección Nueva operación */
-.contenedor-nueva-operacion, .contenedor-categorias{
+/* sección Nueva operación y editar operación */
+.contenedor-nueva-operacion, .contenedor-editar-operacion , .contenedor-categorias{
     background-color: #BC8DA0;
     padding: 3%;
     border-radius: 10px;
@@ -98,22 +98,22 @@ height: 100%;
 
     
 }
-.contenedor-input-nueva-operacion{
+.contenedor-input-nueva-operacion , .contenedor-input-editar-operacion{
     display: flex;
     flex-direction: column;
     margin: 3% 0%;
 }
-.contenedor-input-nueva-operacion label{
+.contenedor-input-nueva-operacion label , .contenedor-input-editar-operacion label{
     font-weight: bolder;
     margin-bottom: 1%;
     
 }
-.contenedor-input-nueva-operacion input , .contenedor-input-nueva-operacion select, .input-nombre-nueva-categorias{
+.contenedor-input-nueva-operacion input , .contenedor-input-nueva-operacion select, .input-nombre-nueva-categorias ,.contenedor-input-editar-operacion input,.contenedor-editar-operacion select , .input-nombre-editar-categorias{
     padding: 0.5% 1%;
     border-radius: 10px;
     border: none;
 }
-.boton-agregar{
+.boton-agregar , .boton-editar-operacion{
     background-color: rgb(74, 180, 64);
     border: none;
 }
