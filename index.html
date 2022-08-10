@@ -77,6 +77,7 @@
       </div>
     </nav>
     <main class="contenedor-main">
+      <!--------------------------------------- sección balance ------------------------------------------->
       <section id="seccion-balance" class="seccion-balance">
         <div class="container">
           <div class="row">
@@ -117,14 +118,8 @@
                     </div>
                     <div class="contenedor-input-filtros">
                       <label for="select-categoria">Categoría</label>
-                      <select name="" id="select-categoria">
-                        <option value="">Todas</option>
+                      <select class="select-categorias filtro-categorias" id="select-categoria">
                         <option value="">Comida</option>
-                        <option value="">Servicios</option>
-                        <option value="">Salidas</option>
-                        <option value="">Educación</option>
-                        <option value="">Transporte</option>
-                        <option value="">Trabajo</option>
                       </select>
                     </div>
                     <div class="contenedor-input-filtros">
@@ -170,6 +165,7 @@
           </div>
         </div>
       </section>
+<!-- ------------------------------------------------sección nueva operación------------------------------->
       <section id="seccion-nueva-operacion" class="seccion-nueva-operacion">
         <div class="row justify-content-center">
           <div class="col-md-8 col-sm-12">
@@ -197,13 +193,8 @@
                   <label for="select-nueva-operacion-categoria"
                     >Categoría</label
                   >
-                  <select name="" id="select-nueva-operacion-categoria">
+                  <select class="select-categorias" id="select-nueva-operacion-categoria">
                     <option value="comida">Comida</option>
-                    <option value="servicios">Servicios</option>
-                    <option value="salidas">Salidas</option>
-                    <option value="educacion">Educación</option>
-                    <option value="transporte">Transporte</option>
-                    <option value="trabajo">Trabajo</option>
                   </select>
                 </div>
                 <div class="contenedor-input-nueva-operacion">
@@ -227,6 +218,60 @@
           </div>
         </div>
       </section>
+      <!-- ---------------------------------------Editar Operacion--------------------------------------------- -->
+      <section id="seccion-editar-operacion" class="seccion-editar-operacion">
+        <div class="row justify-content-center">
+          <div class="col-md-8 col-sm-12">
+            <div class="container contenedor-editar-operacion">
+              <h1>Editar operación</h1>
+              <form>
+                <div class="contenedor-input-editar-operacion">
+                  <label for="input-editar-operacion-descripcion">
+                    Descripción
+                  </label>
+                  <input type="text" id="input-editar-operacion-descripcion" />
+                </div>
+                <div class="contenedor-input-editar-operacion">
+                  <label for="input-editar-operacion-monto"> Monto </label>
+                  <input type="number"  value="0" id="input-editar-operacion-monto" />
+                </div>
+                <div class="contenedor-input-editar-operacion">
+                  <label for="select-editar-operacion-tipo"> Tipo </label>
+                  <select id="select-editar-operacion-tipo">
+                    <option value="gasto">Gasto</option>
+                    <option value="ganancia">Ganancia</option>
+                  </select>
+                </div>
+                <div class="contenedor-input-editar-operacion">
+                  <label for="select-editar-operacion-categoria"
+                    >Categoría</label
+                  >
+                  <select class="select-categorias" id="select-editar-operacion-categoria">
+                    <option value="comida">Comida</option>
+                  </select>
+                </div>
+                <div class="contenedor-input-editar-operacion">
+                  <label for="input-editar-operacion-fecha">Fecha</label>
+                  <input type="date" name="" id="input-editar-operacion-fecha" />
+                </div>
+                <div class="d-flex justify-content-end">
+                  <button
+                    class="btn btn-light mx-3"
+                    type="submit"
+                    id="boton-cancelar-editar-operacion"
+                  >
+                    Cancelar
+                  </button>
+                  <button class="btn btn-success" id="boton-editar-operacion" type="submit">
+                   Editar
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!------------------------------------ sección categorias--------------------------------------------->
       <section id="seccion-categorias" class="seccion-categorias">
         <div class="row justify-content-center">
           <div class="col-lg-8">
@@ -307,6 +352,7 @@
           </div>
         </div>
       </section>
+      <!------------------------------------- sección reporte ----------------------------------------------->
       <section id="seccion-reportes" class="seccion-reportes justify-content-center">
         <div class="col-md-8 col-sm-12">
           <div class="card-operaciones">

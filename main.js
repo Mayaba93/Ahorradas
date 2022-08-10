@@ -6,23 +6,27 @@ const seccionBalance = document.getElementById('seccion-balance');
 const seccionCategorias = document.getElementById('seccion-categorias');
 const seccionReportes = document.getElementById('seccion-reportes');
 
+
 botonSeccionBalance.addEventListener('click',()=>{
     seccionBalance.style.display= 'block';
     seccionCategorias.style.display= 'none';
     seccionReportes.style.display= 'none';
     seccionNuevaOperacion.style.display= 'none';
+    seccionEditarOperacion.style.display = 'none';
 })
 botonSeccionCategorias.addEventListener('click',()=>{
     seccionCategorias.style.display= 'block';
     seccionBalance.style.display= 'none';
     seccionReportes.style.display= 'none';
     seccionNuevaOperacion.style.display= 'none';
+    seccionEditarOperacion.style.display = 'none';
 })
 botonSeccionReportes.addEventListener('click',()=>{
     seccionReportes.style.display= 'flex';
     seccionCategorias.style.display= 'none';
     seccionBalance.style.display= 'none';
     seccionNuevaOperacion.style.display= 'none';
+    seccionEditarOperacion.style.display = 'none';
 })
 // boton para nueva operación
 const botonNuevaOperacion = document.getElementById('boton-nueva-operacion');
@@ -33,7 +37,11 @@ botonNuevaOperacion.addEventListener('click',() =>{
     seccionReportes.style.display= 'none';
     seccionCategorias.style.display= 'none';
     seccionBalance.style.display= 'none';
+    seccionEditarOperacion.style.display = 'none';
 })
+// botón para editar operacion
+const seccionEditarOperacion = document.getElementById('seccion-editar-operacion');
+
 // botón para cancelar
 const botonCancelarOperacion = document.getElementById('boton-cancelar-operacion');
 
@@ -43,6 +51,7 @@ botonCancelarOperacion.addEventListener('click',(e)=>{
     seccionCategorias.style.display= 'none';
     seccionReportes.style.display= 'none';
     seccionNuevaOperacion.style.display= 'none';
+    seccionEditarOperacion.style.display = 'none';
 })
 
 // Creación nueva operación
