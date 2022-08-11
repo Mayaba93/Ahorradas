@@ -90,3 +90,22 @@ const generarCategorias = () => {
     }
 }
 generarCategorias()
+// Array con operaciones 
+const operaciones = [];
+
+//Cambio de imagen de no hay operaciones a operaciones
+const ningunaOperacion = document.getElementById('ninguna-operacion');
+const contenedorOperaciones = document.getElementById('contenedor-operaciones');
+console.log(ningunaOperacion,contenedorOperaciones)
+
+const verOperaciones = (operaciones) =>{
+    if(!operaciones.length){
+        ningunaOperacion.classList.remove('invisible');
+        contenedorOperaciones.classList.add('invisible');
+    }
+    else{
+        ningunaOperacion.classList.add('invisible');
+        contenedorOperaciones.classList.remove('invisible');
+    }
+}
+verOperaciones(operaciones)
