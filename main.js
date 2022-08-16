@@ -146,7 +146,8 @@ const generarCategorias = () => {
 };
 generarCategorias();
 // Array con operaciones
-const operaciones = [];
+const operaciones = []
+
 //Cambio de imagen de no hay operaciones a operaciones
 const ningunaOperacion = document.getElementById("ninguna-operacion");
 const contenedorOperaciones = document.getElementById("contenedor-operaciones");
@@ -161,3 +162,6 @@ const verOperaciones = (operaciones) => {
   }
 };
 verOperaciones(operaciones);
+
+console.log(operaciones)
+localStorage.setItem('operaciones', JSON.stringify(operaciones))
