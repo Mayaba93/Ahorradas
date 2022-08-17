@@ -139,12 +139,14 @@ height: 100%;
     justify-content: space-between;
     margin: 3% 0;
     text-align: center;
+    align-items: center;
 }
 .span-nombre-categoria{
-    color: rgb(74, 180, 64);
-    background-color: white;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.301);
     padding: 0.5%;
     border-radius: 5px;
+    font-weight: bold;
 }
 .link-editar-eliminar-categoria{
     text-decoration: none;
@@ -166,4 +168,36 @@ height: 100%;
     width: 50%;
     margin-bottom: 5%;
     
+}
+
+/* operaciones nuevas */
+
+.ganancia{
+    color: rgb(74, 180, 64);
+}
+.ganancia::before{
+    content: '+$';
+}
+.gasto{
+    color: rgb(158, 34, 34);
+}
+.gasto::before{
+    content: '-$';
+}
+.operacion{
+    background-color: #dabbc7c2;
+}
+.link-editar-borrar, .span-fecha{
+    color:#666666
+    ;
+}
+.link-editar-borrar:hover{
+    color: #8c8c8c;
+}
+.span-categoria{
+    color: white;
+    background-color:#ddc9d1c4;
+    padding: 2.5%;
+    border-radius: 5px;
+    font-weight: bold;
 }

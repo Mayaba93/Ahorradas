@@ -60,7 +60,9 @@ botonCancelarOperacion.addEventListener("click", (e) => {
   seccionNuevaOperacion.style.display = "none";
   seccionEditarOperacion.style.display = "none";
 });
+// Array con operaciones
 
+const operaciones = JSON.parse(localStorage.getItem('operaciones')) || [];
 // Creación nueva operación
 
 const inputNuevaOperacionDescripcion = document.getElementById(
@@ -100,6 +102,7 @@ botonAgregarOperacion.addEventListener("click", (e) => {
   selectNuevaOperacionTipo.value = "gasto";
   selectNuevaOperacionCategoria.value = "Comida";
   verOperaciones(operaciones);
+  localStorage.setItem('operaciones', JSON.stringify(operaciones))
   pintarOperaciones(operaciones);
 });
 
@@ -109,16 +112,19 @@ const operacionesNuevas = document.getElementById("operaciones-nuevas");
 const pintarOperaciones = (arr) => {
   let str = "";
   arr.forEach((operacion) => {
-      const { id, descripcion , categoria , fecha , monto} = operacion;
+    const { id, descripcion, categoria, fecha, monto, tipo } = operacion;
     str =
       str +
-      `<div class="row d-flex">
-        <span class="col-3">${descripcion}</span>
-        <span class="col-3">${categoria}</span>
-        <span  class="col-2 text-end">${fecha}</span>
-        <span class="col-2 text-end">${monto}</span>
-        <a class="col-1 text-end" href="#">Editar</a></a>
-        <a class="col-1 text-end" href="#">Borrar</a>
+      `<div class="row d-flex my-3 py-2 rounded operacion">
+
+        <span class="col-3 fw-bold">${descripcion}</span>
+        <div class="col-3"> 
+        <span class="span-categoria">${categoria}</span>
+        </div>
+        <span  class="col-2 text-end span-fecha">${fecha}</span>
+        <span class="col-2 text-end fw-bold ${tipo === 'ganancia' ? 'ganancia' : 'gasto'}">${monto}</span>
+        <a class="col-1 text-end text-decoration-none link-editar-borrar" href="#">Editar</a></a>
+        <a class="col-1 text-end text-decoration-none link-editar-borrar" href="#">Borrar</a>
       </div>`;
   }); operacionesNuevas.innerHTML = str;
 };
@@ -145,8 +151,6 @@ const generarCategorias = () => {
   }
 };
 generarCategorias();
-// Array con operaciones
-const operaciones = []
 
 //Cambio de imagen de no hay operaciones a operaciones
 const ningunaOperacion = document.getElementById("ninguna-operacion");
@@ -154,14 +158,12 @@ const contenedorOperaciones = document.getElementById("contenedor-operaciones");
 
 const verOperaciones = (operaciones) => {
   if (!operaciones.length) {
-    ningunaOperacion.classList.remove("invisible");
-    contenedorOperaciones.classList.add("invisible");
-  } else {
-    ningunaOperacion.classList.add("invisible");
-    contenedorOperaciones.classList.remove("invisible");
+    ningunaOperacion.style.display = 'flex';
+    contenedorOperaciones.style.display = 'none';
   }
-};
-verOperaciones(operaciones);
-
-console.log(operaciones)
-localStorage.setItem('operaciones', JSON.stringify(operaciones))
+  else {
+    ningunaOperacion.style.display = 'none';
+    contenedorOperaciones.style.display = 'block';
+  }}
+  verOperaciones(operaciones)
+  pintarOperaciones(operaciones);
