@@ -113,7 +113,7 @@ height: 100%;
     border-radius: 10px;
     border: none;
 }
-.boton-agregar , .boton-editar-operacion{
+.boton-agregar{
     background-color: rgb(74, 180, 64);
     border: none;
 }
@@ -187,11 +187,11 @@ height: 100%;
 .operacion{
     background-color: #dabbc7c2;
 }
-.link-editar-borrar, .span-fecha{
+.boton-eliminar-operacion, .boton-editar-operacion, .span-fecha{
     color:#666666
     ;
 }
-.link-editar-borrar:hover{
+.boton-eliminar-operacion:hover, .boton-editar-operacion:hover{
     color: #8c8c8c;
 }
 .span-categoria{

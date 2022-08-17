@@ -60,9 +60,33 @@ botonCancelarOperacion.addEventListener("click", (e) => {
   seccionNuevaOperacion.style.display = "none";
   seccionEditarOperacion.style.display = "none";
 });
+//Creando selects de categorias
+const categorias = [
+  "Comida",
+  "Servicios",
+  "Salidas",
+  "Educación",
+  "Transporte",
+  "Trabajo",
+];
+const generarCategorias = () => {
+  const selectCategorias = document.getElementsByClassName("select-categorias");
+  for (let i = 0; i < selectCategorias.length; i++) {
+    const select = selectCategorias[i];
+    if (select.classList.contains("filtro-categorias")) {
+      select.innerHTML = "<option>Todas</option>";
+    }
+    categorias.forEach((categoria) => {
+      select.innerHTML += `<option value="${categoria}">${categoria}</option>`;
+    });
+  }
+};
+generarCategorias();
+
 // Array con operaciones
 
-const operaciones = JSON.parse(localStorage.getItem('operaciones')) || [];
+let operaciones = JSON.parse(localStorage.getItem('operaciones')) || [];
+
 // Creación nueva operación
 
 const inputNuevaOperacionDescripcion = document.getElementById(
@@ -123,34 +147,11 @@ const pintarOperaciones = (arr) => {
         </div>
         <span  class="col-2 text-end span-fecha">${fecha}</span>
         <span class="col-2 text-end fw-bold ${tipo === 'ganancia' ? 'ganancia' : 'gasto'}">${monto}</span>
-        <a class="col-1 text-end text-decoration-none link-editar-borrar" href="#">Editar</a></a>
-        <a class="col-1 text-end text-decoration-none link-editar-borrar" href="#">Borrar</a>
+        <a class="col-1 text-end text-decoration-none boton-editar-operacion" data-id=${id} href="#">Editar</a></a>
+        <a class="col-1 text-end text-decoration-none boton-eliminar-operacion" data-id=${id} href="#">Borrar</a>
       </div>`;
   }); operacionesNuevas.innerHTML = str;
 };
-
-//Creando selects de categorias
-const categorias = [
-  "Comida",
-  "Servicios",
-  "Salidas",
-  "Educación",
-  "Transporte",
-  "Trabajo",
-];
-const generarCategorias = () => {
-  const selectCategorias = document.getElementsByClassName("select-categorias");
-  for (let i = 0; i < selectCategorias.length; i++) {
-    const select = selectCategorias[i];
-    if (select.classList.contains("filtro-categorias")) {
-      select.innerHTML = "<option>Todas</option>";
-    }
-    categorias.forEach((categoria) => {
-      select.innerHTML += `<option value="${categoria}">${categoria}</option>`;
-    });
-  }
-};
-generarCategorias();
 
 //Cambio de imagen de no hay operaciones a operaciones
 const ningunaOperacion = document.getElementById("ninguna-operacion");
@@ -164,6 +165,16 @@ const verOperaciones = (operaciones) => {
   else {
     ningunaOperacion.style.display = 'none';
     contenedorOperaciones.style.display = 'block';
-  }}
-  verOperaciones(operaciones)
-  pintarOperaciones(operaciones);
+  }
+}
+verOperaciones(operaciones);
+
+// Boton eliminar operacion
+const botonesEliminarOperacion = document.querySelectorAll('.boton-eliminar-operacion')
+botonesEliminarOperacion.forEach(btn => btn.addEventListener('click', e => {
+  const arregloBorrarOperacion = operaciones.filter(operacion => operacion.id !== e.target.dataset.id)
+  localStorage.setItem('operaciones', JSON.stringify(arregloBorrarOperacion))
+  operaciones = JSON.parse(localStorage.getItem('operaciones'))
+  pintarOperaciones(operaciones)
+}))
+pintarOperaciones(operaciones);
