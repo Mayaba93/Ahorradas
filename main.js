@@ -130,7 +130,7 @@ botonAgregarOperacion.addEventListener("click", (e) => {
   pintarOperaciones(operaciones);
 });
 
-//Pintar operaciones sección balance
+//Pintar operaciones sección balance, borrar y eliminar operacion
 const operacionesNuevas = document.getElementById("operaciones-nuevas");
 
 const pintarOperaciones = (arr) => {
@@ -151,6 +151,16 @@ const pintarOperaciones = (arr) => {
         <a class="col-1 text-end text-decoration-none boton-eliminar-operacion" data-id=${id} href="#">Borrar</a>
       </div>`;
   }); operacionesNuevas.innerHTML = str;
+  const botonesEliminarOperacion = document.querySelectorAll('.boton-eliminar-operacion')
+  botonesEliminarOperacion.forEach(btn => {
+    btn.addEventListener('click', e => {
+      const arregloBorrarOperacion = operaciones.filter(operacion => operacion.id !== e.target.dataset.id)
+      localStorage.setItem('operaciones', JSON.stringify(arregloBorrarOperacion))
+      operaciones = JSON.parse(localStorage.getItem('operaciones'))
+      pintarOperaciones(operaciones)
+      verOperaciones(operaciones)
+    })
+  })
 };
 
 //Cambio de imagen de no hay operaciones a operaciones
@@ -169,12 +179,4 @@ const verOperaciones = (operaciones) => {
 }
 verOperaciones(operaciones);
 
-// Boton eliminar operacion
-const botonesEliminarOperacion = document.querySelectorAll('.boton-eliminar-operacion')
-botonesEliminarOperacion.forEach(btn => btn.addEventListener('click', e => {
-  const arregloBorrarOperacion = operaciones.filter(operacion => operacion.id !== e.target.dataset.id)
-  localStorage.setItem('operaciones', JSON.stringify(arregloBorrarOperacion))
-  operaciones = JSON.parse(localStorage.getItem('operaciones'))
-  pintarOperaciones(operaciones)
-}))
 pintarOperaciones(operaciones);
