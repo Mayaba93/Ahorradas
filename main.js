@@ -137,6 +137,13 @@ botonAgregarOperacion.addEventListener("click", (e) => {
 });
 
 //Pintar operaciones sección balance, borrar y eliminar operacion
+const inputEditarOperacionDescripcion = document.getElementById('input-editar-operacion-descripcion');
+const inputEditarOperacionMonto = document.getElementById('input-editar-operacion-monto');
+const selectEditarOperacionTipo= document.getElementById('select-editar-operacion-tipo');
+const selectEditarOperacionCategoria = document.getElementById('select-editar-operacion-categoria');
+const inputEditarOperacionFecha = document.getElementById('input-editar-operacion-fecha');
+const botonCancelarEditarOperacion = document.getElementById('boton-cancelar-editar-operacion');
+const botonEditarOperacion = document.getElementById('boton-editar-operacion');
 const operacionesNuevas = document.getElementById("operaciones-nuevas");
 
 const pintarOperaciones = (arr) => {
@@ -160,9 +167,8 @@ const pintarOperaciones = (arr) => {
       </div>`;
   });
   operacionesNuevas.innerHTML = str;
-  const botonesEliminarOperacion = document.querySelectorAll(
-    ".boton-eliminar-operacion"
-  );
+  const botonesEliminarOperacion = document.querySelectorAll(".boton-eliminar-operacion");
+  const botonesEditarOperacion= document.querySelectorAll(".boton-editar-operacion");
   botonesEliminarOperacion.forEach((btn) => {
     btn.addEventListener("click", (e) => {
       const arregloBorrarOperacion = operaciones.filter(
@@ -177,8 +183,37 @@ const pintarOperaciones = (arr) => {
       verOperaciones(operaciones);
     });
   });
+  botonesEditarOperacion.forEach(btn => {btn.addEventListener('click', e => {
+    const operacionParaEditar = operaciones.filter(operacion => operacion.id === e.target.dataset.id)
+    editarOperacion(operacionParaEditar)
+    botonEditarOperacion.addEventListener('click', () =>{
+      operacionParaEditar[0].monto = inputEditarOperacionMonto.value;
+      operacionParaEditar[0].descripcion= inputEditarOperacionDescripcion.value;
+      operacionParaEditar[0].tipo= selectEditarOperacionTipo.value;
+      operacionParaEditar[0].categoria = selectEditarOperacionCategoria.value;
+      operacionParaEditar[0].fecha = inputEditarOperacionFecha.value;
+      seccionBalance.style.display = "block";
+      seccionEditarOperacion.style.display = "none";
+      verOperaciones(operaciones);
+      localStorage.setItem("operaciones" , JSON.stringify(operaciones))
+      pintarOperaciones(operaciones);
+    })
+    botonCancelarEditarOperacion.addEventListener('click', () =>{
+      seccionBalance.style.display = "block";
+      seccionEditarOperacion.style.display = "none";
+    })
+  }) })
 };
-
+const editarOperacion = (arr) =>{
+  const {descripcion,monto,tipo,categoria, fecha} = arr[0];
+  seccionBalance.style.display="none";
+  seccionEditarOperacion.style.display="block";
+  inputEditarOperacionDescripcion.value = descripcion;
+  inputEditarOperacionMonto.value = monto;
+  selectEditarOperacionCategoria.value = categoria;
+  selectEditarOperacionTipo.value = tipo;
+  inputEditarOperacionFecha.valueAsDate = new Date (fecha);
+}
 //Cambio de imagen de no hay operaciones a operaciones
 const ningunaOperacion = document.getElementById("ninguna-operacion");
 const contenedorOperaciones = document.getElementById("contenedor-operaciones");
