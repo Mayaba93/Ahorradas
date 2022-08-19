@@ -90,7 +90,7 @@ height: 100%;
 
 }
 /* sección Nueva operación y editar operación */
-.contenedor-nueva-operacion, .contenedor-editar-operacion , .contenedor-categorias{
+.contenedor-nueva-operacion, .contenedor-editar-operacion , .contenedor-seccion-categorias{
     background-color: #BC8DA0;
     padding: 3%;
     border-radius: 10px;
@@ -119,7 +119,7 @@ height: 100%;
 }
 
 /* sección categorías */
-.contenedor-categorias{
+.contenedor-seccion-categorias{
     background-color: #BC8DA0;
     
 }
