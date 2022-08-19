@@ -81,11 +81,10 @@ const generarCategorias = () => {
     });
   }
 };
-generarCategorias();
 
 // Array con operaciones
 
-let operaciones = JSON.parse(localStorage.getItem('operaciones')) || [];
+let operaciones = JSON.parse(localStorage.getItem("operaciones")) || [];
 
 // Creación nueva operación
 
@@ -110,6 +109,13 @@ const botonAgregarOperacion = document.getElementById(
 
 botonAgregarOperacion.addEventListener("click", (e) => {
   e.preventDefault();
+  if (
+    inputNuevaOperacionDescripcion.value.trim().length === 0 ||
+    inputNuevaOperacionMonto.value <= 0
+  ) {
+    alert("Todos los campos son necesarios y el monto debe ser mayor a 0"); //tunear el alert
+    return;
+  }
   const operacion = {
     id: uuidv4(),
     descripcion: inputNuevaOperacionDescripcion.value,
@@ -126,7 +132,7 @@ botonAgregarOperacion.addEventListener("click", (e) => {
   selectNuevaOperacionTipo.value = "gasto";
   selectNuevaOperacionCategoria.value = "Comida";
   verOperaciones(operaciones);
-  localStorage.setItem('operaciones', JSON.stringify(operaciones))
+  localStorage.setItem("operaciones", JSON.stringify(operaciones));
   pintarOperaciones(operaciones);
 });
 
@@ -146,21 +152,31 @@ const pintarOperaciones = (arr) => {
         <span class="span-categoria">${categoria}</span>
         </div>
         <span  class="col-2 text-end span-fecha">${fecha}</span>
-        <span class="col-2 text-end fw-bold ${tipo === 'ganancia' ? 'ganancia' : 'gasto'}">${monto}</span>
+        <span class="col-2 text-end fw-bold ${
+          tipo === "ganancia" ? "ganancia" : "gasto"
+        }">${monto}</span>
         <a class="col-1 text-end text-decoration-none boton-editar-operacion" data-id=${id} href="#">Editar</a></a>
         <a class="col-1 text-end text-decoration-none boton-eliminar-operacion" data-id=${id} href="#">Borrar</a>
       </div>`;
-  }); operacionesNuevas.innerHTML = str;
-  const botonesEliminarOperacion = document.querySelectorAll('.boton-eliminar-operacion')
-  botonesEliminarOperacion.forEach(btn => {
-    btn.addEventListener('click', e => {
-      const arregloBorrarOperacion = operaciones.filter(operacion => operacion.id !== e.target.dataset.id)
-      localStorage.setItem('operaciones', JSON.stringify(arregloBorrarOperacion))
-      operaciones = JSON.parse(localStorage.getItem('operaciones'))
-      pintarOperaciones(operaciones)
-      verOperaciones(operaciones)
-    })
-  })
+  });
+  operacionesNuevas.innerHTML = str;
+  const botonesEliminarOperacion = document.querySelectorAll(
+    ".boton-eliminar-operacion"
+  );
+  botonesEliminarOperacion.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      const arregloBorrarOperacion = operaciones.filter(
+        (operacion) => operacion.id !== e.target.dataset.id
+      );
+      localStorage.setItem(
+        "operaciones",
+        JSON.stringify(arregloBorrarOperacion)
+      );
+      operaciones = JSON.parse(localStorage.getItem("operaciones"));
+      pintarOperaciones(operaciones);
+      verOperaciones(operaciones);
+    });
+  });
 };
 
 //Cambio de imagen de no hay operaciones a operaciones
@@ -169,14 +185,21 @@ const contenedorOperaciones = document.getElementById("contenedor-operaciones");
 
 const verOperaciones = (operaciones) => {
   if (!operaciones.length) {
-    ningunaOperacion.style.display = 'flex';
-    contenedorOperaciones.style.display = 'none';
+    ningunaOperacion.style.display = "flex";
+    contenedorOperaciones.style.display = "none";
+  } else {
+    ningunaOperacion.style.display = "none";
+    contenedorOperaciones.style.display = "block";
   }
-  else {
-    ningunaOperacion.style.display = 'none';
-    contenedorOperaciones.style.display = 'block';
-  }
-}
-verOperaciones(operaciones);
+};
 
-pintarOperaciones(operaciones);
+const inicializar = () => {
+  const inputFecha = document.querySelectorAll('input[type = "date"]');
+  inputFecha.forEach((input) => {
+    input.valueAsDate = new Date();
+  }); //buscar como poner la fecha en Argentina
+  generarCategorias();
+  verOperaciones(operaciones);
+  pintarOperaciones(operaciones);
+};
+window.onload = inicializar
