@@ -61,7 +61,7 @@ botonCancelarOperacion.addEventListener("click", (e) => {
   seccionEditarOperacion.style.display = "none";
 });
 //Creando selects de categorias
-const categorias = [
+const categorias =[
   "Comida",
   "Servicios",
   "Salidas",
@@ -69,8 +69,8 @@ const categorias = [
   "Transporte",
   "Trabajo",
 ];
+const selectCategorias = document.getElementsByClassName("select-categorias");
 const generarCategorias = () => {
-  const selectCategorias = document.getElementsByClassName("select-categorias");
   for (let i = 0; i < selectCategorias.length; i++) {
     const select = selectCategorias[i];
     if (select.classList.contains("filtro-categorias")) {
@@ -81,7 +81,13 @@ const generarCategorias = () => {
     });
   }
 };
-
+// Agregar categorias
+const inputNombreNuevaCategoria = document.getElementById('input-nombre-nueva-categoria');
+const botonAgregarNuevaCategoria = document.getElementById('boton-agregar-nueva-categoria');
+botonAgregarNuevaCategoria.addEventListener('click',() =>{
+  categorias.push(inputNombreNuevaCategoria.value)
+  console.log(categorias)
+})
 // Array con operaciones
 
 let operaciones = JSON.parse(localStorage.getItem("operaciones")) || [];
