@@ -113,8 +113,7 @@ botonAgregarOperacion.addEventListener("click", (e) => {
     inputNuevaOperacionDescripcion.value.trim().length === 0 ||
     inputNuevaOperacionMonto.value <= 0
   ) {
-    alert("Todos los campos son necesarios y el monto debe ser mayor a 0"); //tunear el alert
-    return;
+    return alertify.error('El monto no puede ser igual o menor a 0 y la descripción no puede estar vacia');
   }
   const operacion = {
     id: uuidv4(),
@@ -131,6 +130,7 @@ botonAgregarOperacion.addEventListener("click", (e) => {
   inputNuevaOperacionMonto.value = 0;
   selectNuevaOperacionTipo.value = "gasto";
   selectNuevaOperacionCategoria.value = "Comida";
+  alertify.success('Operación agregada exitosamente');
   verOperaciones(operaciones);
   localStorage.setItem("operaciones", JSON.stringify(operaciones));
   pintarOperaciones(operaciones);
@@ -187,6 +187,12 @@ const pintarOperaciones = (arr) => {
     const operacionParaEditar = operaciones.filter(operacion => operacion.id === e.target.dataset.id)
     editarOperacion(operacionParaEditar)
     botonEditarOperacion.addEventListener('click', () =>{
+      if (
+        inputNuevaOperacionDescripcion.value.trim().length === 0 ||
+        inputNuevaOperacionMonto.value <= 0
+      ) {
+        return alertify.error('El monto no puede ser igual o menor a 0 y la descripción no puede estar vacia');
+      }
       operacionParaEditar[0].monto = inputEditarOperacionMonto.value;
       operacionParaEditar[0].descripcion= inputEditarOperacionDescripcion.value;
       operacionParaEditar[0].tipo= selectEditarOperacionTipo.value;
@@ -194,6 +200,7 @@ const pintarOperaciones = (arr) => {
       operacionParaEditar[0].fecha = inputEditarOperacionFecha.value;
       seccionBalance.style.display = "block";
       seccionEditarOperacion.style.display = "none";
+      alertify.success('Operación editada exitosamente');
       verOperaciones(operaciones);
       localStorage.setItem("operaciones" , JSON.stringify(operaciones))
       pintarOperaciones(operaciones);
