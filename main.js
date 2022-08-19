@@ -61,7 +61,7 @@ botonCancelarOperacion.addEventListener("click", (e) => {
   seccionEditarOperacion.style.display = "none";
 });
 //Creando selects de categorias
-const categorias =[
+const categorias = [
   "Comida",
   "Servicios",
   "Salidas",
@@ -76,17 +76,31 @@ const generarCategorias = () => {
     if (select.classList.contains("filtro-categorias")) {
       select.innerHTML = "<option>Todas</option>";
     }
+    let str = "";
     categorias.forEach((categoria) => {
       select.innerHTML += `<option value="${categoria}">${categoria}</option>`;
-    });
+      str = str + `<div class="contenedor-span-editar-eliminar">
+    <span class="span-nombre-categoria">${categoria}</span>
+    <div>
+      <a href="#" class="link-editar-eliminar-categoria">Editar</a
+      ><a href="#" class="link-editar-eliminar-categoria"
+        >Eliminar</a
+      >
+    </div>
+  </div>`
+    })
+    contenedorCategorias.innerHTML= str;
   }
-};
+}; 
 // Agregar categorias
 const inputNombreNuevaCategoria = document.getElementById('input-nombre-nueva-categoria');
 const botonAgregarNuevaCategoria = document.getElementById('boton-agregar-nueva-categoria');
-botonAgregarNuevaCategoria.addEventListener('click',() =>{
+const contenedorCategorias = document.getElementById('contenedor-categorias');
+console.log(contenedorCategorias)
+botonAgregarNuevaCategoria.addEventListener('click', () => {
   categorias.push(inputNombreNuevaCategoria.value)
   console.log(categorias)
+  generarCategorias()
 })
 // Array con operaciones
 
@@ -145,7 +159,7 @@ botonAgregarOperacion.addEventListener("click", (e) => {
 //Pintar operaciones sección balance, borrar y eliminar operacion
 const inputEditarOperacionDescripcion = document.getElementById('input-editar-operacion-descripcion');
 const inputEditarOperacionMonto = document.getElementById('input-editar-operacion-monto');
-const selectEditarOperacionTipo= document.getElementById('select-editar-operacion-tipo');
+const selectEditarOperacionTipo = document.getElementById('select-editar-operacion-tipo');
 const selectEditarOperacionCategoria = document.getElementById('select-editar-operacion-categoria');
 const inputEditarOperacionFecha = document.getElementById('input-editar-operacion-fecha');
 const botonCancelarEditarOperacion = document.getElementById('boton-cancelar-editar-operacion');
@@ -165,16 +179,15 @@ const pintarOperaciones = (arr) => {
         <span class="span-categoria">${categoria}</span>
         </div>
         <span  class="col-2 text-end span-fecha">${fecha}</span>
-        <span class="col-2 text-end fw-bold ${
-          tipo === "ganancia" ? "ganancia" : "gasto"
-        }">${monto}</span>
+        <span class="col-2 text-end fw-bold ${tipo === "ganancia" ? "ganancia" : "gasto"
+      }">${monto}</span>
         <a class="col-1 text-end text-decoration-none boton-editar-operacion" data-id=${id} href="#">Editar</a></a>
         <a class="col-1 text-end text-decoration-none boton-eliminar-operacion" data-id=${id} href="#">Borrar</a>
       </div>`;
   });
   operacionesNuevas.innerHTML = str;
   const botonesEliminarOperacion = document.querySelectorAll(".boton-eliminar-operacion");
-  const botonesEditarOperacion= document.querySelectorAll(".boton-editar-operacion");
+  const botonesEditarOperacion = document.querySelectorAll(".boton-editar-operacion");
   botonesEliminarOperacion.forEach((btn) => {
     btn.addEventListener("click", (e) => {
       const arregloBorrarOperacion = operaciones.filter(
@@ -189,43 +202,45 @@ const pintarOperaciones = (arr) => {
       verOperaciones(operaciones);
     });
   });
-  botonesEditarOperacion.forEach(btn => {btn.addEventListener('click', e => {
-    const operacionParaEditar = operaciones.filter(operacion => operacion.id === e.target.dataset.id)
-    editarOperacion(operacionParaEditar)
-    botonEditarOperacion.addEventListener('click', () =>{
-      if (
-        inputNuevaOperacionDescripcion.value.trim().length === 0 ||
-        inputNuevaOperacionMonto.value <= 0
-      ) {
-        return alertify.error('El monto no puede ser igual o menor a 0 y la descripción no puede estar vacia');
-      }
-      operacionParaEditar[0].monto = inputEditarOperacionMonto.value;
-      operacionParaEditar[0].descripcion= inputEditarOperacionDescripcion.value;
-      operacionParaEditar[0].tipo= selectEditarOperacionTipo.value;
-      operacionParaEditar[0].categoria = selectEditarOperacionCategoria.value;
-      operacionParaEditar[0].fecha = inputEditarOperacionFecha.value;
-      seccionBalance.style.display = "block";
-      seccionEditarOperacion.style.display = "none";
-      alertify.success('Operación editada exitosamente');
-      verOperaciones(operaciones);
-      localStorage.setItem("operaciones" , JSON.stringify(operaciones))
-      pintarOperaciones(operaciones);
+  botonesEditarOperacion.forEach(btn => {
+    btn.addEventListener('click', e => {
+      const operacionParaEditar = operaciones.filter(operacion => operacion.id === e.target.dataset.id)
+      editarOperacion(operacionParaEditar)
+      botonEditarOperacion.addEventListener('click', () => {
+        if (
+          inputNuevaOperacionDescripcion.value.trim().length === 0 ||
+          inputNuevaOperacionMonto.value <= 0
+        ) {
+          return alertify.error('El monto no puede ser igual o menor a 0 y la descripción no puede estar vacia');
+        }
+        operacionParaEditar[0].monto = inputEditarOperacionMonto.value;
+        operacionParaEditar[0].descripcion = inputEditarOperacionDescripcion.value;
+        operacionParaEditar[0].tipo = selectEditarOperacionTipo.value;
+        operacionParaEditar[0].categoria = selectEditarOperacionCategoria.value;
+        operacionParaEditar[0].fecha = inputEditarOperacionFecha.value;
+        seccionBalance.style.display = "block";
+        seccionEditarOperacion.style.display = "none";
+        alertify.success('Operación editada exitosamente');
+        verOperaciones(operaciones);
+        localStorage.setItem("operaciones", JSON.stringify(operaciones))
+        pintarOperaciones(operaciones);
+      })
+      botonCancelarEditarOperacion.addEventListener('click', () => {
+        seccionBalance.style.display = "block";
+        seccionEditarOperacion.style.display = "none";
+      })
     })
-    botonCancelarEditarOperacion.addEventListener('click', () =>{
-      seccionBalance.style.display = "block";
-      seccionEditarOperacion.style.display = "none";
-    })
-  }) })
+  })
 };
-const editarOperacion = (arr) =>{
-  const {descripcion,monto,tipo,categoria, fecha} = arr[0];
-  seccionBalance.style.display="none";
-  seccionEditarOperacion.style.display="block";
+const editarOperacion = (arr) => {
+  const { descripcion, monto, tipo, categoria, fecha } = arr[0];
+  seccionBalance.style.display = "none";
+  seccionEditarOperacion.style.display = "block";
   inputEditarOperacionDescripcion.value = descripcion;
   inputEditarOperacionMonto.value = monto;
   selectEditarOperacionCategoria.value = categoria;
   selectEditarOperacionTipo.value = tipo;
-  inputEditarOperacionFecha.valueAsDate = new Date (fecha);
+  inputEditarOperacionFecha.valueAsDate = new Date(fecha);
 }
 //Cambio de imagen de no hay operaciones a operaciones
 const ningunaOperacion = document.getElementById("ninguna-operacion");
