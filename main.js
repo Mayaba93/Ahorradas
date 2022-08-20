@@ -60,14 +60,23 @@ botonCancelarOperacion.addEventListener("click", (e) => {
   seccionNuevaOperacion.style.display = "none";
   seccionEditarOperacion.style.display = "none";
 });
-//Creando selects de categorias
-const categorias = JSON.parse(localStorage.getItem("categorias")) || [
-  "Comida",
-  "Servicios",
-  "Salidas",
-  "Educación",
-  "Transporte",
-  "Trabajo",
+//Pintar,editar y eliminar categorias.
+let categorias = JSON.parse(localStorage.getItem("categorias")) || [
+ {nombre : "Comida",
+ id: uuidv4(),
+},
+{nombre : "Servicios",
+ id: uuidv4(),
+},
+{nombre : "Salidas",
+ id: uuidv4(),
+},{nombre : "Educación",
+id: uuidv4(),
+},{nombre : "Transporte",
+id: uuidv4(),
+},{nombre : "Trabajo",
+id: uuidv4(),
+},
 ];
 const selectCategorias = document.getElementsByClassName("select-categorias");
 const generarCategorias = () => {
@@ -79,12 +88,13 @@ const generarCategorias = () => {
     }
     let str = "";
     categorias.forEach((categoria) => {
-      select.innerHTML += `<option value="${categoria}">${categoria}</option>`;
+      const {nombre , id} = categoria;
+      select.innerHTML += `<option value="${nombre}">${nombre}</option>`;
       str = str + `<div class="contenedor-span-editar-eliminar">
-    <span class="span-nombre-categoria">${categoria}</span>
+    <span class="span-nombre-categoria">${nombre}</span>
     <div>
-      <a href="#" class="link-editar-eliminar-categoria">Editar</a
-      ><a href="#" class="link-editar-eliminar-categoria"
+      <a href="#" data-id=${id} class="link-editar-eliminar-categoria link-editar-categoria">Editar</a
+      ><a href="#" data-id=${id} class="link-editar-eliminar-categoria link-eliminar-categoria"
         >Eliminar</a
       >
     </div>
@@ -98,15 +108,40 @@ const generarCategorias = () => {
   else {
     localStorage.setItem('categorias', JSON.stringify(categorias))
   }
+  const linkEliminarCategoria = document.querySelectorAll('.link-eliminar-categoria');
+  const linkEditarCategoria = document.querySelectorAll('.link-editar-categoria');
+  linkEliminarCategoria.forEach(btn => {
+    btn.addEventListener("click" , e => {
+      const arregloBorrarCategoria = categorias.filter(categoria => categoria.id !== e.target.dataset.id)
+      if (!Array.isArray(arregloBorrarCategoria)) {
+        alertify.error('El tipo de dato es incorrecto');
+      }
+      else {
+        localStorage.setItem('categorias', JSON.stringify(arregloBorrarCategoria))
+      }
+      categorias = JSON.parse(localStorage.getItem("categorias"))
+      generarCategorias()
+    })
+  })
 };
 // Agregar categorias
 const inputNombreNuevaCategoria = document.getElementById('input-nombre-nueva-categoria');
 const botonAgregarNuevaCategoria = document.getElementById('boton-agregar-nueva-categoria');
 const contenedorCategorias = document.getElementById('contenedor-categorias');
 botonAgregarNuevaCategoria.addEventListener('click', () => {
-  categorias.push(inputNombreNuevaCategoria.value)
-  generarCategorias()
-})
+  if( inputNombreNuevaCategoria.value.trim().length===0){
+    return alertify.error('La descripción no puede estar vacía')
+  }
+  
+  const categoria = {
+    nombre: inputNombreNuevaCategoria.value,
+    id: uuidv4(),}
+    categorias.push(categoria)
+    inputNombreNuevaCategoria.value = "";
+    alertify.success('Categoría agregada exitosamente');
+    generarCategorias()
+  })
+
 // Array con operaciones
 
 let operaciones = JSON.parse(localStorage.getItem("operaciones")) || [];
@@ -138,7 +173,7 @@ botonAgregarOperacion.addEventListener("click", (e) => {
     inputNuevaOperacionDescripcion.value.trim().length === 0 ||
     inputNuevaOperacionMonto.value <= 0
   ) {
-    return alertify.error('El monto no puede ser igual o menor a 0 y la descripción no puede estar vacia');
+    return alertify.error('El monto no puede ser igual o menor a 0 y la descripción no puede estar vacía');
   }
   const operacion = {
     id: uuidv4(),
@@ -226,7 +261,7 @@ const pintarOperaciones = (arr) => {
           inputEditarOperacionDescripcion.value.trim().length === 0 ||
           inputEditarOperacionMonto.value <= 0
         ) {
-          return alertify.error('El monto no puede ser igual o menor a 0 y la descripción no puede estar vacia');
+          return alertify.error('El monto no puede ser igual o menor a 0 y la descripción no puede estar vacía');
         }
         operacionParaEditar[0].monto = inputEditarOperacionMonto.value;
         operacionParaEditar[0].descripcion = inputEditarOperacionDescripcion.value;
