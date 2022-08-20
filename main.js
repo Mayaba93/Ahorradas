@@ -61,7 +61,7 @@ botonCancelarOperacion.addEventListener("click", (e) => {
   seccionEditarOperacion.style.display = "none";
 });
 //Creando selects de categorias
-const categorias = [
+const categorias = JSON.parse(localStorage.getItem("categorias")) || [
   "Comida",
   "Servicios",
   "Salidas",
@@ -73,6 +73,7 @@ const selectCategorias = document.getElementsByClassName("select-categorias");
 const generarCategorias = () => {
   for (let i = 0; i < selectCategorias.length; i++) {
     const select = selectCategorias[i];
+    select.innerHTML = "";
     if (select.classList.contains("filtro-categorias")) {
       select.innerHTML = "<option>Todas</option>";
     }
@@ -89,17 +90,21 @@ const generarCategorias = () => {
     </div>
   </div>`
     })
-    contenedorCategorias.innerHTML= str;
+    contenedorCategorias.innerHTML = str;
   }
-}; 
+  if (!Array.isArray(categorias)) {
+    alertify.error('El tipo de dato es incorrecto');
+  }
+  else {
+    localStorage.setItem('categorias', JSON.stringify(categorias))
+  }
+};
 // Agregar categorias
 const inputNombreNuevaCategoria = document.getElementById('input-nombre-nueva-categoria');
 const botonAgregarNuevaCategoria = document.getElementById('boton-agregar-nueva-categoria');
 const contenedorCategorias = document.getElementById('contenedor-categorias');
-console.log(contenedorCategorias)
 botonAgregarNuevaCategoria.addEventListener('click', () => {
   categorias.push(inputNombreNuevaCategoria.value)
-  console.log(categorias)
   generarCategorias()
 })
 // Array con operaciones
@@ -152,7 +157,12 @@ botonAgregarOperacion.addEventListener("click", (e) => {
   selectNuevaOperacionCategoria.value = "Comida";
   alertify.success('Operación agregada exitosamente');
   verOperaciones(operaciones);
-  localStorage.setItem("operaciones", JSON.stringify(operaciones));
+  if (!Array.isArray(operaciones)) {
+    alertify.error('El tipo de dato es incorrecto');
+  }
+  else {
+    localStorage.setItem("operaciones", JSON.stringify(operaciones));
+  }
   pintarOperaciones(operaciones);
 });
 
@@ -193,10 +203,15 @@ const pintarOperaciones = (arr) => {
       const arregloBorrarOperacion = operaciones.filter(
         (operacion) => operacion.id !== e.target.dataset.id
       );
-      localStorage.setItem(
-        "operaciones",
-        JSON.stringify(arregloBorrarOperacion)
-      );
+      if (!Array.isArray(arregloBorrarOperacion)) {
+        alertify.error('El tipo de dato es incorrecto');
+      }
+      else {
+        localStorage.setItem(
+          "operaciones",
+          JSON.stringify(arregloBorrarOperacion)
+        )
+      }
       operaciones = JSON.parse(localStorage.getItem("operaciones"));
       pintarOperaciones(operaciones);
       verOperaciones(operaciones);
@@ -208,8 +223,8 @@ const pintarOperaciones = (arr) => {
       editarOperacion(operacionParaEditar)
       botonEditarOperacion.addEventListener('click', () => {
         if (
-          inputNuevaOperacionDescripcion.value.trim().length === 0 ||
-          inputNuevaOperacionMonto.value <= 0
+          inputEditarOperacionDescripcion.value.trim().length === 0 ||
+          inputEditarOperacionMonto.value <= 0
         ) {
           return alertify.error('El monto no puede ser igual o menor a 0 y la descripción no puede estar vacia');
         }
@@ -222,7 +237,12 @@ const pintarOperaciones = (arr) => {
         seccionEditarOperacion.style.display = "none";
         alertify.success('Operación editada exitosamente');
         verOperaciones(operaciones);
-        localStorage.setItem("operaciones", JSON.stringify(operaciones))
+        if (!Array.isArray(operaciones)) {
+          alertify.error('El tipo de dato es incorrecto');
+        }
+        else {
+          localStorage.setItem("operaciones", JSON.stringify(operaciones))
+        }
         pintarOperaciones(operaciones);
       })
       botonCancelarEditarOperacion.addEventListener('click', () => {
