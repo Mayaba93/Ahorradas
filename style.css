@@ -13,7 +13,7 @@ p{
     background-color: #BC8DA0!important;
     color: white!important;
 }
-.seccion-categorias, .seccion-reportes , .seccion-nueva-operacion , .seccion-editar-operacion{
+.seccion-categorias, .seccion-reportes , .seccion-nueva-operacion , .seccion-editar-operacion ,.seccion-editar-categoria{
     display: none;
 }
 /* Seccion Balance */
@@ -89,8 +89,9 @@ flex-direction: column;
 height: 100%;
 
 }
+
 /* sección Nueva operación y editar operación */
-.contenedor-nueva-operacion, .contenedor-editar-operacion , .contenedor-seccion-categorias{
+.contenedor-nueva-operacion, .contenedor-editar-operacion , .contenedor-seccion-categorias, .contenedor-seccion-editar-categoria{
     background-color: #BC8DA0;
     padding: 3%;
     border-radius: 10px;
@@ -107,8 +108,9 @@ height: 100%;
     font-weight: bolder;
     margin-bottom: 1%;
     
+    
 }
-.contenedor-input-nueva-operacion input , .contenedor-input-nueva-operacion select, .input-nombre-nueva-categorias ,.contenedor-input-editar-operacion input,.contenedor-editar-operacion select , .input-nombre-editar-categorias{
+.contenedor-input-nueva-operacion input , .contenedor-input-nueva-operacion select, .input-nombre-nueva-categorias ,.contenedor-input-editar-operacion input,.contenedor-editar-operacion select , .input-nombre-editar-categoria{
     padding: 0.5% 1%;
     border-radius: 10px;
     border: none;
@@ -119,19 +121,19 @@ height: 100%;
 }
 
 /* sección categorías */
-.contenedor-seccion-categorias{
+.contenedor-seccion-categorias , .contenedor-seccion-editar-categoria{
     background-color: #BC8DA0;
     
 }
-.contenedor-input-agregar-categorias{
+.contenedor-input-agregar-categorias , .contenedor-input-editar-categoria{
     display: flex;
     justify-content: space-between;
     margin: 2% 0 5% 0;
 }
-.label-nombre-nueva-categoria{
+.label-nombre-nueva-categoria , .label-nombre-editar-categoria{
     font-weight: bold;
 }
-.input-nombre-nueva-categorias{
+.input-nombre-nueva-categorias, .input-nombre-editar-categoria{
     width: 85%;
 }
 .contenedor-span-editar-eliminar{

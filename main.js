@@ -7,6 +7,7 @@ const botonSeccionReportes = document.getElementById("boton-seccion-reportes");
 const seccionBalance = document.getElementById("seccion-balance");
 const seccionCategorias = document.getElementById("seccion-categorias");
 const seccionReportes = document.getElementById("seccion-reportes");
+const seccionEditarCategoria = document.getElementById("seccion-editar-categoria");
 
 botonSeccionBalance.addEventListener("click", () => {
   seccionBalance.style.display = "block";
@@ -78,6 +79,8 @@ id: uuidv4(),
 id: uuidv4(),
 },
 ];
+const botonEditarCategoria = document.getElementById("boton-editar-categoria");
+const inputNombreEditarCategoria = document.getElementById("input-nombre-editar-categoria");
 const selectCategorias = document.getElementsByClassName("select-categorias");
 const generarCategorias = () => {
   for (let i = 0; i < selectCategorias.length; i++) {
@@ -123,7 +126,35 @@ const generarCategorias = () => {
       generarCategorias()
     })
   })
+  linkEditarCategoria.forEach(btn => {
+    btn.addEventListener("click" , (e) =>{
+      const categoriaParaEditar = categorias.filter(categoria =>categoria.id===e.target.dataset.id )
+    editarCategoria(categoriaParaEditar);
+    botonEditarCategoria.addEventListener("click", () =>{
+      if(inputNombreEditarCategoria.value.trim().length==0){
+        return alertify.error("El nombre no puede estar vacío")
+      }
+      categoriaParaEditar[0].nombre = inputNombreEditarCategoria.value;
+      seccionCategorias.style.display = "block";
+      seccionEditarCategoria.style.display = "none";
+      generarCategorias()
+      alertify.success("Categoria editada exitosamente");
+      if(!Array.isArray(categorias)){
+        alertify.error("El tipo de dato es incorrecto");
+      }
+      else{
+        localStorage.setItem("categorias" , JSON.stringify(categorias));
+      }
+    })
+    })
+  })
 };
+const editarCategoria = arr => {
+  seccionEditarCategoria.style.display = "block" ;
+  seccionCategorias.style.display = "none";
+  inputNombreEditarCategoria.value = arr[0].nombre;
+}
+
 // Agregar categorias
 const inputNombreNuevaCategoria = document.getElementById('input-nombre-nueva-categoria');
 const botonAgregarNuevaCategoria = document.getElementById('boton-agregar-nueva-categoria');
@@ -201,7 +232,7 @@ botonAgregarOperacion.addEventListener("click", (e) => {
   pintarOperaciones(operaciones);
 });
 
-//Pintar operaciones sección balance, borrar y eliminar operacion
+//Pintar operaciones sección balance, editar y eliminar operacion
 const inputEditarOperacionDescripcion = document.getElementById('input-editar-operacion-descripcion');
 const inputEditarOperacionMonto = document.getElementById('input-editar-operacion-monto');
 const selectEditarOperacionTipo = document.getElementById('select-editar-operacion-tipo');
