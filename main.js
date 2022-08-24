@@ -342,6 +342,18 @@ const verOperaciones = (operaciones) => {
   }
 };
 
+// Sección balance, card balance
+const balanceGananciasTotales = document.getElementById('balance-ganancias-totales');
+const balanceGastosTotales = document.getElementById('balance-gastos-totales');
+const balanceTotal = document.getElementById('balance-total');
+ 
+const gananciasTotales = arr => arr.filter(operacion => operacion.tipo === 'ganancia').reduce((prev, current) => Number(prev) + Number(current.monto),0)
+const gastosTotales = arr => arr.filter(operacion => operacion.tipo === 'gasto').reduce((prev, current) => Number(prev) + Number(current.monto),0)
+
+balanceGananciasTotales.innerHTML= `+$${gananciasTotales(operaciones)}`
+balanceGastosTotales.innerHTML= `-$${gastosTotales(operaciones)}`
+balanceTotal.innerHTML= `$${gananciasTotales(operaciones) - gastosTotales(operaciones)}`
+
 const inicializar = () => {
   const inputFecha = document.querySelectorAll('input[type = "date"]');
   inputFecha.forEach((input) => {
