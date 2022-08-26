@@ -87,7 +87,7 @@ const generarCategorias = () => {
     const select = selectCategorias[i];
     select.innerHTML = "";
     if (select.classList.contains("filtro-categorias")) {
-      select.innerHTML = "<option>Todas</option>";
+      select.innerHTML = "<option value='todas'>Todas</option>";
     }
     let str = "";
     categorias.forEach((categoria) => {
@@ -353,6 +353,72 @@ const gastosTotales = arr => arr.filter(operacion => operacion.tipo === 'gasto')
 balanceGananciasTotales.innerHTML= `+$${gananciasTotales(operaciones)}`
 balanceGastosTotales.innerHTML= `-$${gastosTotales(operaciones)}`
 balanceTotal.innerHTML= `$${gananciasTotales(operaciones) - gastosTotales(operaciones)}`
+
+
+
+//Seccion balance, filtros 
+const selectFiltroTipo = document.getElementById('select-filtro-tipo');
+const selectFiltroCategoria = document.getElementById('select-filtro-categoria');
+const selectFiltroOrdenar= document.getElementById('select-filtro-ordenar');
+
+const filtros = e =>{
+  const filtroTipo= selectFiltroTipo.value;
+  const filtroCategoria= selectFiltroCategoria.value;
+  const filtroOrdenar= selectFiltroOrdenar.value;
+
+  let operaciones = JSON.parse(localStorage.getItem("operaciones")) || [];
+
+  if (filtroTipo !== "todos"){
+    operaciones = operaciones.filter(operacion => operacion.tipo === filtroTipo)
+  }
+  if (filtroCategoria !== "todas"){
+    operaciones = operaciones.filter(operacion => operacion.categoria === filtroCategoria)
+  }
+  if (filtroOrdenar === "mas-reciente"){
+    operaciones = operaciones.sort((a,b)=> new Date(b.fecha) - new Date(a.fecha));
+  }
+  if (filtroOrdenar === "menos-reciente"){
+    operaciones = operaciones.sort((a,b) => new Date(a.fecha) - new Date(b.fecha));
+  }
+  if (filtroOrdenar === "mayor-monto"){
+    operaciones = operaciones.sort((a,b) => Number(b.monto) - Number(a.monto));
+  }
+  if (filtroOrdenar === "menor-monto"){
+    operaciones = operaciones.sort((a,b) => Number(a.monto) - Number(b.monto));
+  }
+  if (filtroOrdenar === "a/z"){
+    operaciones = operaciones.sort((a,b) => {
+      if (a.descripcion.toLowerCase() < b.descripcion.toLowerCase()){
+        return -1
+      }
+    })
+  }
+  if (filtroOrdenar === "z/a"){
+    operaciones = operaciones.sort((a,b) => {
+      if (a.descripcion.toLowerCase() > b.descripcion.toLowerCase()){
+        return -1
+      }
+    })
+  }
+  pintarOperaciones(operaciones)
+  verOperaciones(operaciones)
+}
+
+selectFiltroTipo.addEventListener('change', filtros);
+selectFiltroCategoria.addEventListener('change', filtros);
+selectFiltroOrdenar.addEventListener('change', filtros);
+
+
+
+
+
+
+
+
+
+
+
+
 
 const inicializar = () => {
   const inputFecha = document.querySelectorAll('input[type = "date"]');
