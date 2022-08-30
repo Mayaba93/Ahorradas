@@ -21,12 +21,21 @@ p{
     padding: 4%;
 }
 .card-balance{
-    background-color: #BC8DA0;
+    background-color: #bc8da0c2;
     width: 75%;
     padding: 5%;
     border-radius: 10px;
     box-shadow: 0px 8px 15px -7px rgba(0,0,0,0.64);
     margin-bottom: 5%;
+}
+.balance-ganancias{
+    color: rgb(74, 180, 64);
+}
+.balance-gastos{
+    color: rgb(158, 34, 34);
+}
+.balance-total-numero{
+    font-weight: bold;
 }
 .balance-titulo{
     margin-bottom: 20%;
@@ -58,9 +67,11 @@ p{
 .contenedor-input-filtros select, .contenedor-input-filtros input{
     padding: 2% 1%;
     margin-top: 4%;
+    border-radius: 10px;
+    border: none;
 }
 .card-operaciones{
-    background-color: #BC8DA0;
+    background-color: #bc8da0c2;
     width: 100%;
     padding: 2%;
     border-radius: 10px;
@@ -92,7 +103,7 @@ height: 100%;
 
 /* sección Nueva operación y editar operación */
 .contenedor-nueva-operacion, .contenedor-editar-operacion , .contenedor-seccion-categorias, .contenedor-seccion-editar-categoria{
-    background-color: #BC8DA0;
+    background-color: #bc8da0c2;
     padding: 3%;
     border-radius: 10px;
     box-shadow: 0px 8px 15px -7px rgba(0,0,0,0.64);
@@ -122,7 +133,7 @@ height: 100%;
 
 /* sección categorías */
 .contenedor-seccion-categorias , .contenedor-seccion-editar-categoria{
-    background-color: #BC8DA0;
+    background-color: #bc8da0c2;
     
 }
 .contenedor-input-agregar-categorias , .contenedor-input-editar-categoria{
