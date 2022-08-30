@@ -8,27 +8,30 @@ const seccionBalance = document.getElementById("seccion-balance");
 const seccionCategorias = document.getElementById("seccion-categorias");
 const seccionReportes = document.getElementById("seccion-reportes");
 const seccionEditarCategoria = document.getElementById("seccion-editar-categoria");
+const contenedorOperacionesInsuficientes = document.getElementById("contenedor-operaciones-insuficientes");
+const contenedorReportes = document.getElementById("contenedor-reportes");
 
 botonSeccionBalance.addEventListener("click", () => {
   seccionBalance.style.display = "block";
   seccionCategorias.style.display = "none";
   seccionReportes.style.display = "none";
-  seccionNuevaOperacion.style.display = "none";
-  seccionEditarOperacion.style.display = "none";
 });
 botonSeccionCategorias.addEventListener("click", () => {
   seccionCategorias.style.display = "block";
   seccionBalance.style.display = "none";
   seccionReportes.style.display = "none";
-  seccionNuevaOperacion.style.display = "none";
-  seccionEditarOperacion.style.display = "none";
 });
 botonSeccionReportes.addEventListener("click", () => {
   seccionReportes.style.display = "flex";
   seccionCategorias.style.display = "none";
   seccionBalance.style.display = "none";
-  seccionNuevaOperacion.style.display = "none";
-  seccionEditarOperacion.style.display = "none";
+  if(!operaciones.length){
+    contenedorReportes.style.display = "none";
+    contenedorOperacionesInsuficientes.style.display = "flex";}
+    else{
+      contenedorReportes.style.display ="block";
+      contenedorOperacionesInsuficientes.style.display = "none";
+    }
 });
 // boton para nueva operación
 const botonNuevaOperacion = document.getElementById("boton-nueva-operacion");
