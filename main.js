@@ -233,6 +233,7 @@ botonAgregarOperacion.addEventListener("click", (e) => {
     localStorage.setItem("operaciones", JSON.stringify(operaciones));
   }
   pintarOperaciones(operaciones);
+  actualizarBalance(operaciones)
 });
 
 //Pintar operaciones sección balance, editar y eliminar operacion
@@ -284,6 +285,7 @@ const pintarOperaciones = (arr) => {
       operaciones = JSON.parse(localStorage.getItem("operaciones"));
       pintarOperaciones(operaciones);
       verOperaciones(operaciones);
+      actualizarBalance(operaciones)
     });
   });
   botonesEditarOperacion.forEach(btn => {
@@ -313,6 +315,7 @@ const pintarOperaciones = (arr) => {
           localStorage.setItem("operaciones", JSON.stringify(operaciones))
         }
         pintarOperaciones(operaciones);
+        actualizarBalance(operaciones)
       })
       botonCancelarEditarOperacion.addEventListener('click', () => {
         seccionBalance.style.display = "block";
@@ -350,12 +353,16 @@ const balanceGananciasTotales = document.getElementById('balance-ganancias-total
 const balanceGastosTotales = document.getElementById('balance-gastos-totales');
 const balanceTotal = document.getElementById('balance-total');
  
-const gananciasTotales = arr => arr.filter(operacion => operacion.tipo === 'ganancia').reduce((prev, current) => Number(prev) + Number(current.monto),0)
-const gastosTotales = arr => arr.filter(operacion => operacion.tipo === 'gasto').reduce((prev, current) => Number(prev) + Number(current.monto),0)
 
-balanceGananciasTotales.innerHTML= `+$${gananciasTotales(operaciones)}`
-balanceGastosTotales.innerHTML= `-$${gastosTotales(operaciones)}`
-balanceTotal.innerHTML= `$${gananciasTotales(operaciones) - gastosTotales(operaciones)}`
+
+const actualizarBalance = (arr) =>{
+  const gananciasTotales = arr => arr.filter(operacion => operacion.tipo === 'ganancia').reduce((prev, current) => Number(prev) + Number(current.monto),0)
+  const gastosTotales = arr => arr.filter(operacion => operacion.tipo === 'gasto').reduce((prev, current) => Number(prev) + Number(current.monto),0)
+  balanceGananciasTotales.innerHTML= `+$${gananciasTotales(arr)}`
+  balanceGastosTotales.innerHTML= `-$${gastosTotales(arr)}`
+  balanceTotal.innerHTML= `$${gananciasTotales(arr) - gastosTotales(arr)}`
+}
+
 
 
 
@@ -405,6 +412,7 @@ const filtros = e =>{
   }
   pintarOperaciones(operaciones)
   verOperaciones(operaciones)
+  actualizarBalance(operaciones)
 }
 
 selectFiltroTipo.addEventListener('change', filtros);
@@ -412,22 +420,12 @@ selectFiltroCategoria.addEventListener('change', filtros);
 selectFiltroOrdenar.addEventListener('change', filtros);
 
 
-
-
-
-
-
-
-
-
-
-
-
 const inicializar = () => {
   const inputFecha = document.querySelectorAll('input[type = "date"]');
   inputFecha.forEach((input) => {
     input.valueAsDate = new Date();
   }); //buscar como poner la fecha en Argentina
+  actualizarBalance(operaciones)
   generarCategorias();
   verOperaciones(operaciones);
   pintarOperaciones(operaciones);
