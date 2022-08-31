@@ -287,7 +287,7 @@ const pintarOperaciones = (arr) => {
         </div>
         <span  class="col-2 text-end span-fecha">${fecha}</span>
         <span class="col-2 text-end fw-bold ${
-          tipo === "ganancia" ? "ganancia" : "gasto"
+          tipo === "ganancia" ? "ganancia-operacion" : "gasto-operacion"
         }">${monto}</span>
         <a class="col-1 text-end text-decoration-none boton-editar-operacion" data-id=${id} href="#">Editar</a></a>
         <a class="col-1 text-end text-decoration-none boton-eliminar-operacion" data-id=${id} href="#">Borrar</a>
@@ -514,11 +514,11 @@ const pintarMesReportes = (arr) => {
   contenedorTotalesPorMes.innerHTML = "";
   arr.forEach(categoria => { 
     const {mes, gasto,ganancia,balance} = categoria; 
-    str = str + ` <div class="row">
+    str = str + ` <div class="row my-3 fw-semibold">
     <div class="col-md-3 text-start">${mes} </div>
-    <div class="col-md-3 text-end">${ganancia}</div>
-    <div class="col-md-3 text-end">${gasto}</div>
-    <div class="col-md-3 text-end">${balance}</div>
+    <div class="col-md-3 text-end"><span class="ganancia">${ganancia}</span></div>
+    <div class="col-md-3 text-end"><span class="gasto">${gasto}</span></div>
+    <div class="col-md-3 text-end"><span class="span-categoria">$${balance}</span></div>
   </div>`
     })
     contenedorTotalesPorMes.innerHTML = str;
@@ -557,11 +557,11 @@ const pintarCategoriasReportes = (arr) => {
   contenedorTotalesPorCategoria.innerHTML = "";
   arr.forEach(categoria => { 
     const {nombre, gasto,ganancia,balance} = categoria; 
-    str = str + ` <div class="row">
+    str = str + ` <div class="row my-3 fw-semibold">
     <div class="col-md-3 text-start">${nombre} </div>
-    <div class="col-md-3 text-end">${ganancia}</div>
-    <div class="col-md-3 text-end">${gasto}</div>
-    <div class="col-md-3 text-end">${balance}</div>
+    <div class="col-md-3 text-end"><span class="ganancia">${ganancia}</span></div>
+    <div class="col-md-3 text-end"><span class="gasto">${gasto}</span></div>
+    <div class="col-md-3 text-end"><span class="span-categoria">$${balance}</span></div>
   </div>`
     })
     contenedorTotalesPorCategoria.innerHTML = str;
@@ -574,8 +574,8 @@ const mayorGanancia = (arr) => {
 };
 
 const pintarMayorGanancia = () =>{
-  mayorGananciaNombre.innerHTML = mayorGanancia(categoriasBalance)[0].nombre
-  mayorGananciaValor.innerHTML = mayorGanancia(categoriasBalance)[0].ganancia
+  mayorGananciaNombre.innerHTML =`<span class="span-categoria">${mayorGanancia(categoriasBalance)[0].nombre}</span>`
+  mayorGananciaValor.innerHTML = `<span class="ganancia">${mayorGanancia(categoriasBalance)[0].ganancia}</span>`
 }
 pintarMayorGanancia()
 
@@ -583,8 +583,8 @@ const mayorGasto = (arr) => {
   return arr.sort((a, b) => Number(b.gasto) - Number(a.gasto));
 };
 const pintarMayorGasto = () =>{
-  mayorGastoNombre.innerHTML = mayorGasto(categoriasBalance)[0].nombre
-  mayorGastoValor.innerHTML = mayorGasto(categoriasBalance)[0].gasto
+  mayorGastoNombre.innerHTML = `<span class="span-categoria">${mayorGasto(categoriasBalance)[0].nombre}</span>` 
+  mayorGastoValor.innerHTML = `<span class="gasto">${mayorGasto(categoriasBalance)[0].gasto}</span>`
 }
 pintarMayorGasto()
 
@@ -592,20 +592,20 @@ const mayorBalance = (arr) => {
   return arr.sort((a, b) => Number(b.balance) - Number(a.balance));
 };
 const pintarMayorBalance = () =>{
-  mayorBalanceNombre.innerHTML = mayorBalance(categoriasBalance)[0].nombre
-  mayorBalanceValor.innerHTML = mayorBalance(categoriasBalance)[0].balance
+  mayorBalanceNombre.innerHTML =`<span class="span-categoria">${mayorBalance(categoriasBalance)[0].nombre}</span>`
+  mayorBalanceValor.innerHTML = `<span class="span-categoria">$${mayorBalance(categoriasBalance)[0].balance}</span>`
 }
 pintarMayorBalance();
 
 const pintarMesMayorGanancia = () =>{
-  mayorGananciaMesNombre.innerHTML = mayorGanancia(mesBalance)[0].mes
-  mayorGananciaMesValor.innerHTML = mayorGanancia(mesBalance)[0].ganancia
+  mayorGananciaMesNombre.innerHTML = `<span class="span-categoria">${mayorGanancia(mesBalance)[0].mes}</span>`
+  mayorGananciaMesValor.innerHTML = `<span class="ganancia">${mayorGanancia(mesBalance)[0].ganancia}</span>`
 }
 pintarMesMayorGanancia()
 
 const pintarMesMayorGasto = () =>{
-  mayorGastoMesNombre.innerHTML = mayorGasto(mesBalance)[0].mes
-  mayorGastoMesValor.innerHTML = mayorGasto(mesBalance)[0].gasto
+  mayorGastoMesNombre.innerHTML = `<span class="span-categoria">${mayorGasto(mesBalance)[0].mes}</span>`
+  mayorGastoMesValor.innerHTML = `<span class="gasto">${mayorGasto(mesBalance)[0].gasto}</span>`
 }
 pintarMesMayorGasto()
 

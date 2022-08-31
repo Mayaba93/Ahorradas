@@ -184,17 +184,21 @@ height: 100%;
 }
 
 /* operaciones nuevas */
-
-.ganancia{
+.ganancia, .gasto, .span-categoria{
+    background-color:#ddc9d1c4;
+    padding: 2.5%;
+    border-radius: 5px;
+}
+.ganancia, .ganancia-operacion{
     color: rgb(74, 180, 64);
 }
-.ganancia::before{
+.ganancia::before, .ganancia-operacion::before{
     content: '+$';
 }
-.gasto{
+.gasto, .gasto-operacion{
     color: rgb(158, 34, 34);
 }
-.gasto::before{
+.gasto::before,  .gasto-operacion::before{
     content: '-$';
 }
 .operacion{
@@ -209,8 +213,5 @@ height: 100%;
 }
 .span-categoria{
     color: white;
-    background-color:#ddc9d1c4;
-    padding: 2.5%;
-    border-radius: 5px;
     font-weight: bold;
 }
