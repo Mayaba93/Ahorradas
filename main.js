@@ -595,7 +595,7 @@ const pintarMayorBalance = () =>{
   mayorBalanceNombre.innerHTML =`<span class="span-categoria">${mayorBalance(categoriasBalance)[0].nombre}</span>`
   mayorBalanceValor.innerHTML = `<span class="span-categoria">$${mayorBalance(categoriasBalance)[0].balance}</span>`
 }
-pintarMayorBalance();
+pintarMayorBalance()
 
 const pintarMesMayorGanancia = () =>{
   mayorGananciaMesNombre.innerHTML = `<span class="span-categoria">${mayorGanancia(mesBalance)[0].mes}</span>`
@@ -609,6 +609,12 @@ const pintarMesMayorGasto = () =>{
 }
 pintarMesMayorGasto()
 
+// -----------------------------------------ocultar filtros----------------------------------------------------------//
+
+const spanOcultarFiltro = document.getElementById("span-ocultar-filtro");
+console.log(spanOcultarFiltro)
+
+
 const inicializar = () => {
   const inputFecha = document.querySelectorAll('input[type = "date"]');
   inputFecha.forEach((input) => {
@@ -620,3 +626,4 @@ const inicializar = () => {
   pintarOperaciones(operaciones);
 };
 window.onload = inicializar;
+
