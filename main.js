@@ -36,8 +36,8 @@ botonSeccionReportes.addEventListener("click", () => {
     contenedorReportes.style.display = "block";
     contenedorOperacionesInsuficientes.style.display = "none";
   }
-  reportesMes(operaciones)
-  reportesCategoria(operaciones, categorias)
+  reportesMes(operaciones);
+  reportesCategoria(operaciones, categorias);
 });
 // boton para nueva operación
 const botonNuevaOperacion = document.getElementById("boton-nueva-operacion");
@@ -468,43 +468,67 @@ selectFiltroCategoria.addEventListener("change", filtros);
 selectFiltroOrdenar.addEventListener("change", filtros);
 
 // ----------------------------------------sección reportes-------------------------------------------------//
+const mesBalance = [];
 const reportesMes = (arr) => {
-  const mesesSinRepetir = [...new Set(arr.map((operacion) => operacion.fecha.split("-")[1]))].sort()
-  for (let i = 0; i<mesesSinRepetir.length; i++){
-    const operacionesDelMes = arr.filter(operacion => operacion.fecha.split("-")[1] === mesesSinRepetir[i])
-    const gananciaDelMes = operacionesDelMes.filter(operacion => operacion.tipo === "ganancia").reduce((count, current) =>count + Number(current.monto) , 0)
-    const gastosDelMes = operacionesDelMes.filter(operacion => operacion.tipo === "gasto").reduce((count, current) =>count + Number(current.monto) , 0);
-}};
-let categoriasBalance= [];
+  const mesesSinRepetir = [
+    ...new Set(arr.map((operacion) => operacion.fecha.split("-")[1])),
+  ].sort();
+  for (let i = 0; i < mesesSinRepetir.length; i++) {
+    const operacionesDelMes = arr.filter(
+      (operacion) => operacion.fecha.split("-")[1] === mesesSinRepetir[i]
+    );
+    const gananciaDelMes = operacionesDelMes
+      .filter((operacion) => operacion.tipo === "ganancia")
+      .reduce((count, current) => count + Number(current.monto), 0);
+    const gastosDelMes = operacionesDelMes
+      .filter((operacion) => operacion.tipo === "gasto")
+      .reduce((count, current) => count + Number(current.monto), 0);
+    const balanceDelMes = Number(gananciaDelMes) - Number(gastosDelMes);
+    obj = {
+      mes: mesesSinRepetir[i],
+      gasto: gastosDelMes,
+      ganancia: gananciaDelMes,
+    };
+    mesBalance.push(obj);
+  }
+};
+reportesMes(operaciones);
+let categoriasBalance = [];
 
 const reportesCategoria = (operaciones, categorias) => {
-  categorias.forEach(categoria => {
-    const cadaCategoria = operaciones.filter(operacion => operacion.categoria === categoria.nombre);
-    const cadaCategoriaGanancia = cadaCategoria.filter(operacion => operacion.tipo === "ganancia").reduce((count,current)=> count + Number(current.monto),0);
-    const cadaCategoriaGasto = cadaCategoria.filter(operacion => operacion.tipo === "gasto").reduce((count,current)=> count + Number(current.monto),0);
-    const cadaCategoriaBalance= Number(cadaCategoriaGanancia) - Number(cadaCategoriaGasto)
+  categorias.forEach((categoria) => {
+    const cadaCategoria = operaciones.filter(
+      (operacion) => operacion.categoria === categoria.nombre
+    );
+    const cadaCategoriaGanancia = cadaCategoria
+      .filter((operacion) => operacion.tipo === "ganancia")
+      .reduce((count, current) => count + Number(current.monto), 0);
+    const cadaCategoriaGasto = cadaCategoria
+      .filter((operacion) => operacion.tipo === "gasto")
+      .reduce((count, current) => count + Number(current.monto), 0);
+    const cadaCategoriaBalance =
+      Number(cadaCategoriaGanancia) - Number(cadaCategoriaGasto);
     obj = {
       nombre: categoria.nombre,
       ganancia: cadaCategoriaGanancia,
       gasto: cadaCategoriaGasto,
       balance: cadaCategoriaBalance,
-    }
-    categoriasBalance.push(obj)
-  })
-}
-reportesCategoria(operaciones, categorias)
+    };
+    categoriasBalance.push(obj);
+  });
+};
+reportesCategoria(operaciones, categorias);
 
-const mayorGanancia = arr => {
- return arr.sort((a,b)=> Number(b.ganancia) - Number(a.ganancia));
-}
+const mayorGanancia = (arr) => {
+  return arr.sort((a, b) => Number(b.ganancia) - Number(a.ganancia));
+};
 
-const mayorGasto = arr => {
-  return arr.sort((a,b)=> Number(b.gasto) - Number(a.gasto));
-}
-const mayorBalance = arr =>{
-  return arr.sort((a,b)=> Number(b.balance) - Number(a.balance));
-}
-console.log(mayorBalance(categoriasBalance))
+const mayorGasto = (arr) => {
+  return arr.sort((a, b) => Number(b.gasto) - Number(a.gasto));
+};
+const mayorBalance = (arr) => {
+  return arr.sort((a, b) => Number(b.balance) - Number(a.balance));
+};
 
 const inicializar = () => {
   const inputFecha = document.querySelectorAll('input[type = "date"]');
