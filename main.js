@@ -37,6 +37,7 @@ botonSeccionReportes.addEventListener("click", () => {
     contenedorOperacionesInsuficientes.style.display = "none";
   }
   reportesMes(operaciones)
+  reportesCategoria(operaciones, categorias)
 });
 // boton para nueva operación
 const botonNuevaOperacion = document.getElementById("boton-nueva-operacion");
@@ -474,6 +475,15 @@ const reportesMes = (arr) => {
     const gananciaDelMes = operacionesDelMes.filter(operacion => operacion.tipo === "ganancia").reduce((count, current) =>count + Number(current.monto) , 0)
     const gastosDelMes = operacionesDelMes.filter(operacion => operacion.tipo === "gasto").reduce((count, current) =>count + Number(current.monto) , 0);
 }};
+const reportesCategoria = (operaciones, categorias) => {
+  categorias.forEach(categoria => {
+    const cadaCategoria = operaciones.filter(operacion => operacion.categoria === categoria.nombre);
+    const cadaCategoriaGanancia = cadaCategoria.filter(operacion => operacion.tipo === "ganancia").reduce((count,current)=> count + Number(current.monto),0);
+    const cadaCategoriaGasto = cadaCategoria.filter(operacion => operacion.tipo === "gasto").reduce((count,current)=> count + Number(current.monto),0);
+    console.log(cadaCategoriaGasto)
+  })
+}
+
 const inicializar = () => {
   const inputFecha = document.querySelectorAll('input[type = "date"]');
   inputFecha.forEach((input) => {
