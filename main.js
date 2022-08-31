@@ -468,6 +468,20 @@ selectFiltroCategoria.addEventListener("change", filtros);
 selectFiltroOrdenar.addEventListener("change", filtros);
 
 // ----------------------------------------sección reportes-------------------------------------------------//
+const contenedorTotalesPorMes = document.getElementById("contenedor-totales-por-mes");
+const contenedorTotalesPorCategoria = document.getElementById("contenedor-totales-por-categoria");
+const mayorGananciaNombre = document.getElementById("mayor-ganancia-nombre");
+const mayorGananciaValor = document.getElementById("mayor-ganancia-valor");
+const mayorGastoNombre = document.getElementById("mayor-gasto-nombre");
+const mayorGastoValor = document.getElementById("mayor-gasto-valor");
+const mayorBalanceNombre = document.getElementById("mayor-balance-nombre");
+const mayorBalanceValor = document.getElementById("mayor-balance-valor");
+const mayorGananciaMesNombre = document.getElementById("mayor-ganancia-mes-nombre");
+const mayorGananciaMesValor = document.getElementById("mayor-ganancia-mes-valor");
+const mayorGastoMesNombre = document.getElementById("mayor-gasto-mes-nombre");
+const mayorGastoMesValor = document.getElementById("mayor-gasto-mes-valor");
+
+
 const mesBalance = [];
 const reportesMes = (arr) => {
   const mesesSinRepetir = [
@@ -488,12 +502,32 @@ const reportesMes = (arr) => {
       mes: mesesSinRepetir[i],
       gasto: gastosDelMes,
       ganancia: gananciaDelMes,
+      balance: balanceDelMes,
     };
     mesBalance.push(obj);
   }
 };
 reportesMes(operaciones);
-let categoriasBalance = [];
+
+const pintarMesReportes = (arr) => {
+  let str = "";
+  contenedorTotalesPorMes.innerHTML = "";
+  arr.forEach(categoria => { 
+    const {mes, gasto,ganancia,balance} = categoria; 
+    str = str + ` <div class="row">
+    <div class="col-md-3 text-start">${mes} </div>
+    <div class="col-md-3 text-end">${ganancia}</div>
+    <div class="col-md-3 text-end">${gasto}</div>
+    <div class="col-md-3 text-end">${balance}</div>
+  </div>`
+    })
+    contenedorTotalesPorMes.innerHTML = str;
+}
+pintarMesReportes(mesBalance);
+
+
+
+const categoriasBalance = [];
 
 const reportesCategoria = (operaciones, categorias) => {
   categorias.forEach((categoria) => {
@@ -518,17 +552,62 @@ const reportesCategoria = (operaciones, categorias) => {
   });
 };
 reportesCategoria(operaciones, categorias);
+const pintarCategoriasReportes = (arr) => {
+  let str = "";
+  contenedorTotalesPorCategoria.innerHTML = "";
+  arr.forEach(categoria => { 
+    const {nombre, gasto,ganancia,balance} = categoria; 
+    str = str + ` <div class="row">
+    <div class="col-md-3 text-start">${nombre} </div>
+    <div class="col-md-3 text-end">${ganancia}</div>
+    <div class="col-md-3 text-end">${gasto}</div>
+    <div class="col-md-3 text-end">${balance}</div>
+  </div>`
+    })
+    contenedorTotalesPorCategoria.innerHTML = str;
+}
+pintarCategoriasReportes(categoriasBalance);
+
 
 const mayorGanancia = (arr) => {
   return arr.sort((a, b) => Number(b.ganancia) - Number(a.ganancia));
 };
 
+const pintarMayorGanancia = () =>{
+  mayorGananciaNombre.innerHTML = mayorGanancia(categoriasBalance)[0].nombre
+  mayorGananciaValor.innerHTML = mayorGanancia(categoriasBalance)[0].ganancia
+}
+pintarMayorGanancia()
+
 const mayorGasto = (arr) => {
   return arr.sort((a, b) => Number(b.gasto) - Number(a.gasto));
 };
+const pintarMayorGasto = () =>{
+  mayorGastoNombre.innerHTML = mayorGasto(categoriasBalance)[0].nombre
+  mayorGastoValor.innerHTML = mayorGasto(categoriasBalance)[0].gasto
+}
+pintarMayorGasto()
+
 const mayorBalance = (arr) => {
   return arr.sort((a, b) => Number(b.balance) - Number(a.balance));
 };
+const pintarMayorBalance = () =>{
+  mayorBalanceNombre.innerHTML = mayorBalance(categoriasBalance)[0].nombre
+  mayorBalanceValor.innerHTML = mayorBalance(categoriasBalance)[0].balance
+}
+pintarMayorBalance();
+
+const pintarMesMayorGanancia = () =>{
+  mayorGananciaMesNombre.innerHTML = mayorGanancia(mesBalance)[0].mes
+  mayorGananciaMesValor.innerHTML = mayorGanancia(mesBalance)[0].ganancia
+}
+pintarMesMayorGanancia()
+
+const pintarMesMayorGasto = () =>{
+  mayorGastoMesNombre.innerHTML = mayorGasto(mesBalance)[0].mes
+  mayorGastoMesValor.innerHTML = mayorGasto(mesBalance)[0].gasto
+}
+pintarMesMayorGasto()
 
 const inicializar = () => {
   const inputFecha = document.querySelectorAll('input[type = "date"]');
