@@ -475,14 +475,36 @@ const reportesMes = (arr) => {
     const gananciaDelMes = operacionesDelMes.filter(operacion => operacion.tipo === "ganancia").reduce((count, current) =>count + Number(current.monto) , 0)
     const gastosDelMes = operacionesDelMes.filter(operacion => operacion.tipo === "gasto").reduce((count, current) =>count + Number(current.monto) , 0);
 }};
+let categoriasBalance= [];
+
 const reportesCategoria = (operaciones, categorias) => {
   categorias.forEach(categoria => {
     const cadaCategoria = operaciones.filter(operacion => operacion.categoria === categoria.nombre);
     const cadaCategoriaGanancia = cadaCategoria.filter(operacion => operacion.tipo === "ganancia").reduce((count,current)=> count + Number(current.monto),0);
     const cadaCategoriaGasto = cadaCategoria.filter(operacion => operacion.tipo === "gasto").reduce((count,current)=> count + Number(current.monto),0);
-    console.log(cadaCategoriaGasto)
+    const cadaCategoriaBalance= Number(cadaCategoriaGanancia) - Number(cadaCategoriaGasto)
+    obj = {
+      nombre: categoria.nombre,
+      ganancia: cadaCategoriaGanancia,
+      gasto: cadaCategoriaGasto,
+      balance: cadaCategoriaBalance,
+    }
+    categoriasBalance.push(obj)
   })
 }
+reportesCategoria(operaciones, categorias)
+
+const mayorGanancia = arr => {
+ return arr.sort((a,b)=> Number(b.ganancia) - Number(a.ganancia));
+}
+
+const mayorGasto = arr => {
+  return arr.sort((a,b)=> Number(b.gasto) - Number(a.gasto));
+}
+const mayorBalance = arr =>{
+  return arr.sort((a,b)=> Number(b.balance) - Number(a.balance));
+}
+console.log(mayorBalance(categoriasBalance))
 
 const inicializar = () => {
   const inputFecha = document.querySelectorAll('input[type = "date"]');
