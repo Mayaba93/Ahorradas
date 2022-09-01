@@ -79,12 +79,14 @@ p{
     color: rgba(255, 255, 255, 0.685);
     cursor: pointer;
 }
-.card-operaciones{
+.card-operaciones, .card-reportes{
     background-color: #bc8da0c2;
     width: 100%;
     padding: 2%;
     border-radius: 10px;
     box-shadow: 0px 8px 15px -7px rgba(0,0,0,0.64);
+}
+.card-operaciones{
     min-height: 750px;
 }
 .card-titulo-boton{
@@ -226,4 +228,33 @@ height: 100%;
 .span-categoria{
     color: white;
     font-weight: bold;
+}
+@media (max-width: 992px) and (min-width:577px){
+    .card-balance{
+        width: 100%;
+    }
+    .card-operaciones{
+        min-height: 400px;
+    }
+
+    .operacion{
+        background-color: transparent;
+    }
+    .operacion-nombre-categoria, .guia-monto, .guia-fecha,.guia-acciones{
+        text-align: left!important;
+    }
+}
+@media (max-width: 576px){
+    .card-balance{
+        width: 100%;
+    }
+    .card-operaciones{
+        min-height: 400px;
+    }
+    .operaciones-guia, .span-fecha{
+        display: none;
+    }
+    .operacion{
+        background-color: transparent;
+    }
 }

@@ -83,7 +83,7 @@
       <section id="seccion-balance" class="seccion-balance">
         <div class="container">
           <div class="row">
-            <div class="col-md-4 col-sm-12">
+            <div class="col-lg-4 col-md-12">
               <div class="row">
                 <div class="col-md-12 col-sm-12 d-flex justify-content-center">
                   <div class="card-balance">
@@ -158,7 +158,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-8 col-sm-12 d-flex justify-content-start">
+            <div class="col-lg-8 col-md-12 d-flex justify-content-start">
               <div class="card-operaciones">
                 <div class="card-titulo-boton">
                   <h3>Operaciones</h3>
@@ -170,12 +170,12 @@
                   </button>
                 </div>
                 <div id="contenedor-operaciones">
-                  <div class="row fw-semibold my-3">
+                  <div class="row fw-semibold my-3 operaciones-guia">
                     <div class="col-3">Descripción</div>
                     <div class="col-3">Categoría</div>
-                    <div class="col-2 text-end">Fecha</div>
-                    <div class="col-2 text-end">Monto</div>
-                    <div class="col-2 text-end">Acciones</div>
+                    <div class="col-2 text-end guia-fecha">Fecha</div>
+                    <div class="col-2 text-end guia-monto">Monto</div>
+                    <div class="col-2 text-end guia-acciones">Acciones</div>
                   </div>
                   <div id="operaciones-nuevas"></div>
                 </div>
@@ -198,7 +198,7 @@
       <!---------------------------------------sección nueva operación------------------------------->
       <section id="seccion-nueva-operacion" class="seccion-nueva-operacion">
         <div class="row justify-content-center">
-          <div class="col-md-8 col-sm-12">
+          <div class="col-lg-8 col-md-12">
             <div class="container contenedor-nueva-operacion">
               <h1>Nueva operación</h1>
               <form>
@@ -261,7 +261,7 @@
       <!-----------------------------------------Editar Operacion----------------------------------------------->
       <section id="seccion-editar-operacion" class="seccion-editar-operacion">
         <div class="row justify-content-center">
-          <div class="col-md-8 col-sm-12">
+          <div class="col-lg-8 col-md-12">
             <div class="container contenedor-editar-operacion">
               <h1>Editar operación</h1>
               <form>
@@ -400,8 +400,8 @@
         id="seccion-reportes"
         class="seccion-reportes justify-content-center"
       >
-        <div class="col-md-8 col-sm-12">
-          <div class="card-operaciones">
+        <div class="col-lg-8 col-md-12">
+          <div class="card-reportes">
             <h3>Reportes</h3>
             <div
               class="contenedor-operaciones-insuficientes"
@@ -421,50 +421,50 @@
               <section class="mb-5">
                 <h4 class="mt-4 mb-2">Resumen</h4>
                 <div class="row my-3">
-                  <div class="col-md-6 text-start">
+                  <div class="col-lg-6 col-6 text-start">
                     Categoría con mayor ganancia
                   </div>
                   <div
-                    class="col-md-3 text-end"
+                    class="col-lg-3 col-3 text-end"
                     id="mayor-ganancia-nombre"
                   ></div>
                   <div
-                    class="col-md-3 text-end"
+                    class="col-lg-3 col-3 text-end"
                     id="mayor-ganancia-valor"
                   ></div>
                 </div>
                 <div class="row my-3">
-                  <div class="col-md-6">Categoría con mayor gasto</div>
-                  <div class="col-md-3 text-end" id="mayor-gasto-nombre"></div>
-                  <div class="col-md-3 text-end" id="mayor-gasto-valor"></div>
+                  <div class="col-lg-6 col-6">Categoría con mayor gasto</div>
+                  <div class="col-lg-3 col-3 text-end" id="mayor-gasto-nombre"></div>
+                  <div class="col-lg-3 col-3 text-end" id="mayor-gasto-valor"></div>
                 </div>
                 <div class="row my-3">
-                  <div class="col-md-6">Categoría con mayor balance</div>
+                  <div class="col-lg-6 col-6">Categoría con mayor balance</div>
                   <div
-                    class="col-md-3 text-end"
+                    class="col-lg-3 col-3 text-end"
                     id="mayor-balance-nombre"
                   ></div>
-                  <div class="col-md-3 text-end" id="mayor-balance-valor"></div>
+                  <div class="col-lg-3 col-3 text-end" id="mayor-balance-valor"></div>
                 </div>
                 <div class="row my-3">
-                  <div class="col-md-6">Mes con mayor ganancia</div>
+                  <div class="col-lg-6 col-6">Mes con mayor ganancia</div>
                   <div
-                    class="col-md-3 text-end"
+                    class="col-lg-3 col-3 text-end"
                     id="mayor-ganancia-mes-nombre"
                   ></div>
                   <div
-                    class="col-md-3 text-end"
+                    class="col-lg-3 col-3 text-end"
                     id="mayor-ganancia-mes-valor"
                   ></div>
                 </div>
                 <div class="row my-3">
-                  <div class="col-md-6">Mes con mayor gasto</div>
+                  <div class="col-lg-6 col-6">Mes con mayor gasto</div>
                   <div
-                    class="col-md-3 text-end"
+                    class="col-lg-3 col-3 text-end"
                     id="mayor-gasto-mes-nombre"
                   ></div>
                   <div
-                    class="col-md-3 text-end"
+                    class="col-lg-3 col-3 text-end"
                     id="mayor-gasto-mes-valor"
                   ></div>
                 </div>
@@ -472,20 +472,20 @@
               <section class="mb-5">
                 <h4 class="my-4">Totales por categorias</h4>
                 <div class="row">
-                  <div class="col-md-3 text-start">Categoría</div>
-                  <div class="col-md-3 text-end">Ganancias</div>
-                  <div class="col-md-3 text-end">Gastos</div>
-                  <div class="col-md-3 text-end">Balance</div>
+                  <div class="col-lg-3 col-3 text-start">Categoría</div>
+                  <div class="col-lg-3 col-3 text-end">Ganancias</div>
+                  <div class="col-lg-3 col-3 text-end">Gastos</div>
+                  <div class="col-lg-3 col-3 text-end">Balance</div>
                 </div>
                 <div id="contenedor-totales-por-categoria"></div>
               </section>
               <section class="mb-5">
                 <h4 class="my-4">Totales por mes</h4>
                 <div class="row">
-                  <div class="col-md-3 text-start fw-semibold">Mes</div>
-                  <div class="col-md-3 text-end fw-semibold">Ganancias</div>
-                  <div class="col-md-3 text-end fw-semibold">Gastos</div>
-                  <div class="col-md-3 text-end fw-semibold">Balance</div>
+                  <div class="col-lg-3 col-3 text-start fw-semibold">Mes</div>
+                  <div class="col-lg-3 col-3 text-end fw-semibold">Ganancias</div>
+                  <div class="col-lg-3 col-3 text-end fw-semibold">Gastos</div>
+                  <div class="col-lg-3 col-3 text-end fw-semibold">Balance</div>
                 </div>
                 <div id="contenedor-totales-por-mes"></div>
               </section>
