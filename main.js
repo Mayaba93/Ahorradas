@@ -100,7 +100,7 @@ const generarCategorias = () => {
         str +
         `<div class="contenedor-span-editar-eliminar">
     <span class="span-nombre-categoria">${nombre}</span>
-    <div>
+    <div class="me-3">
       <a href="#" data-id=${id} class="link-editar-eliminar-categoria link-editar-categoria">Editar</a
       ><a href="#" data-id=${id} class="link-editar-eliminar-categoria link-eliminar-categoria"
         >Eliminar</a
@@ -285,17 +285,22 @@ const pintarOperaciones = (arr) => {
     str =
       str +
       `<div class="row d-flex my-3 py-2 rounded operacion">
-
-        <span class="col-3 fw-bold">${descripcion}</span>
-        <div class="col-3"> 
-        <span class="span-categoria">${categoria}</span>
+        <div class="col-md-3 col-sm-6 col-6 fw-bold">
+          <span>${descripcion}</span>
         </div>
-        <span  class="col-2 text-end span-fecha">${fecha}</span>
-        <span class="col-2 text-end fw-bold ${
+        <div class="col-md-3 col-sm-6 col-6 text-end operacion-nombre-categoria"> 
+          <span class="span-categoria">${categoria}</span>
+        </div>
+        <span class="col-md-2 col-sm-6 col-6 span-fecha">${fecha}</span>
+        <div class="col-md-2 col-sm-6 col-6">
+          <span class="text-end fw-bold ${
           tipo === "ganancia" ? "ganancia-operacion" : "gasto-operacion"
-        }">${monto}</span>
-        <a class="col-1 text-end text-decoration-none boton-editar-operacion" data-id=${id} href="#">Editar</a></a>
-        <a class="col-1 text-end text-decoration-none boton-eliminar-operacion" data-id=${id} href="#">Borrar</a>
+          }">${monto}</span>
+        </div>
+        <div class="col-md-2 col-sm-6 col-6 text-wrap text-end">
+          <a class="text-decoration-none boton-editar-operacion" data-id=${id} href="#">Editar</a></a>
+          <a class="text-decoration-none boton-eliminar-operacion" data-id=${id} href="#">Borrar</a>
+        </div>
       </div>`;
   });
   operacionesNuevas.innerHTML = str;
@@ -524,10 +529,10 @@ const pintarMesReportes = (arr) => {
   arr.forEach(categoria => { 
     const {mes, gasto,ganancia,balance} = categoria; 
     str = str + ` <div class="row my-3 fw-semibold">
-    <div class="col-md-3 text-start">${mes} </div>
-    <div class="col-md-3 text-end"><span class="ganancia">${ganancia}</span></div>
-    <div class="col-md-3 text-end"><span class="gasto">${gasto}</span></div>
-    <div class="col-md-3 text-end"><span class="span-categoria">$${balance}</span></div>
+    <div class="col-md-3 col-3 text-start">${mes} </div>
+    <div class="col-md-3 col-3 text-end"><span class="ganancia">${ganancia}</span></div>
+    <div class="col-md-3 col-3 text-end"><span class="gasto">${gasto}</span></div>
+    <div class="col-md-3 col-3 text-end"><span class="span-categoria">$${balance}</span></div>
   </div>`
     })
     contenedorTotalesPorMes.innerHTML = str;
@@ -567,10 +572,10 @@ const pintarCategoriasReportes = (arr) => {
   arr.forEach(categoria => { 
     const {nombre, gasto,ganancia,balance} = categoria; 
     str = str + ` <div class="row my-3 fw-semibold">
-    <div class="col-md-3 text-start">${nombre} </div>
-    <div class="col-md-3 text-end"><span class="ganancia">${ganancia}</span></div>
-    <div class="col-md-3 text-end"><span class="gasto">${gasto}</span></div>
-    <div class="col-md-3 text-end"><span class="span-categoria">$${balance}</span></div>
+    <div class="col-md-3 col-3 text-start">${nombre} </div>
+    <div class="col-md-3 col-3 text-end"><span class="ganancia">${ganancia}</span></div>
+    <div class="col-md-3 col-3 text-end"><span class="gasto">${gasto}</span></div>
+    <div class="col-md-3 col-3 text-end"><span class="span-categoria">$${balance}</span></div>
   </div>`
     })
     contenedorTotalesPorCategoria.innerHTML = str;
@@ -606,17 +611,17 @@ const pintarMayorBalance = () =>{
 }
 pintarMayorBalance()
 
-const pintarMesMayorGanancia = () =>{
-  mayorGananciaMesNombre.innerHTML = `<span class="span-categoria">${mayorGanancia(mesBalance)[0].mes}</span>`
-  mayorGananciaMesValor.innerHTML = `<span class="ganancia">${mayorGanancia(mesBalance)[0].ganancia}</span>`
-}
-pintarMesMayorGanancia()
+// const pintarMesMayorGanancia = () =>{
+//   mayorGananciaMesNombre.innerHTML = `<span class="span-categoria">${mayorGanancia(mesBalance)[0].mes}</span>`
+//   mayorGananciaMesValor.innerHTML = `<span class="ganancia">${mayorGanancia(mesBalance)[0].ganancia}</span>`
+// }
+// pintarMesMayorGanancia()
 
-const pintarMesMayorGasto = () =>{
-  mayorGastoMesNombre.innerHTML = `<span class="span-categoria">${mayorGasto(mesBalance)[0].mes}</span>`
-  mayorGastoMesValor.innerHTML = `<span class="gasto">${mayorGasto(mesBalance)[0].gasto}</span>`
-}
-pintarMesMayorGasto()
+// const pintarMesMayorGasto = () =>{
+//   mayorGastoMesNombre.innerHTML = `<span class="span-categoria">${mayorGasto(mesBalance)[0].mes}</span>`
+//   mayorGastoMesValor.innerHTML = `<span class="gasto">${mayorGasto(mesBalance)[0].gasto}</span>`
+// }
+// pintarMesMayorGasto()
 
 // -----------------------------------------ocultar filtros----------------------------------------------------------//
 
