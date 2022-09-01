@@ -26,7 +26,7 @@ botonSeccionCategorias.addEventListener("click", () => {
   seccionReportes.style.display = "none";
 });
 botonSeccionReportes.addEventListener("click", () => {
-  seccionReportes.style.display = "flex";
+  seccionReportes.style.display = "block";
   seccionCategorias.style.display = "none";
   seccionBalance.style.display = "none";
   if (!operaciones.length) {
@@ -140,10 +140,12 @@ const generarCategorias = () => {
     });
   });
   linkEditarCategoria.forEach((btn) => {
+
     btn.addEventListener("click", (e) => {
       const categoriaParaEditar = categorias.filter(
         (categoria) => categoria.id === e.target.dataset.id
       );
+
       editarCategoria(categoriaParaEditar);
       botonEditarCategoria.addEventListener("click", () => {
         if (inputNombreEditarCategoria.value.trim().length == 0) {
@@ -160,6 +162,7 @@ const generarCategorias = () => {
           localStorage.setItem("categorias", JSON.stringify(categorias));
         }
       });
+
       botonCancelarEditarCategoria.addEventListener("click", () => {
         seccionEditarCategoria.style.display = "none";
         seccionCategorias.style.display = "block";
@@ -246,6 +249,7 @@ botonAgregarOperacion.addEventListener("click", (e) => {
   inputNuevaOperacionMonto.value = 0;
   selectNuevaOperacionTipo.value = "gasto";
   selectNuevaOperacionCategoria.value = "Comida";
+  inputNuevaOperacionFecha.valueAsDate = new Date();
   alertify.success("Operación agregada exitosamente");
   verOperaciones(operaciones);
   if (!Array.isArray(operaciones)) {
@@ -289,14 +293,15 @@ const pintarOperaciones = (arr) => {
         <div class="col-md-3 col-sm-6 col-6 fw-bold">
           <span>${descripcion}</span>
         </div>
-        <div class="col-md-3 col-sm-6 col-6 text-end operacion-nombre-categoria"> 
+        <div class="col-md-3 col-sm-6 col-6 text-end"> 
           <span class="span-categoria">${categoria}</span>
         </div>
-        <span class="col-md-2 col-sm-6 col-6 span-fecha">${fecha}</span>
-        <div class="col-md-2 col-sm-6 col-6">
-          <span class="text-end fw-bold ${
-            tipo === "ganancia" ? "ganancia-operacion" : "gasto-operacion"
-          }">${monto}</span>
+
+        
+        <span class="col-md-2 col-sm-6 col-6 span-fecha text-end">${fecha}</span>
+        <div class="col-md-2 col-sm-6 col-6 text-end operacion-monto">
+          <span class="fw-bold ${tipo === "ganancia" ? "ganancia-operacion" : "gasto-operacion"
+      }">${monto}</span>
         </div>
         <div class="col-md-2 col-sm-6 col-6 text-wrap text-end">
           <a class="text-decoration-none boton-editar-operacion" data-id=${id} href="#">Editar</a></a>
@@ -481,7 +486,9 @@ const filtros = (e) => {
 selectFiltroTipo.addEventListener("change", filtros);
 selectFiltroCategoria.addEventListener("change", filtros);
 selectFiltroOrdenar.addEventListener("change", filtros);
+
 inputFiltroFecha.addEventListener("change", filtros);
+
 
 // ----------------------------------------sección reportes-------------------------------------------------//
 const contenedorTotalesPorMes = document.getElementById(
@@ -535,19 +542,21 @@ reportesMes(operaciones);
 const pintarMesReportes = (arr) => {
   let str = "";
   contenedorTotalesPorMes.innerHTML = "";
-  arr.forEach((categoria) => {
+
+  arr.forEach(categoria => {
     const { mes, gasto, ganancia, balance } = categoria;
-    str =
-      str +
-      ` <div class="row my-3 fw-semibold">
+    str = str + ` <div class="row my-3 fw-semibold">
+
     <div class="col-md-3 col-3 text-start">${mes} </div>
     <div class="col-md-3 col-3 text-end"><span class="ganancia">${ganancia}</span></div>
     <div class="col-md-3 col-3 text-end"><span class="gasto">${gasto}</span></div>
     <div class="col-md-3 col-3 text-end"><span class="span-categoria">$${balance}</span></div>
-  </div>`;
-  });
+
+  </div>`
+  })
   contenedorTotalesPorMes.innerHTML = str;
-};
+}
+
 pintarMesReportes(mesBalance);
 
 const categoriasBalance = [];
@@ -582,86 +591,83 @@ const pintarCategoriasReportes = (arr) => {
  
   let str = "";
   contenedorTotalesPorCategoria.innerHTML = "";
-  arr.forEach((categoria) => {
+
+  arr.forEach(categoria => {
     const { nombre, gasto, ganancia, balance } = categoria;
-    console.log(nombre)
-    str =
-      str +
-      ` <div class="row my-3 fw-semibold">
+    str = str + ` <div class="row my-3 fw-semibold">
+
     <div class="col-md-3 col-3 text-start">${nombre} </div>
     <div class="col-md-3 col-3 text-end"><span class="ganancia">${ganancia}</span></div>
     <div class="col-md-3 col-3 text-end"><span class="gasto">${gasto}</span></div>
     <div class="col-md-3 col-3 text-end"><span class="span-categoria">$${balance}</span></div>
-  </div>`;
-  });
+
+  
+  </div>`
+  })
   contenedorTotalesPorCategoria.innerHTML = str;
-};
+}
 pintarCategoriasReportes(categoriasBalance);
 
 const mayorGanancia = (arr) => {
   return arr.sort((a, b) => Number(b.ganancia) - Number(a.ganancia));
 };
 
+
+
+
 const pintarMayorGanancia = () => {
-  mayorGananciaNombre.innerHTML = `<span class="span-categoria">${
-    mayorGanancia(categoriasBalance)[0].nombre
-  }</span>`;
-  mayorGananciaValor.innerHTML = `<span class="ganancia">${
-    mayorGanancia(categoriasBalance)[0].ganancia
-  }</span>`;
-};
-pintarMayorGanancia();
+  mayorGananciaNombre.innerHTML = `<span class="span-categoria">${mayorGanancia(categoriasBalance)[0].nombre}</span>`
+  mayorGananciaValor.innerHTML = `<span class="ganancia">${mayorGanancia(categoriasBalance)[0].ganancia}</span>`
+}
+pintarMayorGanancia()
 
 const mayorGasto = (arr) => {
   return arr.sort((a, b) => Number(b.gasto) - Number(a.gasto));
 };
 const pintarMayorGasto = () => {
-  mayorGastoNombre.innerHTML = `<span class="span-categoria">${
-    mayorGasto(categoriasBalance)[0].nombre
-  }</span>`;
-  mayorGastoValor.innerHTML = `<span class="gasto">${
-    mayorGasto(categoriasBalance)[0].gasto
-  }</span>`;
-};
-pintarMayorGasto();
+
+  mayorGastoNombre.innerHTML = `<span class="span-categoria">${mayorGasto(categoriasBalance)[0].nombre}</span>`
+  mayorGastoValor.innerHTML = `<span class="gasto">${mayorGasto(categoriasBalance)[0].gasto}</span>`
+}
+pintarMayorGasto()
+
 
 const mayorBalance = (arr) => {
   return arr.sort((a, b) => Number(b.balance) - Number(a.balance));
 };
 const pintarMayorBalance = () => {
-  mayorBalanceNombre.innerHTML = `<span class="span-categoria">${
-    mayorBalance(categoriasBalance)[0].nombre
-  }</span>`;
-  mayorBalanceValor.innerHTML = `<span class="span-categoria">$${
-    mayorBalance(categoriasBalance)[0].balance
-  }</span>`;
-};
-pintarMayorBalance();
 
-const pintarMesMayorGanancia = () => {
-  mayorGananciaMesNombre.innerHTML = `<span class="span-categoria">${
-    mayorGanancia(mesBalance)[0].mes
-  }</span>`;
-  mayorGananciaMesValor.innerHTML = `<span class="ganancia">${
-    mayorGanancia(mesBalance)[0].ganancia
-  }</span>`;
-};
-pintarMesMayorGanancia();
+  mayorBalanceNombre.innerHTML = `<span class="span-categoria">${mayorBalance(categoriasBalance)[0].nombre}</span>`
+  mayorBalanceValor.innerHTML = `<span class="span-categoria">$${mayorBalance(categoriasBalance)[0].balance}</span>`
+}
+pintarMayorBalance()
 
-const pintarMesMayorGasto = () => {
-  mayorGastoMesNombre.innerHTML = `<span class="span-categoria">${
-    mayorGasto(mesBalance)[0].mes
-  }</span>`;
-  mayorGastoMesValor.innerHTML = `<span class="gasto">${
-    mayorGasto(mesBalance)[0].gasto
-  }</span>`;
-};
-pintarMesMayorGasto();
+// const pintarMesMayorGanancia = () =>{
+//   console.log(mayorGanancia(mesBalance)[0].gasto)
+// }
+// pintarMesMayorGanancia()
+// const pintarMesMayorGanancia = () =>{
+//   mayorGananciaMesNombre.innerHTML = `<span class="span-categoria">${mayorGanancia(mesBalance)[0].mes}</span>`
+//   mayorGananciaMesValor.innerHTML = `<span class="ganancia">${mayorGanancia(mesBalance)[0].ganancia}</span>`
+// }
+// pintarMesMayorGanancia()
+
+// const pintarMesMayorGasto = () =>{
+//   mayorGastoMesNombre.innerHTML = `<span class="span-categoria">${mayorGasto(mesBalance)[0].mes}</span>`
+//   mayorGastoMesValor.innerHTML = `<span class="gasto">${mayorGasto(mesBalance)[0].gasto}</span>`
+// }
+// pintarMesMayorGasto()
+
 
 // -----------------------------------------ocultar filtros----------------------------------------------------------//
 
 const spanOcultarFiltros = document.getElementById("span-ocultar-filtros");
-const contenedorFiltros = document.getElementById("contenedor-filtros");
+
+const contenedorFiltros = document.getElementById('contenedor-filtros');
+
+spanOcultarFiltros.addEventListener('click', () => {
+  contenedorFiltros.classList.toggle('d-none')
+})
 
 spanOcultarFiltros.addEventListener("click", () => {
   contenedorFiltros.classList.toggle("d-none");
