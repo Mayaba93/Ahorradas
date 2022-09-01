@@ -26,7 +26,7 @@ botonSeccionCategorias.addEventListener("click", () => {
   seccionReportes.style.display = "none";
 });
 botonSeccionReportes.addEventListener("click", () => {
-  seccionReportes.style.display = "flex";
+  seccionReportes.style.display = "block";
   seccionCategorias.style.display = "none";
   seccionBalance.style.display = "none";
   if (!operaciones.length) {
@@ -288,12 +288,12 @@ const pintarOperaciones = (arr) => {
         <div class="col-md-3 col-sm-6 col-6 fw-bold">
           <span>${descripcion}</span>
         </div>
-        <div class="col-md-3 col-sm-6 col-6 text-end operacion-nombre-categoria"> 
+        <div class="col-md-3 col-sm-6 col-6 text-end"> 
           <span class="span-categoria">${categoria}</span>
         </div>
-        <span class="col-md-2 col-sm-6 col-6 span-fecha">${fecha}</span>
-        <div class="col-md-2 col-sm-6 col-6">
-          <span class="text-end fw-bold ${
+        <span class="col-md-2 col-sm-6 col-6 span-fecha text-end">${fecha}</span>
+        <div class="col-md-2 col-sm-6 col-6 text-end operacion-monto">
+          <span class="fw-bold ${
           tipo === "ganancia" ? "ganancia-operacion" : "gasto-operacion"
           }">${monto}</span>
         </div>
