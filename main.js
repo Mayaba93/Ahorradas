@@ -415,6 +415,7 @@ const selectFiltroCategoria = document.getElementById(
   "select-filtro-categoria"
 );
 const selectFiltroOrdenar = document.getElementById("select-filtro-ordenar");
+const inputFiltroFecha = document.getElementById('input-filtro-fecha');
 
 const filtros = (e) => {
   const filtroTipo = selectFiltroTipo.value;
@@ -423,6 +424,7 @@ const filtros = (e) => {
 
   let operaciones = JSON.parse(localStorage.getItem("operaciones")) || [];
 
+  operaciones = operaciones.filter(operacion => operacion.fecha >= inputFiltroFecha.value)
   if (filtroTipo !== "todos") {
     operaciones = operaciones.filter(
       (operacion) => operacion.tipo === filtroTipo
@@ -468,9 +470,11 @@ const filtros = (e) => {
   actualizarBalance(operaciones);
 };
 
+
 selectFiltroTipo.addEventListener("change", filtros);
 selectFiltroCategoria.addEventListener("change", filtros);
 selectFiltroOrdenar.addEventListener("change", filtros);
+inputFiltroFecha.addEventListener('change',filtros)
 
 // ----------------------------------------sección reportes-------------------------------------------------//
 const contenedorTotalesPorMes = document.getElementById("contenedor-totales-por-mes");
@@ -618,15 +622,15 @@ pintarMesMayorGasto()
 
 const spanOcultarFiltros = document.getElementById("span-ocultar-filtros");
 const contenedorFiltros = document.getElementById('contenedor-filtros');
-console.log(contenedorFiltros)
+
 spanOcultarFiltros.addEventListener('click',()=>{
   contenedorFiltros.classList.toggle('d-none')
 })
 
 
 const inicializar = () => {
-  const inputFecha = document.querySelectorAll('input[type = "date"]');
-  inputFecha.forEach((input) => {
+  const inputFiltroFecha = document.querySelectorAll('input[type = "date"]');
+  inputFiltroFecha.forEach((input) => {
     input.valueAsDate = new Date();
   }); //buscar como poner la fecha en Argentina
   actualizarBalance(operaciones);
