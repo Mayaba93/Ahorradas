@@ -37,7 +37,7 @@ botonSeccionReportes.addEventListener("click", () => {
     contenedorOperacionesInsuficientes.style.display = "none";
   }
   reportesMes(operaciones);
-  reportesCategoria(operaciones, categorias);
+  reportesCategoria(operaciones);
 });
 // boton para nueva operación
 const botonNuevaOperacion = document.getElementById("boton-nueva-operacion");
@@ -84,7 +84,9 @@ const inputNombreEditarCategoria = document.getElementById(
   "input-nombre-editar-categoria"
 );
 const selectCategorias = document.getElementsByClassName("select-categorias");
-const botonCancelarEditarCategoria = document.getElementById('boton-cancelar-editar-categoria');
+const botonCancelarEditarCategoria = document.getElementById(
+  "boton-cancelar-editar-categoria"
+);
 const generarCategorias = () => {
   for (let i = 0; i < selectCategorias.length; i++) {
     const select = selectCategorias[i];
@@ -103,8 +105,7 @@ const generarCategorias = () => {
     <div class="me-3">
       <a href="#" data-id=${id} class="link-editar-eliminar-categoria link-editar-categoria">Editar</a
       ><a href="#" data-id=${id} class="link-editar-eliminar-categoria link-eliminar-categoria"
-        >Eliminar</a
-      >
+        >Eliminar</a>
     </div>
   </div>`;
     });
@@ -159,10 +160,10 @@ const generarCategorias = () => {
           localStorage.setItem("categorias", JSON.stringify(categorias));
         }
       });
-      botonCancelarEditarCategoria.addEventListener('click',()=>{
-        seccionEditarCategoria.style.display='none';
+      botonCancelarEditarCategoria.addEventListener("click", () => {
+        seccionEditarCategoria.style.display = "none";
         seccionCategorias.style.display = "block";
-      })
+      });
     });
   });
 };
@@ -294,7 +295,7 @@ const pintarOperaciones = (arr) => {
         <span class="col-md-2 col-sm-6 col-6 span-fecha">${fecha}</span>
         <div class="col-md-2 col-sm-6 col-6">
           <span class="text-end fw-bold ${
-          tipo === "ganancia" ? "ganancia-operacion" : "gasto-operacion"
+            tipo === "ganancia" ? "ganancia-operacion" : "gasto-operacion"
           }">${monto}</span>
         </div>
         <div class="col-md-2 col-sm-6 col-6 text-wrap text-end">
@@ -420,7 +421,7 @@ const selectFiltroCategoria = document.getElementById(
   "select-filtro-categoria"
 );
 const selectFiltroOrdenar = document.getElementById("select-filtro-ordenar");
-const inputFiltroFecha = document.getElementById('input-filtro-fecha');
+const inputFiltroFecha = document.getElementById("input-filtro-fecha");
 
 const filtros = (e) => {
   const filtroTipo = selectFiltroTipo.value;
@@ -429,7 +430,9 @@ const filtros = (e) => {
 
   let operaciones = JSON.parse(localStorage.getItem("operaciones")) || [];
 
-  operaciones = operaciones.filter(operacion => operacion.fecha >= inputFiltroFecha.value)
+  operaciones = operaciones.filter(
+    (operacion) => operacion.fecha >= inputFiltroFecha.value
+  );
   if (filtroTipo !== "todos") {
     operaciones = operaciones.filter(
       (operacion) => operacion.tipo === filtroTipo
@@ -475,26 +478,32 @@ const filtros = (e) => {
   actualizarBalance(operaciones);
 };
 
-
 selectFiltroTipo.addEventListener("change", filtros);
 selectFiltroCategoria.addEventListener("change", filtros);
 selectFiltroOrdenar.addEventListener("change", filtros);
-inputFiltroFecha.addEventListener('change',filtros)
+inputFiltroFecha.addEventListener("change", filtros);
 
 // ----------------------------------------sección reportes-------------------------------------------------//
-const contenedorTotalesPorMes = document.getElementById("contenedor-totales-por-mes");
-const contenedorTotalesPorCategoria = document.getElementById("contenedor-totales-por-categoria");
+const contenedorTotalesPorMes = document.getElementById(
+  "contenedor-totales-por-mes"
+);
+const contenedorTotalesPorCategoria = document.getElementById(
+  "contenedor-totales-por-categoria"
+);
 const mayorGananciaNombre = document.getElementById("mayor-ganancia-nombre");
 const mayorGananciaValor = document.getElementById("mayor-ganancia-valor");
 const mayorGastoNombre = document.getElementById("mayor-gasto-nombre");
 const mayorGastoValor = document.getElementById("mayor-gasto-valor");
 const mayorBalanceNombre = document.getElementById("mayor-balance-nombre");
 const mayorBalanceValor = document.getElementById("mayor-balance-valor");
-const mayorGananciaMesNombre = document.getElementById("mayor-ganancia-mes-nombre");
-const mayorGananciaMesValor = document.getElementById("mayor-ganancia-mes-valor");
+const mayorGananciaMesNombre = document.getElementById(
+  "mayor-ganancia-mes-nombre"
+);
+const mayorGananciaMesValor = document.getElementById(
+  "mayor-ganancia-mes-valor"
+);
 const mayorGastoMesNombre = document.getElementById("mayor-gasto-mes-nombre");
 const mayorGastoMesValor = document.getElementById("mayor-gasto-mes-valor");
-
 
 const mesBalance = [];
 const reportesMes = (arr) => {
@@ -526,24 +535,27 @@ reportesMes(operaciones);
 const pintarMesReportes = (arr) => {
   let str = "";
   contenedorTotalesPorMes.innerHTML = "";
-  arr.forEach(categoria => { 
-    const {mes, gasto,ganancia,balance} = categoria; 
-    str = str + ` <div class="row my-3 fw-semibold">
+  arr.forEach((categoria) => {
+    const { mes, gasto, ganancia, balance } = categoria;
+    str =
+      str +
+      ` <div class="row my-3 fw-semibold">
     <div class="col-md-3 col-3 text-start">${mes} </div>
     <div class="col-md-3 col-3 text-end"><span class="ganancia">${ganancia}</span></div>
     <div class="col-md-3 col-3 text-end"><span class="gasto">${gasto}</span></div>
     <div class="col-md-3 col-3 text-end"><span class="span-categoria">$${balance}</span></div>
-  </div>`
-    })
-    contenedorTotalesPorMes.innerHTML = str;
-}
+  </div>`;
+  });
+  contenedorTotalesPorMes.innerHTML = str;
+};
 pintarMesReportes(mesBalance);
-
-
 
 const categoriasBalance = [];
 
-const reportesCategoria = (operaciones, categorias) => {
+const reportesCategoria = (operaciones) => {
+  const categorias = [
+    ...new  Set(operaciones.map((operacion) => operacion.categoria))
+  ];
   categorias.forEach((categoria) => {
     const cadaCategoria = operaciones.filter(
       (operacion) => operacion.categoria === categoria.nombre
@@ -565,73 +577,95 @@ const reportesCategoria = (operaciones, categorias) => {
     categoriasBalance.push(obj);
   });
 };
-reportesCategoria(operaciones, categorias);
+reportesCategoria(operaciones);
 const pintarCategoriasReportes = (arr) => {
+ 
   let str = "";
   contenedorTotalesPorCategoria.innerHTML = "";
-  arr.forEach(categoria => { 
-    const {nombre, gasto,ganancia,balance} = categoria; 
-    str = str + ` <div class="row my-3 fw-semibold">
+  arr.forEach((categoria) => {
+    const { nombre, gasto, ganancia, balance } = categoria;
+    console.log(nombre)
+    str =
+      str +
+      ` <div class="row my-3 fw-semibold">
     <div class="col-md-3 col-3 text-start">${nombre} </div>
     <div class="col-md-3 col-3 text-end"><span class="ganancia">${ganancia}</span></div>
     <div class="col-md-3 col-3 text-end"><span class="gasto">${gasto}</span></div>
     <div class="col-md-3 col-3 text-end"><span class="span-categoria">$${balance}</span></div>
-  </div>`
-    })
-    contenedorTotalesPorCategoria.innerHTML = str;
-}
+  </div>`;
+  });
+  contenedorTotalesPorCategoria.innerHTML = str;
+};
 pintarCategoriasReportes(categoriasBalance);
-
 
 const mayorGanancia = (arr) => {
   return arr.sort((a, b) => Number(b.ganancia) - Number(a.ganancia));
 };
 
-const pintarMayorGanancia = () =>{
-  mayorGananciaNombre.innerHTML =`<span class="span-categoria">${mayorGanancia(categoriasBalance)[0].nombre}</span>`
-  mayorGananciaValor.innerHTML = `<span class="ganancia">${mayorGanancia(categoriasBalance)[0].ganancia}</span>`
-}
-pintarMayorGanancia()
+const pintarMayorGanancia = () => {
+  mayorGananciaNombre.innerHTML = `<span class="span-categoria">${
+    mayorGanancia(categoriasBalance)[0].nombre
+  }</span>`;
+  mayorGananciaValor.innerHTML = `<span class="ganancia">${
+    mayorGanancia(categoriasBalance)[0].ganancia
+  }</span>`;
+};
+pintarMayorGanancia();
 
 const mayorGasto = (arr) => {
   return arr.sort((a, b) => Number(b.gasto) - Number(a.gasto));
 };
-const pintarMayorGasto = () =>{
-  mayorGastoNombre.innerHTML = `<span class="span-categoria">${mayorGasto(categoriasBalance)[0].nombre}</span>` 
-  mayorGastoValor.innerHTML = `<span class="gasto">${mayorGasto(categoriasBalance)[0].gasto}</span>`
-}
-pintarMayorGasto()
+const pintarMayorGasto = () => {
+  mayorGastoNombre.innerHTML = `<span class="span-categoria">${
+    mayorGasto(categoriasBalance)[0].nombre
+  }</span>`;
+  mayorGastoValor.innerHTML = `<span class="gasto">${
+    mayorGasto(categoriasBalance)[0].gasto
+  }</span>`;
+};
+pintarMayorGasto();
 
 const mayorBalance = (arr) => {
   return arr.sort((a, b) => Number(b.balance) - Number(a.balance));
 };
-const pintarMayorBalance = () =>{
-  mayorBalanceNombre.innerHTML =`<span class="span-categoria">${mayorBalance(categoriasBalance)[0].nombre}</span>`
-  mayorBalanceValor.innerHTML = `<span class="span-categoria">$${mayorBalance(categoriasBalance)[0].balance}</span>`
-}
-pintarMayorBalance()
+const pintarMayorBalance = () => {
+  mayorBalanceNombre.innerHTML = `<span class="span-categoria">${
+    mayorBalance(categoriasBalance)[0].nombre
+  }</span>`;
+  mayorBalanceValor.innerHTML = `<span class="span-categoria">$${
+    mayorBalance(categoriasBalance)[0].balance
+  }</span>`;
+};
+pintarMayorBalance();
 
-// const pintarMesMayorGanancia = () =>{
-//   mayorGananciaMesNombre.innerHTML = `<span class="span-categoria">${mayorGanancia(mesBalance)[0].mes}</span>`
-//   mayorGananciaMesValor.innerHTML = `<span class="ganancia">${mayorGanancia(mesBalance)[0].ganancia}</span>`
-// }
-// pintarMesMayorGanancia()
+const pintarMesMayorGanancia = () => {
+  mayorGananciaMesNombre.innerHTML = `<span class="span-categoria">${
+    mayorGanancia(mesBalance)[0].mes
+  }</span>`;
+  mayorGananciaMesValor.innerHTML = `<span class="ganancia">${
+    mayorGanancia(mesBalance)[0].ganancia
+  }</span>`;
+};
+pintarMesMayorGanancia();
 
-// const pintarMesMayorGasto = () =>{
-//   mayorGastoMesNombre.innerHTML = `<span class="span-categoria">${mayorGasto(mesBalance)[0].mes}</span>`
-//   mayorGastoMesValor.innerHTML = `<span class="gasto">${mayorGasto(mesBalance)[0].gasto}</span>`
-// }
-// pintarMesMayorGasto()
+const pintarMesMayorGasto = () => {
+  mayorGastoMesNombre.innerHTML = `<span class="span-categoria">${
+    mayorGasto(mesBalance)[0].mes
+  }</span>`;
+  mayorGastoMesValor.innerHTML = `<span class="gasto">${
+    mayorGasto(mesBalance)[0].gasto
+  }</span>`;
+};
+pintarMesMayorGasto();
 
 // -----------------------------------------ocultar filtros----------------------------------------------------------//
 
 const spanOcultarFiltros = document.getElementById("span-ocultar-filtros");
-const contenedorFiltros = document.getElementById('contenedor-filtros');
+const contenedorFiltros = document.getElementById("contenedor-filtros");
 
-spanOcultarFiltros.addEventListener('click',()=>{
-  contenedorFiltros.classList.toggle('d-none')
-})
-
+spanOcultarFiltros.addEventListener("click", () => {
+  contenedorFiltros.classList.toggle("d-none");
+});
 
 const inicializar = () => {
   const inputFiltroFecha = document.querySelectorAll('input[type = "date"]');
@@ -644,4 +678,3 @@ const inicializar = () => {
   pintarOperaciones(operaciones);
 };
 window.onload = inicializar;
-
