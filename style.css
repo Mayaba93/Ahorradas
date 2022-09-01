@@ -16,6 +16,11 @@ p{
 .seccion-categorias, .seccion-reportes , .seccion-nueva-operacion , .seccion-editar-operacion ,.seccion-editar-categoria{
     display: none;
 }
+.nav-items:hover{
+    background-color: #c997ab;
+    border-radius: 10px;
+
+}
 /* Seccion Balance */
 .contenedor-main{
     padding: 4%;
@@ -70,13 +75,17 @@ p{
     border-radius: 10px;
     border: none;
 }
+.span-ocultar-filtros:hover{
+    color: rgba(255, 255, 255, 0.685);
+    cursor: pointer;
+}
 .card-operaciones{
     background-color: #bc8da0c2;
     width: 100%;
     padding: 2%;
     border-radius: 10px;
     box-shadow: 0px 8px 15px -7px rgba(0,0,0,0.64);
-    height: 100%;
+    min-height: 750px;
 }
 .card-titulo-boton{
     display:flex;
@@ -87,6 +96,9 @@ p{
     border-radius: 10px;
     border: none;
     padding: 1% 2%;
+}
+.boton-nueva-operacion:hover{
+    background-color: rgba(255, 255, 255, 0.685);
 }
 .imagen-ninguna-operacion{
     width: 50%;
