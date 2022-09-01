@@ -84,6 +84,7 @@ const inputNombreEditarCategoria = document.getElementById(
   "input-nombre-editar-categoria"
 );
 const selectCategorias = document.getElementsByClassName("select-categorias");
+const botonCancelarEditarCategoria = document.getElementById('boton-cancelar-editar-categoria');
 const generarCategorias = () => {
   for (let i = 0; i < selectCategorias.length; i++) {
     const select = selectCategorias[i];
@@ -158,6 +159,10 @@ const generarCategorias = () => {
           localStorage.setItem("categorias", JSON.stringify(categorias));
         }
       });
+      botonCancelarEditarCategoria.addEventListener('click',()=>{
+        seccionEditarCategoria.style.display='none';
+        seccionCategorias.style.display = "block";
+      })
     });
   });
 };
@@ -611,8 +616,12 @@ pintarMesMayorGasto()
 
 // -----------------------------------------ocultar filtros----------------------------------------------------------//
 
-const spanOcultarFiltro = document.getElementById("span-ocultar-filtro");
-console.log(spanOcultarFiltro)
+const spanOcultarFiltros = document.getElementById("span-ocultar-filtros");
+const contenedorFiltros = document.getElementById('contenedor-filtros');
+console.log(contenedorFiltros)
+spanOcultarFiltros.addEventListener('click',()=>{
+  contenedorFiltros.classList.toggle('d-none')
+})
 
 
 const inicializar = () => {
