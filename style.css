@@ -229,22 +229,7 @@ height: 100%;
     color: white;
     font-weight: bold;
 }
-@media (max-width: 992px) and (min-width:577px){
-    .card-balance{
-        width: 100%;
-    }
-    .card-operaciones{
-        min-height: 400px;
-    }
-
-    .operacion{
-        background-color: transparent;
-    }
-    .operacion-nombre-categoria, .guia-monto, .guia-fecha,.guia-acciones{
-        text-align: left!important;
-    }
-}
-@media (max-width: 576px){
+@media (max-width: 992px){
     .card-balance{
         width: 100%;
     }
@@ -256,5 +241,8 @@ height: 100%;
     }
     .operacion{
         background-color: transparent;
+    }
+    .operacion-monto{
+        text-align: left!important;
     }
 }
