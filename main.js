@@ -122,23 +122,27 @@ const generarCategorias = () => {
   const linkEditarCategoria = document.querySelectorAll(
     ".link-editar-categoria"
   );
-  linkEliminarCategoria.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      const arregloBorrarCategoria = categorias.filter(
-        (categoria) => categoria.id !== e.target.dataset.id
-      );
-      if (!Array.isArray(arregloBorrarCategoria)) {
-        alertify.error("El tipo de dato es incorrecto");
-      } else {
-        localStorage.setItem(
-          "categorias",
-          JSON.stringify(arregloBorrarCategoria)
-        );
-      }
-      categorias = JSON.parse(localStorage.getItem("categorias"));
-      generarCategorias();
+  const eliminarCategoria = (arr, e, operaciones) => {
+    const buscarCategoria = arr.find(categoria => categoria.id === e.target.dataset.id).nombre;
+    const borrarCategoria = arr.filter(categoria => categoria.id !== e.target.dataset.id);
+    const borrarOperacion = operaciones.filter(operaciones => operaciones.categoria !== buscarCategoria);
+    localStorage.setItem('categorias', JSON.stringify(borrarCategoria));
+    categorias = JSON.parse(localStorage.getItem('categorias'))
+    generarCategorias()
+    localStorage.setItem('operaciones', JSON.stringify(borrarOperacion));
+    operaciones = JSON.parse(localStorage.getItem('operaciones'));
+    pintarOperaciones(operaciones)
+    verOperaciones(operaciones)
+    actualizarBalance(operaciones)
+  };
+
+  linkEliminarCategoria.forEach(btn => {
+    btn.addEventListener('click', e =>{
+      e.preventDefault();
+      eliminarCategoria(categorias, e, operaciones)
     });
   });
+
   linkEditarCategoria.forEach((btn) => {
     btn.addEventListener("click", (e) => {
       e.preventDefault()
