@@ -122,52 +122,62 @@ const generarCategorias = () => {
   const linkEditarCategoria = document.querySelectorAll(
     ".link-editar-categoria"
   );
-  linkEliminarCategoria.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      const arregloBorrarCategoria = categorias.filter(
-        (categoria) => categoria.id !== e.target.dataset.id
-      );
-      if (!Array.isArray(arregloBorrarCategoria)) {
-        alertify.error("El tipo de dato es incorrecto");
-      } else {
-        localStorage.setItem(
-          "categorias",
-          JSON.stringify(arregloBorrarCategoria)
-        );
-      }
-      categorias = JSON.parse(localStorage.getItem("categorias"));
-      generarCategorias();
+  const eliminarCategoria = (arr, e, operaciones) => {
+    const buscarCategoria = arr.find(categoria => categoria.id === e.target.dataset.id).nombre;
+    const borrarCategoria = arr.filter(categoria => categoria.id !== e.target.dataset.id);
+    const borrarOperacion = operaciones.filter(operaciones => operaciones.categoria !== buscarCategoria);
+    localStorage.setItem('categorias', JSON.stringify(borrarCategoria));
+    categorias = JSON.parse(localStorage.getItem('categorias'))
+    generarCategorias()
+    localStorage.setItem('operaciones', JSON.stringify(borrarOperacion));
+    operaciones = JSON.parse(localStorage.getItem('operaciones'));
+    pintarOperaciones(operaciones)
+    verOperaciones(operaciones)
+    actualizarBalance(operaciones)
+  };
+
+  linkEliminarCategoria.forEach(btn => {
+    btn.addEventListener('click', e =>{
+      e.preventDefault();
+      eliminarCategoria(categorias, e, operaciones)
     });
   });
-  linkEditarCategoria.forEach((btn) => {
 
+  linkEditarCategoria.forEach((btn) => {
     btn.addEventListener("click", (e) => {
-      const categoriaParaEditar = categorias.filter(
+      e.preventDefault()
+      categoriaParaEditar = categorias.filter(
         (categoria) => categoria.id === e.target.dataset.id
       );
-
       editarCategoria(categoriaParaEditar);
-      botonEditarCategoria.addEventListener("click", () => {
-        if (inputNombreEditarCategoria.value.trim().length == 0) {
-          return alertify.error("El nombre no puede estar vacío");
-        }
-        categoriaParaEditar[0].nombre = inputNombreEditarCategoria.value;
-        seccionCategorias.style.display = "block";
-        seccionEditarCategoria.style.display = "none";
-        generarCategorias();
-        alertify.success("Categoria editada exitosamente");
-        if (!Array.isArray(categorias)) {
-          alertify.error("El tipo de dato es incorrecto");
-        } else {
-          localStorage.setItem("categorias", JSON.stringify(categorias));
-        }
-      });
-
-      botonCancelarEditarCategoria.addEventListener("click", () => {
-        seccionEditarCategoria.style.display = "none";
-        seccionCategorias.style.display = "block";
-      });
     });
+  });
+
+  botonEditarCategoria.addEventListener("click", () => {
+    seccionCategorias.style.display = "block";
+    seccionEditarCategoria.style.display = "none";
+    const filtrar = categorias.filter(categoria => categoria.id === categoriaParaEditar[0].id)
+    const filtrado = filtrar[0]
+    if (inputNombreEditarCategoria.value.trim().length == 0) {
+      return alertify.error("El nombre no puede estar vacío");
+    }
+    filtrado.nombre = inputNombreEditarCategoria.value;
+    filtrado.id = categoriaParaEditar[0].id;
+
+    const nuevas = categorias.map(categoria => categoria.id === categoriaParaEditar[0].id ? filtrado : categoria)
+    if (!Array.isArray(categorias)) {
+      alertify.error("El tipo de dato es incorrecto");
+    } else {
+      localStorage.setItem("categorias", JSON.stringify(nuevas));
+    }
+    // const categoriasEditadas = JSON.parse(localStorage.getItem('categorias'))
+    generarCategorias();
+    alertify.success("Categoria editada exitosamente");
+  });
+
+  botonCancelarEditarCategoria.addEventListener("click", () => {
+    seccionEditarCategoria.style.display = "none";
+    seccionCategorias.style.display = "block";
   });
 };
 const editarCategoria = (arr) => {
@@ -337,45 +347,58 @@ const pintarOperaciones = (arr) => {
   });
   botonesEditarOperacion.forEach((btn) => {
     btn.addEventListener("click", (e) => {
-      const operacionParaEditar = operaciones.filter(
+      e.preventDefault();
+      operacionParaEditar = operaciones.filter(
         (operacion) => operacion.id === e.target.dataset.id
       );
       editarOperacion(operacionParaEditar);
-      botonEditarOperacion.addEventListener("click", () => {
-        if (
-          inputEditarOperacionDescripcion.value.trim().length === 0 ||
-          inputEditarOperacionMonto.value <= 0
-        ) {
-          return alertify.error(
-            "El monto no puede ser igual o menor a 0 y la descripción no puede estar vacía"
-          );
-        }
-        operacionParaEditar[0].monto = inputEditarOperacionMonto.value;
-        operacionParaEditar[0].descripcion =
-          inputEditarOperacionDescripcion.value;
-        operacionParaEditar[0].tipo = selectEditarOperacionTipo.value;
-        operacionParaEditar[0].categoria = selectEditarOperacionCategoria.value;
-        operacionParaEditar[0].fecha = inputEditarOperacionFecha.value;
-        seccionBalance.style.display = "block";
-        seccionEditarOperacion.style.display = "none";
-        alertify.success("Operación editada exitosamente");
-        verOperaciones(operaciones);
-        if (!Array.isArray(operaciones)) {
-          alertify.error("El tipo de dato es incorrecto");
-        } else {
-          localStorage.setItem("operaciones", JSON.stringify(operaciones));
-        }
-        pintarOperaciones(operaciones);
-        actualizarBalance(operaciones);
-      });
-      botonCancelarEditarOperacion.addEventListener("click", () => {
-        seccionBalance.style.display = "block";
-        seccionEditarOperacion.style.display = "none";
-      });
     });
+  });
+
+  botonEditarOperacion.addEventListener("click", () => {
+    seccionBalance.style.display = "block";
+    seccionEditarOperacion.style.display = "none";
+    const filtrar = operaciones.filter(
+      (operacion) => operacion.id === operacionParaEditar[0].id
+    );
+    const filtrado = filtrar[0];
+    console.log(filtrar);
+    if (
+      inputEditarOperacionDescripcion.value.trim().length === 0 ||
+      inputEditarOperacionMonto.value <= 0
+    ) {
+      return alertify.error(
+        "El monto no puede ser igual o menor a 0 y la descripción no puede estar vacía"
+      );
+    }
+    filtrado.monto = inputEditarOperacionMonto.value;
+    filtrado.descripcion = inputEditarOperacionDescripcion.value;
+    filtrado.tipo = selectEditarOperacionTipo.value;
+    filtrado.categoria = selectEditarOperacionCategoria.value;
+    filtrado.fecha = inputEditarOperacionFecha.value;
+    filtrado.id = operacionParaEditar[0].id;
+
+    const nuevas = operaciones.map((operacion) =>
+      operacion.id === operacionParaEditar[0].id ? filtrado : operacion
+    );
+    verOperaciones(operaciones);
+    if (!Array.isArray(operaciones)) {
+      alertify.error("El tipo de dato es incorrecto");
+    } else {
+      localStorage.setItem("operaciones", JSON.stringify(nuevas));
+    }
+    const operacionesEditadas = JSON.parse(localStorage.getItem("operaciones"));
+    pintarOperaciones(operacionesEditadas);
+    actualizarBalance(operaciones);
+    alertify.success("Operación editada exitosamente");
+  });
+  botonCancelarEditarOperacion.addEventListener("click", () => {
+    seccionBalance.style.display = "block";
+    seccionEditarOperacion.style.display = "none";
   });
 };
 const editarOperacion = (arr) => {
+  if (arr.length === 0) return;
   const { descripcion, monto, tipo, categoria, fecha } = arr[0];
   seccionBalance.style.display = "none";
   seccionEditarOperacion.style.display = "block";
@@ -489,7 +512,6 @@ selectFiltroOrdenar.addEventListener("change", filtros);
 
 inputFiltroFecha.addEventListener("change", filtros);
 
-
 // ----------------------------------------sección reportes-------------------------------------------------//
 const contenedorTotalesPorMes = document.getElementById(
   "contenedor-totales-por-mes"
@@ -511,7 +533,6 @@ const mayorGananciaMesValor = document.getElementById(
 );
 const mayorGastoMesNombre = document.getElementById("mayor-gasto-mes-nombre");
 const mayorGastoMesValor = document.getElementById("mayor-gasto-mes-valor");
-
 
 const reportesMes = (arr) => {
   const mesBalance = [];
@@ -536,38 +557,36 @@ const reportesMes = (arr) => {
       balance: balanceDelMes,
     };
     mesBalance.push(obj);
-    
   }
-  pintarMesMayorGasto(mesBalance)
-  pintarMesMayorGanancia(mesBalance)
+  pintarMesMayorGasto(mesBalance);
+  pintarMesMayorGanancia(mesBalance);
   pintarMesReportes(mesBalance);
 };
-
 
 const pintarMesReportes = (arr) => {
   let str = "";
   contenedorTotalesPorMes.innerHTML = "";
 
-  arr.forEach(categoria => {
+  arr.forEach((categoria) => {
     const { mes, gasto, ganancia, balance } = categoria;
-    str = str + ` <div class="row my-3 fw-semibold">
+    str =
+      str +
+      ` <div class="row my-3 fw-semibold">
 
     <div class="col-md-3 col-3 text-start">${mes} </div>
     <div class="col-md-3 col-3 text-end"><span class="ganancia">${ganancia}</span></div>
     <div class="col-md-3 col-3 text-end"><span class="gasto">${gasto}</span></div>
     <div class="col-md-3 col-3 text-end"><span class="span-categoria">$${balance}</span></div>
 
-  </div>`
-  })
+  </div>`;
+  });
   contenedorTotalesPorMes.innerHTML = str;
-}
-
-
+};
 
 const reportesCategoria = (operaciones) => {
   const categoriasBalance = [];
   const categorias = [
-    ...new  Set(operaciones.map((operacion) => operacion.categoria))
+    ...new Set(operaciones.map((operacion) => operacion.categoria)),
   ];
   categorias.forEach((categoria) => {
     const cadaCategoria = operaciones.filter(
@@ -589,21 +608,22 @@ const reportesCategoria = (operaciones) => {
     };
     categoriasBalance.push(obj);
   });
-  pintarMayorGanancia(categoriasBalance)
-  pintarMayorGasto(categoriasBalance)
+  pintarMayorGanancia(categoriasBalance);
+  pintarMayorGasto(categoriasBalance);
   pintarMayorBalance(categoriasBalance);
   pintarCategoriasReportes(categoriasBalance);
-  console.log(categoriasBalance)
+  console.log(categoriasBalance);
 };
 
 const pintarCategoriasReportes = (arr) => {
- 
   let str = "";
   contenedorTotalesPorCategoria.innerHTML = "";
 
-  arr.forEach(categoria => {
+  arr.forEach((categoria) => {
     const { nombre, gasto, ganancia, balance } = categoria;
-    str = str + ` <div class="row my-3 fw-semibold">
+    str =
+      str +
+      ` <div class="row my-3 fw-semibold">
 
     <div class="col-md-3 col-3 text-start">${nombre} </div>
     <div class="col-md-3 col-3 text-end"><span class="ganancia">${ganancia}</span></div>
@@ -611,58 +631,64 @@ const pintarCategoriasReportes = (arr) => {
     <div class="col-md-3 col-3 text-end"><span class="span-categoria">$${balance}</span></div>
 
   
-  </div>`
-  })
+  </div>`;
+  });
   contenedorTotalesPorCategoria.innerHTML = str;
-}
-
+};
 
 const mayorGanancia = (arr) => {
   return arr.sort((a, b) => Number(b.ganancia) - Number(a.ganancia));
 };
 
 const pintarMayorGanancia = (arr) => {
-  mayorGananciaNombre.innerHTML = `<span class="span-categoria">${mayorGanancia(arr)[0].nombre}</span>`
-  mayorGananciaValor.innerHTML = `<span class="ganancia">${mayorGanancia(arr)[0].ganancia}</span>`
-}
-
+  mayorGananciaNombre.innerHTML = `<span class="span-categoria">${mayorGanancia(arr)[0].nombre
+    }</span>`;
+  mayorGananciaValor.innerHTML = `<span class="ganancia">${mayorGanancia(arr)[0].ganancia
+    }</span>`;
+};
 
 const mayorGasto = (arr) => {
   return arr.sort((a, b) => Number(b.gasto) - Number(a.gasto));
 };
 const pintarMayorGasto = (arr) => {
-
-  mayorGastoNombre.innerHTML = `<span class="span-categoria">${mayorGasto(arr)[0].nombre}</span>`
-  mayorGastoValor.innerHTML = `<span class="gasto">${mayorGasto(arr)[0].gasto}</span>`
-}
+  mayorGastoNombre.innerHTML = `<span class="span-categoria">${mayorGasto(arr)[0].nombre
+    }</span>`;
+  mayorGastoValor.innerHTML = `<span class="gasto">${mayorGasto(arr)[0].gasto
+    }</span>`;
+};
 
 const mayorBalance = (arr) => {
   return arr.sort((a, b) => Number(b.balance) - Number(a.balance));
 };
 const pintarMayorBalance = (arr) => {
-  mayorBalanceNombre.innerHTML = `<span class="span-categoria">${mayorBalance(arr)[0].nombre}</span>`
-  mayorBalanceValor.innerHTML = `<span class="span-categoria">$${mayorBalance(arr)[0].balance}</span>`
-}
+  mayorBalanceNombre.innerHTML = `<span class="span-categoria">${mayorBalance(arr)[0].nombre
+    }</span>`;
+  mayorBalanceValor.innerHTML = `<span class="span-categoria">$${mayorBalance(arr)[0].balance
+    }</span>`;
+};
 
+const pintarMesMayorGanancia = (arr) => {
+  mayorGananciaMesNombre.innerHTML = `<span class="span-categoria">${mayorGanancia(arr)[0].mes
+    }</span>`;
+  mayorGananciaMesValor.innerHTML = `<span class="ganancia">${mayorGanancia(arr)[0].ganancia
+    }</span>`;
+};
 
-const pintarMesMayorGanancia = (arr) =>{
-  mayorGananciaMesNombre.innerHTML = `<span class="span-categoria">${mayorGanancia(arr)[0].mes}</span>`
-  mayorGananciaMesValor.innerHTML = `<span class="ganancia">${mayorGanancia(arr)[0].ganancia}</span>`
-}
-
-const pintarMesMayorGasto = (arr) =>{
-  mayorGastoMesNombre.innerHTML = `<span class="span-categoria">${mayorGasto(arr)[0].mes}</span>`
-  mayorGastoMesValor.innerHTML = `<span class="gasto">${mayorGasto(arr)[0].gasto}</span>`
-}
+const pintarMesMayorGasto = (arr) => {
+  mayorGastoMesNombre.innerHTML = `<span class="span-categoria">${mayorGasto(arr)[0].mes
+    }</span>`;
+  mayorGastoMesValor.innerHTML = `<span class="gasto">${mayorGasto(arr)[0].gasto
+    }</span>`;
+};
 // -----------------------------------------ocultar filtros----------------------------------------------------------//
 
 const spanOcultarFiltros = document.getElementById("span-ocultar-filtros");
 
-const contenedorFiltros = document.getElementById('contenedor-filtros');
+const contenedorFiltros = document.getElementById("contenedor-filtros");
 
-spanOcultarFiltros.addEventListener('click', () => {
-  contenedorFiltros.classList.toggle('d-none')
-})
+spanOcultarFiltros.addEventListener("click", () => {
+  contenedorFiltros.classList.toggle("d-none");
+});
 
 spanOcultarFiltros.addEventListener("click", () => {
   contenedorFiltros.classList.toggle("d-none");
