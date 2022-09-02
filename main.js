@@ -166,9 +166,9 @@ const generarCategorias = () => {
 
     const nuevas = categorias.map(categoria => categoria.id === categoriaParaEditar[0].id ? filtrado : categoria)
     if (!Array.isArray(categorias)) {
-      alertify.error("El tipo de dato es incorrecto");
+      alertify.error("El tipo de dato es incorrecto"); //modificar nombre de la constante
     } else {
-      localStorage.setItem("categorias", JSON.stringify(nuevas));
+      localStorage.setItem("categorias", JSON.stringify(nuevas));   
     }
     // const categoriasEditadas = JSON.parse(localStorage.getItem('categorias'))
     generarCategorias();
@@ -233,7 +233,6 @@ const inputNuevaOperacionFecha = document.getElementById(
 const botonAgregarOperacion = document.getElementById(
   "boton-agregar-operacion"
 );
-
 botonAgregarOperacion.addEventListener("click", (e) => {
   e.preventDefault();
   if (
@@ -258,7 +257,7 @@ botonAgregarOperacion.addEventListener("click", (e) => {
   inputNuevaOperacionDescripcion.value = "";
   inputNuevaOperacionMonto.value = 0;
   selectNuevaOperacionTipo.value = "gasto";
-  selectNuevaOperacionCategoria.value = "Comida";
+  selectNuevaOperacionCategoria.value = categorias[0].nombre;
   inputNuevaOperacionFecha.valueAsDate = new Date();
   alertify.success("Operación agregada exitosamente");
   verOperaciones(operaciones);
@@ -362,7 +361,6 @@ const pintarOperaciones = (arr) => {
       (operacion) => operacion.id === operacionParaEditar[0].id
     );
     const filtrado = filtrar[0];
-    console.log(filtrar);
     if (
       inputEditarOperacionDescripcion.value.trim().length === 0 ||
       inputEditarOperacionMonto.value <= 0
@@ -612,7 +610,6 @@ const reportesCategoria = (operaciones) => {
   pintarMayorGasto(categoriasBalance);
   pintarMayorBalance(categoriasBalance);
   pintarCategoriasReportes(categoriasBalance);
-  console.log(categoriasBalance);
 };
 
 const pintarCategoriasReportes = (arr) => {
