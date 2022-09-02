@@ -141,32 +141,39 @@ const generarCategorias = () => {
   });
   linkEditarCategoria.forEach((btn) => {
     btn.addEventListener("click", (e) => {
-      const categoriaParaEditar = categorias.filter(
+      e.preventDefault()
+      categoriaParaEditar = categorias.filter(
         (categoria) => categoria.id === e.target.dataset.id
       );
-
       editarCategoria(categoriaParaEditar);
-      botonEditarCategoria.addEventListener("click", () => {
-        if (inputNombreEditarCategoria.value.trim().length == 0) {
-          return alertify.error("El nombre no puede estar vacío");
-        }
-        categoriaParaEditar[0].nombre = inputNombreEditarCategoria.value;
-        seccionCategorias.style.display = "block";
-        seccionEditarCategoria.style.display = "none";
-        generarCategorias();
-        alertify.success("Categoria editada exitosamente");
-        if (!Array.isArray(categorias)) {
-          alertify.error("El tipo de dato es incorrecto");
-        } else {
-          localStorage.setItem("categorias", JSON.stringify(categorias));
-        }
-      });
-
-      botonCancelarEditarCategoria.addEventListener("click", () => {
-        seccionEditarCategoria.style.display = "none";
-        seccionCategorias.style.display = "block";
-      });
     });
+  });
+
+  botonEditarCategoria.addEventListener("click", () => {
+    seccionCategorias.style.display = "block";
+    seccionEditarCategoria.style.display = "none";
+    const filtrar = categorias.filter(categoria => categoria.id === categoriaParaEditar[0].id)
+    const filtrado = filtrar[0]
+    if (inputNombreEditarCategoria.value.trim().length == 0) {
+      return alertify.error("El nombre no puede estar vacío");
+    }
+    filtrado.nombre = inputNombreEditarCategoria.value;
+    filtrado.id = categoriaParaEditar[0].id;
+
+    const nuevas = categorias.map(categoria => categoria.id === categoriaParaEditar[0].id ? filtrado : categoria)
+    if (!Array.isArray(categorias)) {
+      alertify.error("El tipo de dato es incorrecto");
+    } else {
+      localStorage.setItem("categorias", JSON.stringify(nuevas));
+    }
+    // const categoriasEditadas = JSON.parse(localStorage.getItem('categorias'))
+    generarCategorias();
+    alertify.success("Categoria editada exitosamente");
+  });
+
+  botonCancelarEditarCategoria.addEventListener("click", () => {
+    seccionEditarCategoria.style.display = "none";
+    seccionCategorias.style.display = "block";
   });
 };
 const editarCategoria = (arr) => {
