@@ -16,19 +16,19 @@ const contenedorOperacionesInsuficientes = document.getElementById(
 const contenedorReportes = document.getElementById("contenedor-reportes");
 
 botonSeccionBalance.addEventListener("click", () => {
-  seccionBalance.style.display = "block";
-  seccionCategorias.style.display = "none";
-  seccionReportes.style.display = "none";
+  seccionBalance.classList.remove("d-none");
+  seccionCategorias.classList.add("d-none");
+  seccionReportes.classList.add("d-none");
 });
 botonSeccionCategorias.addEventListener("click", () => {
-  seccionCategorias.style.display = "block";
-  seccionBalance.style.display = "none";
-  seccionReportes.style.display = "none";
+  seccionBalance.classList.add("d-none");
+  seccionCategorias.classList.remove("d-none");
+  seccionReportes.classList.add("d-none");
 });
 botonSeccionReportes.addEventListener("click", () => {
-  seccionReportes.style.display = "block";
-  seccionCategorias.style.display = "none";
-  seccionBalance.style.display = "none";
+  seccionBalance.classList.add("d-none");
+  seccionCategorias.classList.add("d-none");
+  seccionReportes.classList.remove("d-none");
   if (!operaciones.length) {
     contenedorReportes.style.display = "none";
     contenedorOperacionesInsuficientes.style.display = "flex";
@@ -46,11 +46,8 @@ const seccionNuevaOperacion = document.getElementById(
 );
 
 botonNuevaOperacion.addEventListener("click", () => {
-  seccionNuevaOperacion.style.display = "block";
-  seccionReportes.style.display = "none";
-  seccionCategorias.style.display = "none";
-  seccionBalance.style.display = "none";
-  seccionEditarOperacion.style.display = "none";
+  seccionNuevaOperacion.classList.remove("d-none");
+  seccionBalance.classList.add("d-none");
 });
 // botón para editar operacion
 const seccionEditarOperacion = document.getElementById(
@@ -64,11 +61,8 @@ const botonCancelarOperacion = document.getElementById(
 
 botonCancelarOperacion.addEventListener("click", (e) => {
   e.preventDefault();
-  seccionBalance.style.display = "flex";
-  seccionCategorias.style.display = "none";
-  seccionReportes.style.display = "none";
-  seccionNuevaOperacion.style.display = "none";
-  seccionEditarOperacion.style.display = "none";
+  seccionBalance.classList.remove("d-none");
+  seccionNuevaOperacion.classList.add("d-none");
 });
 //Pintar,editar y eliminar categorias.
 let categorias = JSON.parse(localStorage.getItem("categorias")) || [
@@ -355,8 +349,8 @@ const pintarOperaciones = (arr) => {
   });
 
   botonEditarOperacion.addEventListener("click", () => {
-    seccionBalance.style.display = "block";
-    seccionEditarOperacion.style.display = "none";
+    seccionBalance.classList.remove("d-none")
+    seccionEditarOperacion.classList.add("none");
     const filtrar = operaciones.filter(
       (operacion) => operacion.id === operacionParaEditar[0].id
     );
@@ -391,15 +385,15 @@ const pintarOperaciones = (arr) => {
     alertify.success("Operación editada exitosamente");
   });
   botonCancelarEditarOperacion.addEventListener("click", () => {
-    seccionBalance.style.display = "block";
-    seccionEditarOperacion.style.display = "none";
+    seccionBalance.classList.remove("d-none");
+    seccionEditarOperacion.classList.add("d-none");
   });
 };
 const editarOperacion = (arr) => {
   if (arr.length === 0) return;
   const { descripcion, monto, tipo, categoria, fecha } = arr[0];
-  seccionBalance.style.display = "none";
-  seccionEditarOperacion.style.display = "block";
+  seccionBalance.classList.add("d-none");
+  seccionEditarOperacion.classList.remove("d-none");
   inputEditarOperacionDescripcion.value = descripcion;
   inputEditarOperacionMonto.value = monto;
   selectEditarOperacionCategoria.value = categoria;
