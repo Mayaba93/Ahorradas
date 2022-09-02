@@ -2,24 +2,15 @@
     margin: 0;
     padding: 0;
 }
-body{
-    color: white;
-}
 p{
     margin-bottom: 0;
 }
 /* ------------------------------Nav-------------------------------------- */
 .nuestro-nav{
     background-color: #BC8DA0!important;
-    color: white!important;
-}
-.seccion-categorias, .seccion-reportes , .seccion-nueva-operacion , .seccion-editar-operacion ,.seccion-editar-categoria{
-    display: none;
 }
 .nav-items:hover{
     background-color: #c997ab;
-    border-radius: 10px;
-
 }
 /* Seccion Balance */
 .contenedor-main{
