@@ -148,8 +148,8 @@ const generarCategorias = () => {
   });
 
   botonEditarCategoria.addEventListener("click", () => {
-    seccionCategorias.style.display = "block";
-    seccionEditarCategoria.style.display = "none";
+    seccionCategorias.classList.remove('d-none')
+    seccionEditarCategoria.classList.add('d-none')
     const filtrar = categorias.filter(categoria => categoria.id === categoriaParaEditar[0].id)
     const filtrado = filtrar[0]
     if (inputNombreEditarCategoria.value.trim().length == 0) {
@@ -170,13 +170,13 @@ const generarCategorias = () => {
   });
 
   botonCancelarEditarCategoria.addEventListener("click", () => {
-    seccionEditarCategoria.style.display = "none";
-    seccionCategorias.style.display = "block";
+    seccionEditarCategoria.classList.add('d-none');
+    seccionCategorias.classList.remove('d-none');
   });
 };
 const editarCategoria = (arr) => {
-  seccionEditarCategoria.style.display = "block";
-  seccionCategorias.style.display = "none";
+  seccionEditarCategoria.classList.remove('d-none');
+  seccionCategorias.classList.add('d-none');
   inputNombreEditarCategoria.value = arr[0].nombre;
 };
 
@@ -246,8 +246,8 @@ botonAgregarOperacion.addEventListener("click", (e) => {
     fecha: inputNuevaOperacionFecha.value,
   };
   operaciones.push(operacion);
-  seccionNuevaOperacion.style.display = "none";
-  seccionBalance.style.display = "block";
+  seccionNuevaOperacion.classList.add("d-none");
+  seccionBalance.classList.remove('d-none');
   inputNuevaOperacionDescripcion.value = "";
   inputNuevaOperacionMonto.value = 0;
   selectNuevaOperacionTipo.value = "gasto";
@@ -406,11 +406,11 @@ const contenedorOperaciones = document.getElementById("contenedor-operaciones");
 
 const verOperaciones = (operaciones) => {
   if (!operaciones.length) {
-    ningunaOperacion.style.display = "flex";
-    contenedorOperaciones.style.display = "none";
+    ningunaOperacion.classList.remove('d-none');
+    contenedorOperaciones.classList.add('d-none');
   } else {
-    ningunaOperacion.style.display = "none";
-    contenedorOperaciones.style.display = "block";
+    ningunaOperacion.classList.add('d-none');
+    contenedorOperaciones.classList.remove('d-none');
   }
 };
 
@@ -676,10 +676,6 @@ const pintarMesMayorGasto = (arr) => {
 const spanOcultarFiltros = document.getElementById("span-ocultar-filtros");
 
 const contenedorFiltros = document.getElementById("contenedor-filtros");
-
-spanOcultarFiltros.addEventListener("click", () => {
-  contenedorFiltros.classList.toggle("d-none");
-});
 
 spanOcultarFiltros.addEventListener("click", () => {
   contenedorFiltros.classList.toggle("d-none");
