@@ -13,58 +13,16 @@ p{
     background-color: #c997ab;
 }
 /* Seccion Balance */
-.contenedor-main{
-    padding: 4%;
-}
 .card-balance{
     background-color: #bc8da0c2;
     width: 75%;
-    padding: 5%;
-    border-radius: 10px;
     box-shadow: 0px 8px 15px -7px rgba(0,0,0,0.64);
-    margin-bottom: 5%;
 }
 .balance-ganancias{
     color: rgb(74, 180, 64);
 }
 .balance-gastos{
     color: rgb(158, 34, 34);
-}
-.balance-total-numero{
-    font-weight: bold;
-}
-.balance-titulo{
-    margin-bottom: 20%;
-}
-.contenedor-balance-gastos{
-    display: flex;
-    justify-content: space-between;
-    margin: 4% 0;
-    font-size: 20px;
-    align-items: center;
-}
-.contenedor-balance-gastos span{
-    font-size: 18px;
-}
-
-.balance-total{
-    font-size: 25px;
-}
-.contenedor-titulo{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.contenedor-input-filtros{
-    display: flex;
-    flex-direction: column;
-    margin: 6% 0;
-}
-.contenedor-input-filtros select, .contenedor-input-filtros input{
-    padding: 2% 1%;
-    margin-top: 4%;
-    border-radius: 10px;
-    border: none;
 }
 .span-ocultar-filtros:hover{
     color: rgba(255, 255, 255, 0.685);
@@ -73,47 +31,25 @@ p{
 .card-operaciones, .card-reportes{
     background-color: #bc8da0c2;
     width: 100%;
-    padding: 2%;
-    border-radius: 10px;
     box-shadow: 0px 8px 15px -7px rgba(0,0,0,0.64);
 }
 .card-operaciones{
     min-height: 750px;
-}
-.card-titulo-boton{
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.boton-nueva-operacion{
-    border-radius: 10px;
-    border: none;
-    padding: 1% 2%;
 }
 .boton-nueva-operacion:hover{
     background-color: rgba(255, 255, 255, 0.685);
 }
 .imagen-ninguna-operacion{
     width: 50%;
-    margin-bottom: 5%;
 }
 .contenedor-ninguna-operacion{
-display: flex;
-justify-content: center;
-align-items: center;
-flex-direction: column;
-height: 100%;
-
+    height: 100%;
 }
 
 /* sección Nueva operación y editar operación */
 .contenedor-nueva-operacion, .contenedor-editar-operacion , .contenedor-seccion-categorias, .contenedor-seccion-editar-categoria{
     background-color: #bc8da0c2;
-    padding: 3%;
-    border-radius: 10px;
-    box-shadow: 0px 8px 15px -7px rgba(0,0,0,0.64);
-
-    
+    box-shadow: 0px 8px 15px -7px rgba(0,0,0,0.64);    
 }
 .contenedor-input-nueva-operacion , .contenedor-input-editar-operacion{
     display: flex;
