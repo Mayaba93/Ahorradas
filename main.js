@@ -187,6 +187,19 @@ const generarCategorias = () => {
     const filtrar = categorias.filter(
       (categoria) => categoria.id === categoriaParaEditar[0].id
     );
+
+    const editarOperacionesAsociadas = (arr) =>{
+      arr.forEach(operacion => {
+        if (operacion.categoria === categoriaParaEditar[0].nombre){
+          operacion.categoria = inputNombreEditarCategoria.value
+        }
+      });
+      localStorage.setItem('operaciones', JSON.stringify(arr));
+      const nuevasOperaciones = JSON.parse(localStorage.getItem('operaciones'));
+      pintarOperaciones(nuevasOperaciones)
+    }
+    editarOperacionesAsociadas(operaciones)
+
     const filtrado = filtrar[0];
     if (inputNombreEditarCategoria.value.trim().length == 0) {
       return alertify.error("El nombre no puede estar vacío");
