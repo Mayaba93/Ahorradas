@@ -5,6 +5,10 @@
 html{
     min-height: 100%;
 }
+body{
+    background-image: url(./imagen/imagen-fondo-final.jpg);
+    background-size: cover;
+}
 p{
     margin-bottom: 0;
 }
@@ -19,7 +23,7 @@ p{
 }
 /* Seccion Balance */
 .card-balance{
-    background-color: #bc8da0c2;
+    background-color: #bc8da0f5;
     width: 75%;
     box-shadow: 0px 8px 15px -7px rgba(0,0,0,0.64);
 }
@@ -31,7 +35,7 @@ p{
     cursor: pointer;
 }
 .card-operaciones, .card-reportes{
-    background-color: #bc8da0c2;
+    background-color: #bc8da0f5;
     width: 100%;
     box-shadow: 0px 8px 15px -7px rgba(0,0,0,0.64);
 }
@@ -51,7 +55,7 @@ p{
 /* sección Nueva operación y editar operación */
 
 .contenedor-nueva-operacion, .contenedor-editar-operacion , .contenedor-seccion-categorias, .contenedor-seccion-editar-categoria{
-    background-color: #bc8da0c2;
+    background-color: #bc8da0f5;
     box-shadow: 0px 8px 15px -7px rgba(0,0,0,0.64);    
 }
 .boton-agregar{
@@ -79,7 +83,7 @@ p{
     background-color:#ddc9d1c4;
 }
 .ganancia, .ganancia-operacion, .balance-ganancias{
-    color: rgb(74, 180, 64);
+    color: rgb(55, 138, 48);
 }
 .ganancia::before, .ganancia-operacion::before{
     content: '+$';
