@@ -52,7 +52,7 @@ const selectFiltroTipo = document.getElementById("select-filtro-tipo");
 const selectFiltroCategoria = document.getElementById("select-filtro-categoria");
 const selectFiltroOrdenar = document.getElementById("select-filtro-ordenar");
 const inputFiltroFecha = document.getElementById("input-filtro-fecha");
-const spanOcultarFiltros = document.getElementById("span-ocultar-filtros");
+const botonOcultarFiltros = document.getElementById("boton-ocultar-filtros");
 const contenedorFiltros = document.getElementById("contenedor-filtros");
 
 //SECCION REPORTES ------------------------------------------------------------------
@@ -124,8 +124,8 @@ const generarCategorias = () => {
         `<div class="contenedor-span-editar-eliminar d-flex justify-content-between my-3 text-center align-items-center">
         <span class="span-nombre-categoria text-white p-1 rounded-2 fw-semibold">${nombre}</span>
         <div class="me-3">
-        <a href="#" data-id=${id} class="link-editar-eliminar-categoria link-editar-categoria text-decoration-none ms-2 text-white">Editar</a
-        ><a href="#" data-id=${id} class="link-editar-eliminar-categoria link-eliminar-categoria text-decoration-none ms-2 text-white"
+        <a href="#" data-id=${id} class="link-editar-eliminar-categoria link-editar-categoria text-decoration-none ms-2 text-white" aria-label="editar categoría ${nombre}" >Editar</a
+        ><a href="#" data-id=${id} class="link-editar-eliminar-categoria link-eliminar-categoria text-decoration-none ms-2 text-white"aria-label="eliminar categoría ${nombre}"
         >Eliminar</a>
         </div>
         </div>`;
@@ -326,8 +326,8 @@ const pintarOperaciones = (arr) => {
           }">${monto}</span>
         </div>
         <div class="col-md-2 col-sm-6 col-6 text-wrap text-end">
-          <a class="text-decoration-none boton-editar-operacion" data-id=${id} href="#">Editar</a></a>
-          <a class="text-decoration-none boton-eliminar-operacion" data-id=${id} href="#">Borrar</a>
+          <a class="text-decoration-none boton-editar-operacion" aria-label="editar operación ${descripcion}" data-id=${id} href="#">Editar</a></a>
+          <a class="text-decoration-none boton-eliminar-operacion" aria-label="eliminar operación ${descripcion}" data-id=${id} href="#">Borrar</a>
         </div>
       </div>`;
   });
@@ -514,7 +514,7 @@ inputFiltroFecha.addEventListener("change", filtros);
 
 //OCULTAR FILTROS -----------------------------------------------------------------------------------------
 
-spanOcultarFiltros.addEventListener("click", () => {
+botonOcultarFiltros.addEventListener("click", () => {
   contenedorFiltros.classList.toggle("d-none");
 });
 

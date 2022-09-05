@@ -18,7 +18,10 @@ p{
     width: 75%;
     box-shadow: 0px 8px 15px -7px rgba(0,0,0,0.64);
 }
-.span-ocultar-filtros:hover{
+.boton-ocultar-filtros{
+    all:unset;
+}
+.boton-ocultar-filtros:hover{
     color: rgba(255, 255, 255, 0.685);
     cursor: pointer;
 }
