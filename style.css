@@ -8,6 +8,7 @@ p{
 /* ------------------------------Nav-------------------------------------- */
 .nuestro-nav{
     background-color: #BC8DA0!important;
+    box-shadow: 1px 6px 26px -1px #bc8da0cc;
 }
 .nav-items:hover{
     background-color: #c997ab;
@@ -95,6 +96,22 @@ p{
 .boton-eliminar-operacion:hover, .boton-editar-operacion:hover{
     color: #8c8c8c;
 }
+.nombres{
+    background-color: rgba(255, 255, 255, 0.301)
+}
+.nombres:hover{
+    background-color: rgba(255, 255, 255, 0.164)
+}
+/* Nuestro footer */
+
+.nuestro-footer{
+    background-color: #BC8DA0!important;
+    box-shadow: 1px -6px 26px -1px #bc8da0cc;
+
+}
+
+/* Media queries */
+
 @media (max-width: 992px){
     .card-balance{
         width: 100%;
