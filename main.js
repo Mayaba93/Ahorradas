@@ -30,11 +30,11 @@ botonSeccionReportes.addEventListener("click", () => {
   seccionCategorias.classList.add("d-none");
   seccionReportes.classList.remove("d-none");
   if (!operaciones.length) {
-    contenedorReportes.style.display = "none";
-    contenedorOperacionesInsuficientes.style.display = "flex";
+    contenedorReportes.classList.add("d-none")
+    contenedorOperacionesInsuficientes.classList.remove('d-none')
   } else {
-    contenedorReportes.style.display = "block";
-    contenedorOperacionesInsuficientes.style.display = "none";
+    contenedorReportes.classList.remove("d-none")
+    contenedorOperacionesInsuficientes.classList.add('d-none')
   }
   reportesMes(operaciones);
   reportesCategoria(operaciones);
@@ -94,11 +94,11 @@ const generarCategorias = () => {
       select.innerHTML += `<option value="${nombre}">${nombre}</option>`;
       str =
         str +
-        `<div class="contenedor-span-editar-eliminar">
-    <span class="span-nombre-categoria">${nombre}</span>
+        `<div class="contenedor-span-editar-eliminar d-flex justify-content-between my-3 text-center align-items-center">
+    <span class="span-nombre-categoria text-white p-1 rounded-2 fw-semibold">${nombre}</span>
     <div class="me-3">
-      <a href="#" data-id=${id} class="link-editar-eliminar-categoria link-editar-categoria">Editar</a
-      ><a href="#" data-id=${id} class="link-editar-eliminar-categoria link-eliminar-categoria"
+      <a href="#" data-id=${id} class="link-editar-eliminar-categoria link-editar-categoria text-decoration-none ms-2 text-white">Editar</a
+      ><a href="#" data-id=${id} class="link-editar-eliminar-categoria link-eliminar-categoria text-decoration-none ms-2 text-white"
         >Eliminar</a>
     </div>
   </div>`;
@@ -297,11 +297,11 @@ const pintarOperaciones = (arr) => {
           <span>${descripcion}</span>
         </div>
         <div class="col-md-3 col-sm-6 col-6 text-end"> 
-          <span class="span-categoria">${categoria}</span>
+          <span class="span-categoria rounded-2 p-1 text-white fw-semibold">${categoria}</span>
         </div>
 
         
-        <span class="col-md-2 col-sm-6 col-6 span-fecha text-end">${fecha}</span>
+        <span class="col-md-2 col-sm-6 col-6 span-fecha text-end d-none d-lg-block">${fecha}</span>
         <div class="col-md-2 col-sm-6 col-6 text-end operacion-monto">
           <span class="fw-bold ${tipo === "ganancia" ? "ganancia-operacion" : "gasto-operacion"
       }">${monto}</span>
@@ -566,9 +566,9 @@ const pintarMesReportes = (arr) => {
       ` <div class="row my-3 fw-semibold">
 
     <div class="col-md-3 col-3 text-start">${mes} </div>
-    <div class="col-md-3 col-3 text-end"><span class="ganancia">${ganancia}</span></div>
-    <div class="col-md-3 col-3 text-end"><span class="gasto">${gasto}</span></div>
-    <div class="col-md-3 col-3 text-end"><span class="span-categoria">$${balance}</span></div>
+    <div class="col-md-3 col-3 text-end"><span class="ganancia rounded-2 p-1">${ganancia}</span></div>
+    <div class="col-md-3 col-3 text-end"><span class="gasto rounded-2 p-1">${gasto}</span></div>
+    <div class="col-md-3 col-3 text-end"><span class="span-categoria rounded-2 p-1 text-white fw-semibold">$${balance}</span></div>
 
   </div>`;
   });
@@ -617,9 +617,9 @@ const pintarCategoriasReportes = (arr) => {
       ` <div class="row my-3 fw-semibold">
 
     <div class="col-md-3 col-3 text-start">${nombre} </div>
-    <div class="col-md-3 col-3 text-end"><span class="ganancia">${ganancia}</span></div>
-    <div class="col-md-3 col-3 text-end"><span class="gasto">${gasto}</span></div>
-    <div class="col-md-3 col-3 text-end"><span class="span-categoria">$${balance}</span></div>
+    <div class="col-md-3 col-3 text-end"><span class="ganancia rounded-2 p-1">${ganancia}</span></div>
+    <div class="col-md-3 col-3 text-end"><span class="gasto rounded-2 p-1">${gasto}</span></div>
+    <div class="col-md-3 col-3 text-end"><span class="span-categoria rounded-2 p-1 text-white fw-semibold">$${balance}</span></div>
 
   
   </div>`;
@@ -632,9 +632,9 @@ const mayorGanancia = (arr) => {
 };
 
 const pintarMayorGanancia = (arr) => {
-  mayorGananciaNombre.innerHTML = `<span class="span-categoria">${mayorGanancia(arr)[0].nombre
+  mayorGananciaNombre.innerHTML = `<span class="span-categoria rounded-2 p-1 text-white fw-semibold">${mayorGanancia(arr)[0].nombre
     }</span>`;
-  mayorGananciaValor.innerHTML = `<span class="ganancia">${mayorGanancia(arr)[0].ganancia
+  mayorGananciaValor.innerHTML = `<span class="ganancia rounded-2 p-1">${mayorGanancia(arr)[0].ganancia
     }</span>`;
 };
 
@@ -642,9 +642,9 @@ const mayorGasto = (arr) => {
   return arr.sort((a, b) => Number(b.gasto) - Number(a.gasto));
 };
 const pintarMayorGasto = (arr) => {
-  mayorGastoNombre.innerHTML = `<span class="span-categoria">${mayorGasto(arr)[0].nombre
+  mayorGastoNombre.innerHTML = `<span class="span-categoria rounded-2 p-1 text-white fw-semibold">${mayorGasto(arr)[0].nombre
     }</span>`;
-  mayorGastoValor.innerHTML = `<span class="gasto">${mayorGasto(arr)[0].gasto
+  mayorGastoValor.innerHTML = `<span class="gasto rounded-2 p-1">${mayorGasto(arr)[0].gasto
     }</span>`;
 };
 
@@ -652,23 +652,23 @@ const mayorBalance = (arr) => {
   return arr.sort((a, b) => Number(b.balance) - Number(a.balance));
 };
 const pintarMayorBalance = (arr) => {
-  mayorBalanceNombre.innerHTML = `<span class="span-categoria">${mayorBalance(arr)[0].nombre
+  mayorBalanceNombre.innerHTML = `<span class="span-categoria rounded-2 p-1 text-white fw-semibold">${mayorBalance(arr)[0].nombre
     }</span>`;
-  mayorBalanceValor.innerHTML = `<span class="span-categoria">$${mayorBalance(arr)[0].balance
+  mayorBalanceValor.innerHTML = `<span class="span-categoria rounded-2 p-1 text-white fw-semibold">$${mayorBalance(arr)[0].balance
     }</span>`;
 };
 
 const pintarMesMayorGanancia = (arr) => {
-  mayorGananciaMesNombre.innerHTML = `<span class="span-categoria">${mayorGanancia(arr)[0].mes
+  mayorGananciaMesNombre.innerHTML = `<span class="span-categoria rounded-2 p-1 text-white fw-semibold">${mayorGanancia(arr)[0].mes
     }</span>`;
-  mayorGananciaMesValor.innerHTML = `<span class="ganancia">${mayorGanancia(arr)[0].ganancia
+  mayorGananciaMesValor.innerHTML = `<span class="ganancia rounded-2 p-1 text-white fw-semibold">${mayorGanancia(arr)[0].ganancia
     }</span>`;
 };
 
 const pintarMesMayorGasto = (arr) => {
-  mayorGastoMesNombre.innerHTML = `<span class="span-categoria">${mayorGasto(arr)[0].mes
+  mayorGastoMesNombre.innerHTML = `<span class="span-categoria rounded-2 p-1 text-white fw-semibold">${mayorGasto(arr)[0].mes
     }</span>`;
-  mayorGastoMesValor.innerHTML = `<span class="gasto">${mayorGasto(arr)[0].gasto
+  mayorGastoMesValor.innerHTML = `<span class="gasto rounded-2 p-1">${mayorGasto(arr)[0].gasto
     }</span>`;
 };
 // -----------------------------------------ocultar filtros----------------------------------------------------------//
