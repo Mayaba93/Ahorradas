@@ -130,10 +130,10 @@
                       class="d-flex align-items-center justify-content-between"
                     >
                       <h2>Filtros</h2>
-                      <span
-                        class="span-ocultar-filtros"
-                        id="span-ocultar-filtros" aria-label="boton"
-                        >Ocultar filtros</span
+                      <button
+                        class="boton-ocultar-filtros"
+                        id="boton-ocultar-filtros"
+                        >Ocultar filtros</button
                       >
                     </div>
                     <div id="contenedor-filtros">
@@ -141,7 +141,7 @@
                         <label for="select-tipo">Tipo</label>
                         <select
                           id="select-filtro-tipo"
-                          class="p-1 mt-2 rounded-4 border border-none"
+                          class="p-1 mt-2 rounded-4 border border-none" aria-label="menu desplegable filtro por tipo de operación"
                         >
                           <option value="todos">Todos</option>
                           <option value="gasto">Gasto</option>
@@ -152,7 +152,7 @@
                         <label for="select-categoria">Categoría</label>
                         <select
                           class="select-categorias filtro-categorias p-1 mt-2 rounded-4 border border-none"
-                          id="select-filtro-categoria"
+                          id="select-filtro-categoria" aria-label="menu desplegable filtro por categoria de operación"
                         ></select>
                       </div>
                       <div class="d-flex flex-column my-3">
@@ -161,14 +161,14 @@
                           type="date"
                           name=""
                           id="input-filtro-fecha"
-                          class="p-1 mt-2 rounded-4 border border-none"
+                          class="p-1 mt-2 rounded-4 border border-none" aria-label="filtro por fecha"
                         />
                       </div>
                       <div class="d-flex flex-column my-3">
                         <label for="select-ordenar">Ordenar por</label>
                         <select
                           id="select-filtro-ordenar"
-                          class="p-1 mt-2 rounded-4 border border-none"
+                          class="p-1 mt-2 rounded-4 border border-none" aria-label="menu desplegable ordenar por"
                         >
                           <option value="mas-reciente">Más reciente</option>
                           <option value="menos-reciente">Menos reciente</option>
@@ -300,14 +300,14 @@
                   <button
                     class="btn btn-light mx-3"
                     type="submit"
-                    id="boton-cancelar-operacion"
+                    id="boton-cancelar-operacion" aria-label="cancelar nueva operacion"
                   >
                     Cancelar
                   </button>
                   <button
                     class="btn btn-success"
                     id="boton-agregar-operacion"
-                    type="submit"
+                    type="submit" aria-label="agregar nueva operación"
                   >
                     Agregar
                   </button>
@@ -394,14 +394,14 @@
                   <button
                     class="btn btn-light mx-3"
                     type="submit"
-                    id="boton-cancelar-editar-operacion"
+                    id="boton-cancelar-editar-operacion" aria-label="cancelar editar operación"
                   >
                     Cancelar
                   </button>
                   <button
                     class="btn btn-success"
                     id="boton-editar-operacion"
-                    type="submit"
+                    type="submit" aria-label="editar operación"
                   >
                     Editar
                   </button>
@@ -430,7 +430,7 @@
                   <button
                     type="submit"
                     class="btn btn-success boton-agregar"
-                    id="boton-agregar-nueva-categoria"
+                    id="boton-agregar-nueva-categoria"aria-label="agregar nueva categoría"
                   >
                     Agregar
                   </button>
@@ -462,14 +462,14 @@
                   <button
                     class="btn btn-light mx-3"
                     type="submit"
-                    id="boton-cancelar-editar-categoria"
+                    id="boton-cancelar-editar-categoria" aria-label="cancelar editar categoría"
                   >
                     Cancelar
                   </button>
                   <button
                     type="submit"
                     class="btn btn-success boton-agregar border border-none"
-                    id="boton-editar-categoria"
+                    id="boton-editar-categoria" aria-label="editar categoría"
                   >
                     Editar
                   </button>
@@ -491,7 +491,7 @@
               >
                 <img
                   class="imagen-operaciones-insuficientes mb-5"
-                  src="imagen/operaciones-insuficientes.svg"
+                  src="imagen/operaciones-insuficientes.svg" alt="Operaciones insuficientes"
                 />
                 <h4>Operaciones insuficientes</h4>
                 <p>Prueba agregando más operaciones</p>
