@@ -137,12 +137,8 @@ const generarCategorias = () => {
   } else {
     localStorage.setItem("categorias", JSON.stringify(categorias));
   }
-  const linkEliminarCategoria = document.querySelectorAll(
-    ".link-eliminar-categoria"
-  );
-  const linkEditarCategoria = document.querySelectorAll(
-    ".link-editar-categoria"
-  );
+  const linkEliminarCategoria = document.querySelectorAll(".link-eliminar-categoria");
+  const linkEditarCategoria = document.querySelectorAll(".link-editar-categoria");
 
   //ELIMINAR CATEGORIAS -----------------------------------------------------------------------------------
 
@@ -323,12 +319,8 @@ const pintarOperaciones = (arr) => {
       </div>`;
   });
   operacionesNuevas.innerHTML = str;
-  const botonesEliminarOperacion = document.querySelectorAll(
-    ".boton-eliminar-operacion"
-  );
-  const botonesEditarOperacion = document.querySelectorAll(
-    ".boton-editar-operacion"
-  );
+  const botonesEliminarOperacion = document.querySelectorAll(".boton-eliminar-operacion");
+  const botonesEditarOperacion = document.querySelectorAll(".boton-editar-operacion");
 
   //ELIMINAR OPERACION---------------------------------------------------------------------------------------
 
