@@ -76,16 +76,25 @@ botonSeccionBalance.addEventListener("click", () => {
   seccionBalance.classList.remove("d-none");
   seccionCategorias.classList.add("d-none");
   seccionReportes.classList.add("d-none");
+  seccionEditarCategoria.classList.add("d-none");
+  seccionEditarOperacion.classList.add("d-none");
+  seccionNuevaOperacion.classList.add("d-none");
 });
 botonSeccionCategorias.addEventListener("click", () => {
   seccionBalance.classList.add("d-none");
   seccionCategorias.classList.remove("d-none");
   seccionReportes.classList.add("d-none");
+  seccionEditarCategoria.classList.add("d-none");
+  seccionEditarOperacion.classList.add("d-none");
+  seccionNuevaOperacion.classList.add("d-none");
 });
 botonSeccionReportes.addEventListener("click", () => {
   seccionBalance.classList.add("d-none");
   seccionCategorias.classList.add("d-none");
   seccionReportes.classList.remove("d-none");
+  seccionEditarCategoria.classList.add("d-none");
+  seccionEditarOperacion.classList.add("d-none");
+  seccionNuevaOperacion.classList.add("d-none");
   if (!operaciones.length) {
     contenedorReportes.classList.add("d-none");
     contenedorOperacionesInsuficientes.classList.remove("d-none");
