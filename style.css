@@ -18,12 +18,6 @@ p{
     width: 75%;
     box-shadow: 0px 8px 15px -7px rgba(0,0,0,0.64);
 }
-.balance-ganancias{
-    color: rgb(74, 180, 64);
-}
-.balance-gastos{
-    color: rgb(158, 34, 34);
-}
 .span-ocultar-filtros:hover{
     color: rgba(255, 255, 255, 0.685);
     cursor: pointer;
@@ -47,6 +41,7 @@ p{
 }
 
 /* sección Nueva operación y editar operación */
+
 .contenedor-nueva-operacion, .contenedor-editar-operacion , .contenedor-seccion-categorias, .contenedor-seccion-editar-categoria{
     background-color: #bc8da0c2;
     box-shadow: 0px 8px 15px -7px rgba(0,0,0,0.64);    
@@ -56,9 +51,6 @@ p{
 }
 
 /* sección categorías */
-.contenedor-seccion-categorias , .contenedor-seccion-editar-categoria{
-    background-color: #bc8da0c2;
-}
 .input-nombre-nueva-categoria, .input-nombre-editar-categoria{
     width: 85%;
 }
@@ -68,21 +60,23 @@ p{
 .link-editar-eliminar-categoria:hover{
     color: rgba(255, 255, 255, 0.473);
 }
+
 /* Seccion reportes */
 .imagen-operaciones-insuficientes{
     width: 50%;
 }
+
 /* operaciones nuevas */
 .ganancia, .gasto, .span-categoria{
     background-color:#ddc9d1c4;
 }
-.ganancia, .ganancia-operacion{
+.ganancia, .ganancia-operacion, .balance-ganancias{
     color: rgb(74, 180, 64);
 }
 .ganancia::before, .ganancia-operacion::before{
     content: '+$';
 }
-.gasto, .gasto-operacion{
+.gasto, .gasto-operacion,.balance-gastos{
     color: rgb(158, 34, 34);
 }
 .gasto::before,  .gasto-operacion::before{
