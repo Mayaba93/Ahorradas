@@ -324,7 +324,7 @@ const pintarOperaciones = (arr) => {
           <span>${descripcion}</span>
         </div>
         <div class="col-md-3 col-sm-6 col-6 text-end"> 
-          <span class="span-categoria rounded-2 p-1 text-white fw-semibold">${categoria}</span>
+          <span class="rounded-2 p-1 text-white fw-semibold">${categoria}</span>
         </div>
 
         
