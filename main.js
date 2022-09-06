@@ -380,7 +380,7 @@ const pintarOperaciones = (arr) => {
 
   botonEditarOperacion.addEventListener("click", () => {
     seccionBalance.classList.remove("d-none");
-    seccionEditarOperacion.classList.add("none");
+    seccionEditarOperacion.classList.add("d-none");
     const filtrar = operaciones.filter(
       (operacion) => operacion.id === operacionParaEditar[0].id
     );
