@@ -97,9 +97,12 @@ p{
 .operacion{
     background-color: #dabbc7c2;
 }
-.boton-eliminar-operacion, .boton-editar-operacion, .span-fecha{
+.span-fecha{
     color:#666666
     ;
+}
+.boton-eliminar-operacion, .boton-editar-operacion, .link-editar-categoria, .link-eliminar-categoria{
+    color: white;
 }
 .boton-eliminar-operacion:hover, .boton-editar-operacion:hover{
     color: #8c8c8c;
