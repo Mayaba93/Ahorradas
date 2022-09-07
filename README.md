@@ -1,6 +1,6 @@
 # Ahorradas
 **“Ahorradas”** es el tercer proyecto realizado durante la cursada de **Ada Itw, desarrollo Frontend**.
-Se puede acceder por [acá](https://mayaba93.github.io/Ahorradas/).
+Se puede acceder por [acá](https://mayaba93.github.io/Ahorradas/). Este es un fork del repositorio del [proyecto original](https://github.com/Mayaba93/Ahorradas)
 <br>
 ## Herramientas
 - HTML
