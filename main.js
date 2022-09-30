@@ -133,9 +133,9 @@ const generarCategorias = () => {
         `<div class="contenedor-span-editar-eliminar d-flex justify-content-between my-3 text-center align-items-center">
         <span class="span-nombre-categoria text-white p-1 rounded-2 fw-semibold">${nombre}</span>
         <div class="me-3">
-        <a href="#" data-id=${id} class="link-editar-eliminar-categoria link-editar-categoria text-decoration-none ms-4" aria-label="editar categoría ${nombre}" title="Editar"><i class="fa-solid fa-pen-to-square"></i></a
-        ><a href="#" data-id=${id} class="link-editar-eliminar-categoria link-eliminar-categoria text-decoration-none ms-4"aria-label="eliminar categoría ${nombre}" title="Eliminar"
-        ><i class="fa-solid fa-trash"></i></a>
+        <a href="#" data-id=${id} class="link-editar-eliminar-categoria link-editar-categoria text-decoration-none ms-4 text-white" aria-label="editar categoría ${nombre}" >Editar</a
+        ><a href="#" data-id=${id} class="link-editar-eliminar-categoria link-eliminar-categoria text-decoration-none ms-4 text-white"aria-label="eliminar categoría ${nombre}"
+        >Eliminar</a>
         </div>
         </div>`;
     });
@@ -335,8 +335,8 @@ const pintarOperaciones = (arr) => {
           }">${monto}</span>
         </div>
         <div class="col-md-2 col-sm-6 col-6 text-wrap text-end">
-          <a class="text-decoration-none boton-editar-operacion ms-4" aria-label="editar operación ${descripcion}" data-id=${id} href="#" title="Editar"><i class="fa-solid fa-pen-to-square"></i></a></a>
-          <a class="text-decoration-none boton-eliminar-operacion ms-4" aria-label="eliminar operación ${descripcion}" data-id=${id} href="#" title="Eliminar"><i class="fa-solid fa-trash"></i></a>
+          <a class="text-decoration-none boton-editar-operacion ms-4" aria-label="editar operación ${descripcion}" data-id=${id} href="#">Editar</a>
+          <a class="text-decoration-none boton-eliminar-operacion ms-4" aria-label="eliminar operación ${descripcion}" data-id=${id} href="#">Eliminar</a>
         </div>
       </div>`;
   });
